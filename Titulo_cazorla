@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cazorla Events — Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=DM+Sans:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#070707; display:flex; justify-content:center; align-items:center; min-height:100vh; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════
+     CAZORLA EVENTS · TÍTULO — copiar todo este bloque
+═══════════════════════════════════════════════════════ -->
+<div class="cze-wrap">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=DM+Sans:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
+
+<style>
+/* ── VARIABLES neón cian/rosa ── */
+.cze-wrap {
+  --red:      #e8000a;
+  --red2:     #ff2820;
+  --red-glow: rgba(232,0,10,0.45);
+  --cyan:     #00f2ff;
+  --pink:     #ff00de;
+  --cyan-glow: rgba(0,242,255,0.45);
+  --pink-glow: rgba(255,0,222,0.45);
+  --bg:       #070707;
+  --white:    #ffffff;
+  --font-d:   'Orbitron', sans-serif;
+  --font-b:   'DM Sans', sans-serif;
+
+  position: relative;
+  background: var(--bg);
+  padding: 72px 24px 80px;
+  text-align: center;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+/* ── FONDO: grid LED + viñeta radial ── */
+.cze-wrap::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(0,242,255,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,242,255,0.05) 1px, transparent 1px);
+  background-size: 36px 36px;
+  mask-image: radial-gradient(ellipse 85% 75% at 50% 50%, black 20%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 85% 75% at 50% 50%, black 20%, transparent 100%);
+}
+
+/* ── VIÑETA oscura sobre el grid ── */
+.cze-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse 70% 65% at 50% 50%, transparent 0%, rgba(7,7,7,0.82) 100%);
+}
+
+/* ── CANVAS de partículas ── */
+#czeCanvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ── EYEBROW ── */
+.cze-eyebrow {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+  animation: czeFadeUp 0.8s 0.1s cubic-bezier(0.16,1,0.3,1) both;
+}
+.cze-eyebrow-line {
+  width: 32px; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--cyan));
+  box-shadow: 0 0 6px var(--cyan-glow);
+}
+.cze-eyebrow-line.r { background: linear-gradient(90deg, var(--cyan), transparent); }
+.cze-eyebrow-dot {
+  width: 4px; height: 4px;
+  background: var(--cyan);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--cyan), 0 0 16px var(--cyan-glow);
+  animation: czePulse 2s ease-in-out infinite;
+}
+.cze-eyebrow-text {
+  font-family: var(--font-d);
+  font-size: 0.52rem;
+  font-weight: 500;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: rgba(0,242,255,0.6);
+}
+
+/* ── TÍTULO PRINCIPAL ── */
+.cze-title {
+  position: relative;
+  z-index: 3;
+  margin: 0;
+  line-height: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+/* CAZORLA */
+.cze-cazorla {
+  font-family: var(--font-d);
+  font-weight: 900;
+  font-size: clamp(3.2rem, 13vw, 8rem);
+  letter-spacing: 0.07em;
+  text-indent: 0.07em;
+  color: var(--white);
+  display: flex;
+  animation: czeFadeUp 0.9s 0.3s cubic-bezier(0.16,1,0.3,1) both;
+}
+
+/* Cada letra de CAZORLA */
+.cze-cazorla .l {
+  display: inline-block;
+  color: #222;
+  text-shadow: none;
+}
+.cze-cazorla .l.lit {
+  animation: neonTravel 3s infinite linear;
+}
+
+@keyframes neonTravel {
+  0%, 100% { color: #222; text-shadow: none; }
+  20% {
+    color: var(--cyan);
+    text-shadow: 0 0 10px var(--cyan), 0 0 20px var(--cyan), 0 0 40px var(--cyan);
+  }
+  50% {
+    color: var(--pink);
+    text-shadow: 0 0 10px var(--pink), 0 0 20px var(--pink), 0 0 40px var(--pink);
+  }
+  80% {
+    color: var(--cyan);
+    text-shadow: 0 0 10px var(--cyan), 0 0 20px var(--cyan);
+  }
+}
+
+/* Separador */
+.cze-sep {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: min(480px, 88%);
+  margin: 14px 0 12px;
+  animation: czeFadeUp 0.8s 0.7s cubic-bezier(0.16,1,0.3,1) both;
+}
+.cze-sep-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0,242,255,0.35));
+}
+.cze-sep-line.r { background: linear-gradient(90deg, rgba(255,0,222,0.35), transparent); }
+.cze-sep-icon {
+  font-family: var(--font-d);
+  font-size: 0.48rem;
+  letter-spacing: 0.4em;
+  text-indent: 0.4em;
+  color: rgba(0,242,255,0.3);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* EVENTS */
+.cze-events {
+  font-family: var(--font-d);
+  font-weight: 400;
+  font-size: clamp(0.9rem, 3.2vw, 2rem);
+  letter-spacing: 0.62em;
+  text-indent: 0.62em;
+  color: transparent;
+  text-shadow: none;
+  text-transform: uppercase;
+  animation:
+    czeFadeUp 0.8s 0.65s cubic-bezier(0.16,1,0.3,1) both,
+    eventsReveal 1s 1.3s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+@keyframes eventsReveal {
+  from { color: transparent; letter-spacing: 0.9em; text-indent: 0.9em; }
+  to   {
+    color: rgba(255,255,255,0.42);
+    letter-spacing: 0.62em;
+    text-indent: 0.62em;
+  }
+}
+
+/* Línea inferior roja con glow */
+.cze-redline {
+  position: relative;
+  z-index: 3;
+  margin-top: 30px;
+  width: min(340px, 70%);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--cyan), var(--pink), var(--cyan), transparent);
+  box-shadow: 0 0 12px var(--cyan), 0 0 28px var(--cyan-glow);
+  animation: czeFadeUp 0.8s 1s cubic-bezier(0.16,1,0.3,1) both, lineBreath 3s 2s ease-in-out infinite;
+}
+@keyframes lineBreath {
+  0%,100% { box-shadow: 0 0 12px var(--cyan), 0 0 28px var(--cyan-glow); }
+  50%     { box-shadow: 0 0 20px var(--pink), 0 0 50px var(--pink-glow), 0 0 80px rgba(255,0,222,0.15); }
+}
+
+/* Tagline */
+.cze-tagline {
+  position: relative;
+  z-index: 3;
+  margin-top: 18px;
+  font-family: var(--font-b);
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(0.72rem, 1.4vw, 0.88rem);
+  letter-spacing: 0.2em;
+  color: rgba(255,255,255,0.2);
+  animation: czeFadeUp 0.8s 1.1s cubic-bezier(0.16,1,0.3,1) both;
+}
+
+/* ── ANIMACIONES GLOBALES ── */
+@keyframes czeFadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes czePulse {
+  0%,100% { opacity:1; box-shadow:0 0 8px var(--cyan),0 0 16px var(--cyan-glow); }
+  50%     { opacity:0.3; box-shadow:none; }
+}
+
+/* Delays viajeros letra a letra */
+.cze-cazorla .l:nth-child(1).lit { animation-delay: 0.0s; }
+.cze-cazorla .l:nth-child(2).lit { animation-delay: 0.15s; }
+.cze-cazorla .l:nth-child(3).lit { animation-delay: 0.30s; }
+.cze-cazorla .l:nth-child(4).lit { animation-delay: 0.45s; }
+.cze-cazorla .l:nth-child(5).lit { animation-delay: 0.60s; }
+.cze-cazorla .l:nth-child(6).lit { animation-delay: 0.75s; }
+.cze-cazorla .l:nth-child(7).lit { animation-delay: 0.90s; }
+
+/* ── CURSOR personalizado (heredado del tema) ── */
+.cze-cursor {
+  position: fixed;
+  width: 14px; height: 14px;
+  border: 1px solid rgba(232,0,10,0.65);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%,-50%);
+  transition: width .18s, height .18s;
+  mix-blend-mode: difference;
+}
+</style>
+
+<!-- Canvas partículas -->
+<canvas id="czeCanvas"></canvas>
+
+<!-- Eyebrow -->
+<div class="cze-eyebrow">
+  <div class="cze-eyebrow-line"></div>
+  <div class="cze-eyebrow-dot"></div>
+  <span class="cze-eyebrow-text">Producción &amp; Eventos</span>
+  <div class="cze-eyebrow-dot"></div>
+  <div class="cze-eyebrow-line r"></div>
+</div>
+
+<!-- Título -->
+<h1 class="cze-title">
+  <div class="cze-cazorla" id="czeCazorla">
+    <span class="l">C</span><span class="l">A</span><span class="l">Z</span><span class="l">O</span><span class="l">R</span><span class="l">L</span><span class="l">A</span>
+  </div>
+
+  <div class="cze-sep">
+    <div class="cze-sep-line"></div>
+    <span class="cze-sep-icon">LED · Eventos · Producción</span>
+    <div class="cze-sep-line r"></div>
+  </div>
+
+  <div class="cze-events">Events</div>
+</h1>
+
+<!-- Línea roja -->
+<div class="cze-redline"></div>
+
+<!-- Tagline -->
+<p class="cze-tagline">Iluminamos cada momento</p>
+
+<script>
+(function(){
+  /* ── 1. ENCENDIDO letra a letra (CAZORLA) ── */
+  var letters = document.querySelectorAll('#czeCazorla .l');
+  letters.forEach(function(el, i){
+    setTimeout(function(){
+      el.classList.add('lit');
+    }, 400 + i * 110);
+  });
+
+  /* ── 2. PARPADEO ocasional post-encendido ── */
+  function randomFlicker(){
+    var idx = Math.floor(Math.random() * letters.length);
+    var el = letters[idx];
+    el.style.transition = 'opacity 0.06s';
+    el.style.opacity = '0.1';
+    setTimeout(function(){ el.style.opacity = '1'; }, 80);
+    setTimeout(function(){ el.style.opacity = '0.2'; }, 150);
+    setTimeout(function(){
+      el.style.opacity = '1';
+      el.style.transition = '';
+    }, 220);
+    setTimeout(randomFlicker, 2500 + Math.random() * 4500);
+  }
+  setTimeout(randomFlicker, 4000);
+
+  /* ── 3. PARTÍCULAS canvas ── */
+  var cv  = document.getElementById('czeCanvas');
+  var ctx = cv.getContext('2d');
+  var W, H;
+
+  function resize(){
+    var wrap = cv.closest('.cze-wrap') || cv.parentElement;
+    W = cv.width  = wrap.offsetWidth;
+    H = cv.height = wrap.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  var dots = [];
+  for(var i = 0; i < 45; i++){
+    dots.push({
+      x: Math.random(),
+      y: Math.random(),
+      vy: -(0.00003 + Math.random() * 0.00008),
+      vx: (Math.random() - 0.5) * 0.00002,
+      r:  0.4 + Math.random() * 1.2,
+      a:  0.04 + Math.random() * 0.10
+    });
+  }
+
+  function loop(){
+    ctx.clearRect(0, 0, W, H);
+    dots.forEach(function(d){
+      d.x += d.vx; d.y += d.vy;
+      if(d.y < -0.01){ d.y = 1.01; d.x = Math.random(); }
+      if(d.x < 0) d.x = 1; if(d.x > 1) d.x = 0;
+      ctx.beginPath();
+      ctx.arc(d.x * W, d.y * H, d.r, 0, Math.PI * 2);
+      var colors = ['rgba(0,242,255,', 'rgba(255,0,222,', 'rgba(0,200,255,'];
+      ctx.fillStyle = colors[Math.floor(Math.random()*colors.length)] + d.a + ')';
+      ctx.fill();
+    });
+    requestAnimationFrame(loop);
+  }
+  requestAnimationFrame(loop);
+
+  /* ── 4. LÍNEA de escaneo horizontal ── */
+  var scanStyle = document.createElement('style');
+  scanStyle.textContent = [
+    '.cze-scan{',
+      'position:absolute;left:0;right:0;height:1px;',
+      'background:linear-gradient(90deg,transparent,rgba(0,242,255,0.15),transparent);',
+      'pointer-events:none;z-index:2;',
+      'animation:czeScan 6s linear infinite;',
+    '}',
+    '@keyframes czeScan{',
+      '0%{top:-2px;opacity:0}',
+      '3%{opacity:1}',
+      '97%{opacity:0.4}',
+      '100%{top:100%;opacity:0}',
+    '}'
+  ].join('');
+  document.head.appendChild(scanStyle);
+  var scan = document.createElement('div');
+  scan.className = 'cze-scan';
+  cv.closest('.cze-wrap').appendChild(scan);
+
+})();
+</script>
+
+</div>
+<!-- ═══════════════════════════════════════ FIN BLOQUE ═══ -->
+
+</body>
+</html>
