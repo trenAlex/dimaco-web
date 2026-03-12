@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculador de Presupuesto</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --accent: #00ffcc;
+    --accent2: #ff2d78;
+    --bg: #080c10;
+    --card: #0d1318;
+    --border: rgba(255,255,255,0.07);
+    --text: #e8edf2;
+    --muted: rgba(255,255,255,0.35);
+  }
+
+  body {
+    background: var(--bg);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  /* ── Wrapper ── */
+  .calc-wrap {
+    width: 100%;
+    max-width: 860px;
+    background: var(--card);
+    border-radius: 28px;
+    padding: 52px 48px 44px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: 0 0 80px rgba(0,255,204,0.06), 0 40px 80px rgba(0,0,0,0.6);
+  }
+
+  /* animated neon gradient border */
+  .calc-wrap::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 30px;
+    background: conic-gradient(from var(--angle, 0deg), #00ffcc, #ff2d78, #ffcc00, #00ffcc);
+    z-index: -1;
+    animation: spinGrad 5s linear infinite;
+    opacity: 0.55;
+  }
+  .calc-wrap::after {
+    content: '';
+    position: absolute;
+    inset: 1px;
+    border-radius: 27px;
+    background: var(--card);
+    z-index: -1;
+  }
+
+  @property --angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+  }
+  @keyframes spinGrad {
+    to { --angle: 360deg; }
+  }
+
+  /* ── Header ── */
+  .calc-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .calc-eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.7em;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 6px;
+    opacity: 0.85;
+  }
+  .calc-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.1em;
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1.1;
+    letter-spacing: -0.5px;
+  }
+  .badge-items {
+    background: rgba(0,255,204,0.1);
+    color: var(--accent);
+    border: 1px solid rgba(0,255,204,0.25);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-size: 0.8em;
+    font-weight: 500;
+    white-space: nowrap;
+    align-self: flex-end;
+    transition: all 0.3s;
+  }
+
+  /* ── Grid de opciones ── */
+  .calc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 14px;
+    margin-bottom: 36px;
+  }
+
+  /* ── Tarjeta de servicio ── */
+  .service-card {
+    position: relative;
+    cursor: pointer;
+    border-radius: 16px;
+    background: rgba(255,255,255,0.03);
+    border: 1.5px solid var(--border);
+    padding: 22px 20px;
+    transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease, box-shadow 0.3s ease;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .service-card:hover {
+    transform: translateY(-4px);
+    background: rgba(255,255,255,0.05);
+    border-color: rgba(255,255,255,0.18);
+  }
+  .service-card.selected {
+    border-color: var(--accent);
+    background: rgba(0,255,204,0.06);
+    box-shadow: 0 0 24px rgba(0,255,204,0.15), 0 8px 24px rgba(0,0,0,0.4);
+    transform: translateY(-5px);
+  }
+  .service-card input[type="checkbox"] {
+    display: none;
+  }
+
+  .card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+  }
+  .card-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4em;
+    background: rgba(255,255,255,0.05);
+    transition: background 0.25s;
+  }
+  .service-card.selected .card-icon {
+    background: rgba(0,255,204,0.15);
+  }
+
+  .check-ring {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.25s ease;
+    flex-shrink: 0;
+  }
+  .service-card.selected .check-ring {
+    border-color: var(--accent);
+    background: var(--accent);
+  }
+  .check-ring svg {
+    width: 12px;
+    height: 12px;
+    stroke: #080c10;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all 0.2s ease 0.05s;
+  }
+  .service-card.selected .check-ring svg {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .card-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.05em;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 5px;
+    transition: color 0.2s;
+  }
+  .service-card.selected .card-name { color: #fff; }
+
+  .card-desc {
+    font-size: 0.8em;
+    color: var(--muted);
+    line-height: 1.5;
+    margin-bottom: 16px;
+  }
+
+  .card-price {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.6em;
+    font-weight: 800;
+    color: rgba(255,255,255,0.4);
+    transition: color 0.25s;
+    letter-spacing: -0.5px;
+  }
+  .service-card.selected .card-price {
+    color: var(--accent);
+    text-shadow: 0 0 14px rgba(0,255,204,0.4);
+  }
+  .card-price span {
+    font-size: 0.55em;
+    font-weight: 400;
+    vertical-align: super;
+    margin-right: 1px;
+  }
+
+  /* ── Separador ── */
+  .calc-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    margin-bottom: 28px;
+  }
+
+  /* ── Total ── */
+  .calc-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .footer-left {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .footer-label {
+    font-size: 0.78em;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 500;
+  }
+  .footer-items-list {
+    font-size: 0.83em;
+    color: rgba(255,255,255,0.5);
+    min-height: 1.2em;
+    transition: all 0.3s;
+  }
+
+  .total-display {
+    display: flex;
+    align-items: flex-end;
+    gap: 6px;
+    line-height: 1;
+  }
+  .total-amount {
+    font-family: 'Syne', sans-serif;
+    font-size: 3.6em;
+    font-weight: 800;
+    color: var(--text);
+    transition: color 0.3s;
+    letter-spacing: -2px;
+  }
+  .total-amount.has-value { color: var(--accent); text-shadow: 0 0 24px rgba(0,255,204,0.3); }
+  .total-currency {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.5em;
+    font-weight: 700;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .total-amount.has-value + .total-currency { color: var(--accent); }
+
+  .cta-btn {
+    background: var(--accent);
+    color: #070b0e;
+    border: none;
+    border-radius: 14px;
+    padding: 16px 32px;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.95em;
+    font-weight: 800;
+    cursor: pointer;
+    letter-spacing: 0.04em;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+    white-space: nowrap;
+  }
+  .cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,255,204,0.35);
+  }
+  .cta-btn:active { transform: translateY(0); }
+  .cta-btn:disabled {
+    background: rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.3);
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+  }
+
+  /* ── Ripple ── */
+  @keyframes ripple {
+    from { opacity: 0.4; transform: scale(0); }
+    to   { opacity: 0;   transform: scale(3); }
+  }
+  .ripple-el {
+    position: absolute;
+    border-radius: 50%;
+    width: 80px; height: 80px;
+    background: rgba(0,255,204,0.2);
+    pointer-events: none;
+    animation: ripple 0.55s ease-out forwards;
+    transform-origin: center;
+  }
+
+  /* ── Counter roll animation ── */
+  @keyframes countUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .total-amount.animating {
+    animation: countUp 0.25s ease-out;
+  }
+
+  @media (max-width: 600px) {
+    .calc-wrap { padding: 32px 24px 28px; }
+    .calc-title { font-size: 1.6em; }
+    .total-amount { font-size: 2.6em; }
+    .calc-footer { flex-direction: column; align-items: stretch; }
+    .cta-btn { text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="calc-wrap">
+  <div class="calc-header">
+    <div>
+      <p class="calc-eyebrow">Configurador de evento</p>
+      <h2 class="calc-title">Calcula tu presupuesto</h2>
+    </div>
+    <span class="badge-items" id="badge-count">0 servicios</span>
+  </div>
+
+  <div class="calc-grid" id="calc-grid">
+
+    <label class="service-card" onclick="toggleCard(this, event)">
+      <input type="checkbox" data-precio="50" data-nombre="Pistola de humo">
+      <div class="card-top">
+        <div class="card-icon">💨</div>
+        <div class="check-ring">
+          <svg viewBox="0 0 12 10" fill="none"><polyline points="1,5 4,8 11,1"/></svg>
+        </div>
+      </div>
+      <p class="card-name">Pistola de humo</p>
+      <p class="card-desc">Efectos de humo para escenas dramáticas e impactantes.</p>
+      <p class="card-price"><span>€</span>50</p>
+    </label>
+
+    <label class="service-card" onclick="toggleCard(this, event)">
+      <input type="checkbox" data-precio="150" data-nombre="Pantalla LED">
+      <div class="card-top">
+        <div class="card-icon">🖥️</div>
+        <div class="check-ring">
+          <svg viewBox="0 0 12 10" fill="none"><polyline points="1,5 4,8 11,1"/></svg>
+        </div>
+      </div>
+      <p class="card-name">Pantalla LED</p>
+      <p class="card-desc">Display de alta resolución para visuales y branding.</p>
+      <p class="card-price"><span>€</span>150</p>
+    </label>
+
+    <label class="service-card" onclick="toggleCard(this, event)">
+      <input type="checkbox" data-precio="80" data-nombre="Equipo de música">
+      <div class="card-top">
+        <div class="card-icon">🎵</div>
+        <div class="check-ring">
+          <svg viewBox="0 0 12 10" fill="none"><polyline points="1,5 4,8 11,1"/></svg>
+        </div>
+      </div>
+      <p class="card-name">Equipo de música</p>
+      <p class="card-desc">Sistema de sonido profesional con subwoofer incluido.</p>
+      <p class="card-price"><span>€</span>80</p>
+    </label>
+
+    <label class="service-card" onclick="toggleCard(this, event)">
+      <input type="checkbox" data-precio="120" data-nombre="Iluminación RGB">
+      <div class="card-top">
+        <div class="card-icon">🌈</div>
+        <div class="check-ring">
+          <svg viewBox="0 0 12 10" fill="none"><polyline points="1,5 4,8 11,1"/></svg>
+        </div>
+      </div>
+      <p class="card-name">Iluminación RGB</p>
+      <p class="card-desc">Focos dinámicos con control DMX para tu ambiente.</p>
+      <p class="card-price"><span>€</span>120</p>
+    </label>
+
+    <label class="service-card" onclick="toggleCard(this, event)">
+      <input type="checkbox" data-precio="200" data-nombre="Photo Booth">
+      <div class="card-top">
+        <div class="card-icon">📸</div>
+        <div class="check-ring">
+          <svg viewBox="0 0 12 10" fill="none"><polyline points="1,5 4,8 11,1"/></svg>
+        </div>
+      </div>
+      <p class="card-name">Photo Booth</p>
+      <p class="card-desc">Cabina de fotos instantáneas con impresión y props.</p>
+      <p class="card-price"><span>€</span>200</p>
+    </label>
+
+    <label class="service-card" onclick="toggleCard(this, event)">
+      <input type="checkbox" data-precio="90" data-nombre="Cámara lenta">
+      <div class="card-top">
+        <div class="card-icon">🎬</div>
+        <div class="check-ring">
+          <svg viewBox="0 0 12 10" fill="none"><polyline points="1,5 4,8 11,1"/></svg>
+        </div>
+      </div>
+      <p class="card-name">Cámara lenta</p>
+      <p class="card-desc">Grabación slow-motion a 240fps para momentos épicos.</p>
+      <p class="card-price"><span>€</span>90</p>
+    </label>
+
+  </div>
+
+  <div class="calc-divider"></div>
+
+  <div class="calc-footer">
+    <div class="footer-left">
+      <span class="footer-label">Total estimado</span>
+      <div class="total-display">
+        <span class="total-amount" id="total-amount">0</span>
+        <span class="total-currency" id="total-currency">€</span>
+      </div>
+      <span class="footer-items-list" id="items-list">Selecciona los servicios que necesitas</span>
+    </div>
+    <button class="cta-btn" id="cta-btn" disabled>Solicitar presupuesto →</button>
+  </div>
+</div>
+
+<script>
+  let total = 0;
+  let selected = [];
+
+  function toggleCard(card, e) {
+    const cb = card.querySelector('input[type="checkbox"]');
+    const precio = parseInt(cb.dataset.precio);
+    const nombre = cb.dataset.nombre;
+
+    cb.checked = !cb.checked;
+    card.classList.toggle('selected', cb.checked);
+
+    // Ripple
+    const rect = card.getBoundingClientRect();
+    const rip = document.createElement('span');
+    rip.className = 'ripple-el';
+    const x = (e.clientX - rect.left) - 40;
+    const y = (e.clientY - rect.top) - 40;
+    rip.style.left = x + 'px';
+    rip.style.top = y + 'px';
+    card.appendChild(rip);
+    setTimeout(() => rip.remove(), 600);
+
+    if (cb.checked) {
+      total += precio;
+      selected.push(nombre);
+    } else {
+      total -= precio;
+      selected = selected.filter(n => n !== nombre);
+    }
+    updateUI();
+  }
+
+  function updateUI() {
+    const el = document.getElementById('total-amount');
+    el.textContent = total;
+    el.className = 'total-amount' + (total > 0 ? ' has-value animating' : '');
+    setTimeout(() => el.classList.remove('animating'), 260);
+
+    document.getElementById('total-currency').className = 'total-currency' + (total > 0 ? ' has-value' : '');
+
+    const count = selected.length;
+    const badge = document.getElementById('badge-count');
+    badge.textContent = count === 0 ? '0 servicios' : `${count} servicio${count > 1 ? 's' : ''}`;
+
+    const listEl = document.getElementById('items-list');
+    listEl.textContent = count > 0
+      ? selected.join(' · ')
+      : 'Selecciona los servicios que necesitas';
+
+    document.getElementById('cta-btn').disabled = count === 0;
+  }
+</script>
+</body>
+</html>
