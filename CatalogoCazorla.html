@@ -16,73 +16,47 @@
   --glow-p:rgba(255,0,222,0.45);
 }
 html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothing:antialiased}
-
 .section{width:100%;max-width:1140px;margin:0 auto;padding:80px 36px}
-
-/* cabecera */
 .section-header{text-align:center;margin-bottom:52px}
-.section-tag{
-  display:inline-flex;align-items:center;gap:12px;margin-bottom:14px;
-  font-family:'DM Sans',sans-serif;font-size:0.56rem;font-weight:500;
-  letter-spacing:6px;text-transform:uppercase;color:rgba(255,255,255,0.28);
-}
+.section-tag{display:inline-flex;align-items:center;gap:12px;margin-bottom:14px;font-family:'DM Sans',sans-serif;font-size:0.56rem;font-weight:500;letter-spacing:6px;text-transform:uppercase;color:rgba(255,255,255,0.28)}
 .section-tag::before,.section-tag::after{content:'';width:24px;height:1px;background:var(--red);box-shadow:0 0 8px var(--glow-c)}
 .section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.8rem,5vw,4.8rem);letter-spacing:0.06em;line-height:0.95;text-shadow:0 0 50px rgba(0,242,255,0.1)}
 .section-title span{color:var(--red)}
 .section-sub{font-family:'DM Sans',sans-serif;font-weight:300;font-size:0.88rem;color:var(--txt2);margin-top:12px;max-width:430px;margin-left:auto;margin-right:auto;line-height:1.7}
-
 .divider{height:1px;background:linear-gradient(90deg,transparent,rgba(0,242,255,0.35) 30%,rgba(255,0,222,0.2) 50%,rgba(0,242,255,0.35) 70%,transparent)}
-
-/* grids */
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
 .g1{display:grid;grid-template-columns:1fr;margin-bottom:16px}
 
-/* ── TARJETA PRODUCTO ── */
-.card{
-  position:relative;background:var(--bg2);border:1px solid var(--border);border-radius:3px;
-  overflow:hidden;display:flex;flex-direction:column;
-  transition:transform 0.4s cubic-bezier(0.16,1,0.3,1),border-color 0.4s,box-shadow 0.4s;
-  opacity:0;animation:fadeUp 0.65s cubic-bezier(0.16,1,0.3,1) forwards;
-}
+/* tarjeta producto */
+.card{position:relative;background:var(--bg2);border:1px solid var(--border);border-radius:3px;overflow:hidden;display:flex;flex-direction:column;transition:transform 0.4s cubic-bezier(0.16,1,0.3,1),border-color 0.4s,box-shadow 0.4s;opacity:0;animation:fadeUp 0.65s cubic-bezier(0.16,1,0.3,1) forwards}
 .card:hover{transform:translateY(-5px);border-color:rgba(0,242,255,0.28);box-shadow:0 18px 55px rgba(0,0,0,0.6),0 0 35px rgba(0,242,255,0.07)}
 .card:nth-child(1){animation-delay:.04s}.card:nth-child(2){animation-delay:.11s}
-
 .card-img{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;background:#0a0a0a;flex-shrink:0}
 .card-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.6s cubic-bezier(0.16,1,0.3,1),filter 0.4s;filter:brightness(0.85) saturate(1.1)}
 .card:hover .card-img img{transform:scale(1.05);filter:brightness(1) saturate(1.2)}
 .card-img::after{content:'';position:absolute;inset:0;pointer-events:none;z-index:2;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.1) 2px,rgba(0,0,0,0.1) 4px)}
-
 .card-price{position:absolute;top:12px;right:12px;z-index:5;background:rgba(7,7,7,0.88);border:1px solid rgba(0,242,255,0.5);padding:5px 13px;font-family:'Orbitron',sans-serif;font-size:0.72rem;font-weight:700;color:#fff;letter-spacing:1px;backdrop-filter:blur(8px);box-shadow:0 0 18px rgba(0,242,255,0.22)}
 .card-price.p{border-color:rgba(255,0,222,0.5);box-shadow:0 0 18px rgba(255,0,222,0.22)}
-
 .dot{width:5px;height:5px;border-radius:50%;background:var(--red);box-shadow:0 0 8px var(--glow-c);animation:lp 2.1s ease-in-out infinite;flex-shrink:0}
 .dot.p{background:var(--purple);box-shadow:0 0 8px var(--glow-p)}
 @keyframes lp{0%,100%{opacity:1}50%{opacity:.25}}
 .card-led{position:absolute;bottom:10px;left:12px;z-index:5;display:flex;align-items:center;gap:6px}
 .led-lbl{font-family:'DM Sans',sans-serif;font-size:0.5rem;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.4)}
-
 .card-body{padding:16px 18px 20px;display:flex;flex-direction:column;flex:1}
 .card-name{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:0.07em;color:#fff;margin-bottom:7px;line-height:1}
 .card-desc{font-family:'DM Sans',sans-serif;font-weight:300;font-size:0.79rem;color:var(--txt2);line-height:1.65;flex:1}
 
-/* ── TELÉFONO ESPECIAL ── */
-.tel-card{
-  background:var(--bg2);border:1px solid var(--border);border-radius:3px;overflow:hidden;
-  opacity:0;animation:fadeUp 0.65s cubic-bezier(0.16,1,0.3,1) .04s forwards;
-  transition:border-color 0.4s,box-shadow 0.4s;
-}
+/* tarjeta unificada */
+.tel-card{background:var(--bg2);border:1px solid var(--border);border-radius:3px;overflow:hidden;opacity:0;animation:fadeUp 0.65s cubic-bezier(0.16,1,0.3,1) .04s forwards;transition:border-color 0.4s,box-shadow 0.4s}
 .tel-card:hover{border-color:rgba(0,242,255,0.28);box-shadow:0 18px 55px rgba(0,0,0,0.6),0 0 35px rgba(0,242,255,0.07)}
-
-.tel-top{display:flex;flex-direction:column;align-items:center;padding:0 0 0;border-bottom:1px solid var(--border)}
-.tel-img{width:100%;height:0;padding-bottom:56.25%;position:relative;overflow:hidden;margin-bottom:0}
+.tel-top{display:flex;flex-direction:column;align-items:center;padding:0;border-bottom:1px solid var(--border)}
+.tel-img{width:100%;height:0;padding-bottom:56.25%;position:relative;overflow:hidden}
 .tel-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(0.88) saturate(1.1);transition:transform 0.6s cubic-bezier(0.16,1,0.3,1),filter 0.4s}
 .tel-card:hover .tel-img img{transform:scale(1.05);filter:brightness(1) saturate(1.2)}
 .tel-img::after{content:'';position:absolute;inset:0;pointer-events:none;z-index:2;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.1) 2px,rgba(0,0,0,0.1) 4px)}
-
 .tel-text{padding:18px 24px 16px;text-align:center;width:100%}
 .tel-title{font-family:'Bebas Neue',sans-serif;font-size:1.25rem;letter-spacing:0.07em;color:#fff;margin-bottom:5px;text-align:center}
-.tel-sub{font-family:'DM Sans',sans-serif;font-weight:300;font-size:0.77rem;color:var(--txt2);text-align:center;line-height:1.6;max-width:100%}
-
+.tel-sub{font-family:'DM Sans',sans-serif;font-weight:300;font-size:0.77rem;color:var(--txt2);text-align:center;line-height:1.6}
 .tel-options{display:grid;grid-template-columns:1fr 1fr}
 .tel-opt{padding:20px 24px;border-right:1px solid var(--border)}
 .tel-opt:last-child{border-right:none}
@@ -91,24 +65,17 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
 .tel-opt-desc{font-family:'DM Sans',sans-serif;font-weight:300;font-size:0.75rem;color:var(--txt2);line-height:1.55;margin-bottom:12px}
 .tel-price{display:inline-block;font-family:'Orbitron',sans-serif;font-size:0.88rem;font-weight:700;color:#fff;border:1px solid rgba(0,242,255,0.42);padding:5px 14px;box-shadow:0 0 14px rgba(0,242,255,0.15)}
 
-/* ── MODELO DJ ── */
-.model-card{
-  position:relative;background:var(--bg2);border:1px solid var(--border);border-radius:3px;
-  overflow:hidden;display:grid;grid-template-columns:1.1fr 1fr;min-height:270px;
-  transition:transform 0.4s cubic-bezier(0.16,1,0.3,1),border-color 0.4s,box-shadow 0.4s;
-  opacity:0;animation:fadeUp 0.65s cubic-bezier(0.16,1,0.3,1) forwards;
-}
+/* modelo DJ */
+.model-card{position:relative;background:var(--bg2);border:1px solid var(--border);border-radius:3px;overflow:hidden;display:grid;grid-template-columns:1.1fr 1fr;min-height:270px;transition:transform 0.4s cubic-bezier(0.16,1,0.3,1),border-color 0.4s,box-shadow 0.4s;opacity:0;animation:fadeUp 0.65s cubic-bezier(0.16,1,0.3,1) forwards}
 .model-card::after{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,transparent,var(--red) 40%,transparent);opacity:0;transition:opacity 0.4s}
 .model-card:hover{transform:translateY(-5px);border-color:rgba(0,242,255,0.28);box-shadow:0 22px 60px rgba(0,0,0,0.65),0 0 45px rgba(0,242,255,0.07)}
 .model-card:hover::after{opacity:1}
 .model-card:nth-child(1){animation-delay:.04s}.model-card:nth-child(2){animation-delay:.12s}
-
 .model-img{position:relative;overflow:hidden;background:#0a0a0a}
 .model-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.7s cubic-bezier(0.16,1,0.3,1),filter 0.4s;filter:brightness(0.82) saturate(1.15)}
 .model-card:hover .model-img img{transform:scale(1.06);filter:brightness(0.95) saturate(1.25)}
 .model-img::after{content:'';position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.07) 2px,rgba(0,0,0,0.07) 4px)}
 .model-img::before{content:'';position:absolute;top:0;right:0;bottom:0;width:65px;background:linear-gradient(90deg,transparent,var(--bg2));z-index:3}
-
 .model-info{padding:24px 22px;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:2}
 .model-badge{font-family:'DM Sans',sans-serif;font-size:0.5rem;font-weight:500;letter-spacing:5px;text-transform:uppercase;color:var(--red);margin-bottom:7px;display:block}
 .model-name{font-family:'Bebas Neue',sans-serif;font-size:1.95rem;letter-spacing:0.06em;color:#fff;line-height:0.95;margin-bottom:12px}
@@ -133,186 +100,65 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
 
 @keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
 
-/* ══════════════════════════════
-   CALCULADORA
-══════════════════════════════ */
-.calc-wrap{
-  display:grid;grid-template-columns:1fr 380px;gap:24px;
-  align-items:start;
-}
-
-/* grupos izquierda */
+/* calculadora */
+.calc-wrap{display:grid;grid-template-columns:1fr 380px;gap:24px;align-items:start}
 .calc-group{margin-bottom:10px}
-.calc-group-title{
-  display:flex;align-items:center;gap:10px;
-  font-family:'DM Sans',sans-serif;font-size:0.55rem;font-weight:500;
-  letter-spacing:5px;text-transform:uppercase;color:rgba(255,255,255,0.28);
-  padding:14px 0 10px;border-top:1px solid var(--border);
-}
+.calc-group-title{display:flex;align-items:center;gap:10px;font-family:'DM Sans',sans-serif;font-size:0.55rem;font-weight:500;letter-spacing:5px;text-transform:uppercase;color:rgba(255,255,255,0.28);padding:14px 0 10px;border-top:1px solid var(--border)}
 .calc-group:first-child .calc-group-title{border-top:none;padding-top:0}
 .calc-group-dot{width:4px;height:4px;border-radius:50%;background:var(--red);box-shadow:0 0 6px var(--glow-c);flex-shrink:0}
-
-/* item */
-.calc-item{
-  display:flex;align-items:center;justify-content:space-between;gap:16px;
-  padding:14px 18px;background:var(--bg2);border:1px solid var(--border);
-  border-radius:2px;margin-bottom:8px;
-  transition:border-color 0.3s,background 0.3s;
-}
+.calc-item{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 18px;background:var(--bg2);border:1px solid var(--border);border-radius:2px;margin-bottom:8px;transition:border-color 0.3s,background 0.3s}
 .calc-item.active{border-color:rgba(0,242,255,0.3);background:rgba(0,242,255,0.03)}
 .calc-item-select{flex-wrap:wrap;gap:10px}
 .calc-item-info{flex:1;min-width:0}
 .calc-item-name{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:0.06em;color:#fff;margin-bottom:2px}
 .calc-item-sub{font-family:'DM Sans',sans-serif;font-size:0.7rem;font-weight:300;color:var(--txt2);line-height:1.5}
 .calc-item-price-inline{color:rgba(0,242,255,0.9);font-weight:500}
-
-/* qty */
 .calc-qty{display:flex;align-items:center;gap:8px;flex-shrink:0}
-.qty-btn{
-  width:28px;height:28px;border-radius:2px;border:1px solid rgba(255,255,255,0.12);
-  background:rgba(255,255,255,0.04);color:#fff;font-size:1rem;line-height:1;
-  cursor:pointer;transition:background 0.2s,border-color 0.2s;
-  display:flex;align-items:center;justify-content:center;font-family:'DM Sans',sans-serif;
-}
+.qty-btn{width:28px;height:28px;border-radius:2px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.04);color:#fff;font-size:1rem;cursor:pointer;transition:background 0.2s,border-color 0.2s;display:flex;align-items:center;justify-content:center;font-family:'DM Sans',sans-serif}
 .qty-btn:hover{background:rgba(0,242,255,0.1);border-color:rgba(0,242,255,0.4)}
-.qty-btn:disabled{opacity:0.25;cursor:not-allowed}
-.qty-val{
-  font-family:'Orbitron',sans-serif;font-size:0.85rem;font-weight:700;
-  color:#fff;min-width:18px;text-align:center;
-}
+.qty-val{font-family:'Orbitron',sans-serif;font-size:0.85rem;font-weight:700;color:#fff;min-width:18px;text-align:center}
 .qty-max{font-family:'DM Sans',sans-serif;font-size:0.58rem;color:var(--txt3);letter-spacing:1px;white-space:nowrap}
-
-/* toggle btn */
 .calc-toggle{flex-shrink:0}
-.toggle-btn{
-  font-family:'DM Sans',sans-serif;font-size:0.6rem;font-weight:500;
-  letter-spacing:3px;text-transform:uppercase;
-  padding:8px 18px;border:1px solid rgba(255,255,255,0.14);
-  background:transparent;color:rgba(255,255,255,0.45);
-  cursor:pointer;border-radius:1px;
-  transition:background 0.25s,border-color 0.25s,color 0.25s;white-space:nowrap;
-}
+.toggle-btn{font-family:'DM Sans',sans-serif;font-size:0.6rem;font-weight:500;letter-spacing:3px;text-transform:uppercase;padding:8px 18px;border:1px solid rgba(255,255,255,0.14);background:transparent;color:rgba(255,255,255,0.45);cursor:pointer;border-radius:1px;transition:background 0.25s,border-color 0.25s,color 0.25s;white-space:nowrap}
 .toggle-btn:hover{background:rgba(0,242,255,0.08);border-color:rgba(0,242,255,0.4);color:#fff}
 .toggle-btn.on{background:rgba(0,242,255,0.12);border-color:rgba(0,242,255,0.55);color:#fff}
-
-/* select */
 .calc-select-row{width:100%}
-.calc-select{
-  width:100%;padding:9px 14px;
-  background:rgba(255,255,255,0.04);
-  border:1px solid rgba(255,255,255,0.12);
-  border-radius:2px;color:#fff;
-  font-family:'DM Sans',sans-serif;font-size:0.78rem;font-weight:300;
-  cursor:pointer;outline:none;
-  transition:border-color 0.25s;
-  -webkit-appearance:none;appearance:none;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(255,255,255,0.3)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-  background-repeat:no-repeat;background-position:right 12px center;padding-right:36px;
-}
+.calc-select{width:100%;padding:9px 14px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.12);border-radius:2px;color:#fff;font-family:'DM Sans',sans-serif;font-size:0.78rem;font-weight:300;cursor:pointer;outline:none;transition:border-color 0.25s;-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(255,255,255,0.3)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:36px}
 .calc-select:focus{border-color:rgba(0,242,255,0.45)}
 .calc-select option{background:#1a1a1a;color:#fff}
-
-/* resumen derecha */
-.calc-summary{
-  background:var(--bg2);border:1px solid var(--border);border-radius:3px;
-  overflow:hidden;position:sticky;top:24px;
-}
-.calc-summary-title{
-  display:flex;align-items:center;gap:10px;padding:18px 20px;
-  border-bottom:1px solid var(--border);
-  font-family:'DM Sans',sans-serif;font-size:0.55rem;font-weight:500;
-  letter-spacing:5px;text-transform:uppercase;color:rgba(255,255,255,0.28);
-}
+.calc-summary{background:var(--bg2);border:1px solid var(--border);border-radius:3px;overflow:hidden;position:sticky;top:24px}
+.calc-summary-title{display:flex;align-items:center;gap:10px;padding:18px 20px;border-bottom:1px solid var(--border);font-family:'DM Sans',sans-serif;font-size:0.55rem;font-weight:500;letter-spacing:5px;text-transform:uppercase;color:rgba(255,255,255,0.28)}
 .calc-summary-dot{width:5px;height:5px;border-radius:50%;background:var(--red);box-shadow:0 0 8px var(--glow-c);animation:lp 2.1s ease-in-out infinite;flex-shrink:0}
-
 .calc-lines{padding:8px 0;min-height:80px}
-
-.calc-empty{
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  padding:36px 20px;gap:10px;
-}
+.calc-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:36px 20px;gap:10px}
 .calc-empty-icon{font-size:1.4rem;color:rgba(255,255,255,0.1)}
 .calc-empty-txt{font-family:'DM Sans',sans-serif;font-size:0.72rem;font-weight:300;color:var(--txt3);text-align:center;line-height:1.6}
-
-/* línea de resumen */
-.calc-line{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:11px 20px;border-bottom:1px solid rgba(255,255,255,0.04);
-  animation:fadeUp 0.3s cubic-bezier(0.16,1,0.3,1) both;
-}
+.calc-line{display:flex;align-items:center;justify-content:space-between;padding:11px 20px;border-bottom:1px solid rgba(255,255,255,0.04);animation:fadeUp 0.3s cubic-bezier(0.16,1,0.3,1) both}
 .calc-line:last-child{border-bottom:none}
 .calc-line-left{display:flex;align-items:center;gap:10px;flex:1;min-width:0}
 .calc-line-dot{width:4px;height:4px;border-radius:50%;background:var(--red);box-shadow:0 0 6px var(--glow-c);flex-shrink:0}
 .calc-line-name{font-family:'DM Sans',sans-serif;font-size:0.78rem;font-weight:400;color:rgba(255,255,255,0.75);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .calc-line-price{font-family:'Orbitron',sans-serif;font-size:0.72rem;font-weight:700;color:#fff;white-space:nowrap;margin-left:12px}
-.calc-line-remove{
-  width:22px;height:22px;border-radius:50%;border:1px solid rgba(255,255,255,0.1);
-  background:transparent;color:rgba(255,255,255,0.3);font-size:0.7rem;
-  cursor:pointer;margin-left:8px;flex-shrink:0;
-  display:flex;align-items:center;justify-content:center;
-  transition:background 0.2s,color 0.2s,border-color 0.2s;
-}
+.calc-line-remove{width:22px;height:22px;border-radius:50%;border:1px solid rgba(255,255,255,0.1);background:transparent;color:rgba(255,255,255,0.3);font-size:0.7rem;cursor:pointer;margin-left:8px;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:background 0.2s,color 0.2s,border-color 0.2s}
 .calc-line-remove:hover{background:rgba(0,242,255,0.12);color:#fff;border-color:rgba(0,242,255,0.4)}
-
-/* total */
 .calc-total-row{padding:0 20px 20px}
 .calc-total-divider{height:1px;background:linear-gradient(90deg,transparent,rgba(0,242,255,0.4),rgba(255,0,222,0.3),rgba(0,242,255,0.4),transparent);margin:0 0 16px}
 .calc-total{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
 .calc-total-label{font-family:'DM Sans',sans-serif;font-size:0.58rem;letter-spacing:4px;text-transform:uppercase;color:var(--txt3)}
 .calc-total-num{font-family:'Orbitron',sans-serif;font-size:1.6rem;font-weight:700;color:#fff;text-shadow:0 0 20px rgba(0,242,255,0.35),0 0 40px rgba(0,242,255,0.15)}
 .calc-total-sub{font-family:'DM Sans',sans-serif;font-size:0.62rem;font-weight:300;color:var(--txt3);margin-bottom:18px}
-
-.calc-cta{
-  display:flex;align-items:center;justify-content:center;gap:10px;
-  width:100%;padding:13px;
-  background:linear-gradient(90deg,var(--red),var(--purple));color:#fff;
-  font-family:'DM Sans',sans-serif;font-size:0.65rem;font-weight:500;
-  letter-spacing:3px;text-transform:uppercase;text-decoration:none;
-  border-radius:1px;
-  box-shadow:0 0 24px rgba(0,242,255,0.25),0 0 40px rgba(255,0,222,0.1);
-  transition:box-shadow 0.3s,transform 0.3s;
-}
-.calc-cta:hover{box-shadow:0 0 45px rgba(0,242,255,0.5),0 0 60px rgba(255,0,222,0.2);transform:translateY(-2px);color:#fff;text-decoration:none}
+.calc-offer{display:flex;align-items:flex-start;gap:12px;margin-bottom:14px;padding:14px 16px;background:rgba(0,242,255,0.03);border:1px solid rgba(0,242,255,0.14);border-left:2px solid var(--red);border-radius:2px;position:relative;overflow:hidden}
+.calc-offer::before{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(135deg,rgba(0,242,255,0.04) 0%,transparent 60%,rgba(255,0,222,0.03) 100%)}
+.calc-offer-pulse{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:3px;background:var(--red);box-shadow:0 0 8px var(--glow-c),0 0 16px var(--glow-c);animation:offerPulse 1.8s ease-in-out infinite}
+@keyframes offerPulse{0%,100%{opacity:1;box-shadow:0 0 8px var(--glow-c),0 0 16px var(--glow-c)}50%{opacity:0.35;box-shadow:none}}
+.calc-offer-body{flex:1;min-width:0;position:relative;z-index:1}
+.calc-offer-title{font-family:'Orbitron',sans-serif;font-size:0.62rem;font-weight:500;letter-spacing:0.05em;color:rgba(0,242,255,0.85);margin-bottom:5px}
+.calc-offer-txt{font-family:'DM Sans',sans-serif;font-weight:300;font-size:0.73rem;color:rgba(255,255,255,0.42);line-height:1.65}
+.calc-offer-txt strong{color:rgba(255,255,255,0.72);font-weight:500}
+.calc-cta{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:13px;background:linear-gradient(90deg,var(--red),var(--purple));color:#fff;font-family:'DM Sans',sans-serif;font-size:0.65rem;font-weight:500;letter-spacing:3px;text-transform:uppercase;border:none;border-radius:1px;cursor:pointer;box-shadow:0 0 24px rgba(0,242,255,0.25),0 0 40px rgba(255,0,222,0.1);transition:box-shadow 0.3s,transform 0.3s}
+.calc-cta:hover{box-shadow:0 0 45px rgba(0,242,255,0.5),0 0 60px rgba(255,0,222,0.2);transform:translateY(-2px)}
 .calc-cta-arrow{font-size:1rem;transition:transform 0.25s}
 .calc-cta:hover .calc-cta-arrow{transform:translateX(4px)}
-
-/* banner oferta */
-.calc-offer{
-  display:flex;align-items:flex-start;gap:12px;
-  margin-bottom:14px;
-  padding:14px 16px;
-  background:rgba(0,242,255,0.03);
-  border:1px solid rgba(0,242,255,0.14);
-  border-left:2px solid var(--red);
-  border-radius:2px;
-  position:relative;overflow:hidden;
-}
-.calc-offer::before{
-  content:'';position:absolute;inset:0;pointer-events:none;
-  background:linear-gradient(135deg,rgba(0,242,255,0.04) 0%,transparent 60%,rgba(255,0,222,0.03) 100%);
-}
-.calc-offer-pulse{
-  width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:3px;
-  background:var(--red);
-  box-shadow:0 0 8px var(--glow-c),0 0 16px var(--glow-c);
-  animation:offerPulse 1.8s ease-in-out infinite;
-}
-@keyframes offerPulse{
-  0%,100%{opacity:1;box-shadow:0 0 8px var(--glow-c),0 0 16px var(--glow-c)}
-  50%{opacity:0.35;box-shadow:none}
-}
-.calc-offer-body{flex:1;min-width:0;position:relative;z-index:1}
-.calc-offer-title{
-  font-family:'Orbitron',sans-serif;font-size:0.62rem;font-weight:500;
-  letter-spacing:0.05em;color:rgba(0,242,255,0.85);
-  margin-bottom:5px;
-}
-.calc-offer-txt{
-  font-family:'DM Sans',sans-serif;font-weight:300;font-size:0.73rem;
-  color:rgba(255,255,255,0.42);line-height:1.65;
-}
-.calc-offer-txt strong{color:rgba(255,255,255,0.72);font-weight:500}
-
 
 @media(max-width:720px){
   .g2{grid-template-columns:1fr}
@@ -330,18 +176,16 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
 
 <!-- ═══════ EXTRAS & SHOW ═══════ -->
 <div class="section">
-
   <div class="section-header">
     <div class="section-tag">Cazorla Events · Servicios</div>
     <h2 class="section-title">EXTRAS <span>&</span> SHOW</h2>
     <p class="section-sub">Complementa tu evento con los mejores efectos especiales y entretenimiento.</p>
   </div>
 
-  <!-- fila 1 -->
   <div class="g2">
     <div class="card">
       <div class="card-img">
-        <img src="static/src/img/pistolahumoboda.jpg" alt="Pistolas CO2">
+        <img src="static/src/img/Pistola_humoCO2.jpg" alt="Pistolas CO2">
         <div class="card-price">300€</div>
         <div class="card-led"><div class="dot"></div><span class="led-lbl">Efecto especial</span></div>
       </div>
@@ -350,10 +194,9 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
         <div class="card-desc">2 Pistolas de CO2 con dos botellas de CO2 de 12 Kg cada una.</div>
       </div>
     </div>
-
     <div class="card">
       <div class="card-img">
-        <img src="static/src/img/canonconfetiboda.png" alt="Cañón confeti" style="filter:brightness(0.7) hue-rotate(255deg) saturate(1.5)">
+        <img src="static/src/img/Pistola_humoCO2.jpg" alt="Cañón confeti" style="filter:brightness(0.7) hue-rotate(255deg) saturate(1.5)">
         <div class="card-price">300€</div>
         <div class="card-led"><div class="dot"></div><span class="led-lbl">4 kg confeti</span></div>
       </div>
@@ -364,11 +207,10 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
     </div>
   </div>
 
-  <!-- fila 2 -->
   <div class="g2">
     <div class="card">
       <div class="card-img">
-        <img src="static/src/img/fotomatonboda.png" alt="Fotomatón">
+        <img src="static/src/img/fotomaton.jpg" alt="Fotomatón">
         <div class="card-price p">360€</div>
         <div class="card-led"><div class="dot p"></div><span class="led-lbl">3h de servicio</span></div>
       </div>
@@ -377,10 +219,9 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
         <div class="card-desc">3 horas + gifts ilimitados + adornos + álbum + USB personalizado.</div>
       </div>
     </div>
-
     <div class="card">
       <div class="card-img">
-        <img src="static/src/img/fotoestudioboda.png" alt="Fotoestudio">
+        <img src="static/src/img/foto_estudio.jpg" alt="Fotoestudio">
         <div class="card-price">450€</div>
         <div class="card-led"><div class="dot"></div><span class="led-lbl">Flash profesional</span></div>
       </div>
@@ -391,11 +232,10 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
     </div>
   </div>
 
-  <!-- vídeo 360 — tarjeta unificada -->
   <div class="g1">
     <div class="tel-card">
       <div class="tel-top">
-        <div class="tel-img"><img src="static/src/img/video360boda.png" alt="Vídeo 360º"></div>
+        <div class="tel-img"><img src="static/src/img/video360.jpg" alt="Vídeo 360º"></div>
         <div class="tel-text">
           <div class="tel-title">Vídeo 360º</div>
           <div class="tel-sub">Vídeos ilimitados + foco profesional + pistola de burbujas + adornos + envío de vídeos a los invitados.</div>
@@ -406,23 +246,22 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
           <span class="tel-opt-label">· Opción 01 ·</span>
           <div class="tel-opt-name">3 Horas</div>
           <div class="tel-opt-desc">Sesión de 3 horas con vídeos ilimitados para todos tus invitados.</div>
-          <span class="tel-price" style="border-color:rgba(155,77,255,0.45);box-shadow:0 0 14px rgba(155,77,255,0.18)">500€</span>
+          <span class="tel-price">500€</span>
         </div>
         <div class="tel-opt">
           <span class="tel-opt-label">· Opción 02 ·</span>
           <div class="tel-opt-name">2 Horas</div>
           <div class="tel-opt-desc">Sesión de 2 horas con vídeos ilimitados para todos tus invitados.</div>
-          <span class="tel-price" style="border-color:rgba(155,77,255,0.45);box-shadow:0 0 14px rgba(155,77,255,0.18)">400€</span>
+          <span class="tel-price">400€</span>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- teléfono de firmas — tarjeta especial -->
   <div class="g1">
     <div class="tel-card">
       <div class="tel-top">
-        <div class="tel-img"><img src="static/src/img/telefonofirmasboda.jpg" alt="Teléfono de firmas"></div>
+        <div class="tel-img"><img src="static/src/img/telefono_firmas.jpg" alt="Teléfono de firmas"></div>
         <div class="tel-text">
           <div class="tel-title">Teléfono de Firmas</div>
           <div class="tel-sub">Un teléfono vintage donde tus invitados dejan mensajes de voz. El recuerdo más emotivo de tu gran día.</div>
@@ -449,24 +288,21 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
     <div class="nota-dot"></div>
     <div class="nota-txt">Los precios son <strong>independientes</strong>. El coste de <strong>desplazamiento y montaje</strong> se calcula según la distancia y necesidades del evento. Para confirmar el servicio se requiere una señal del <strong>20% del total</strong>.</div>
   </div>
-
 </div>
 
 <div class="divider"></div>
 
 <!-- ═══════ MODELOS DJ ═══════ -->
 <div class="section">
-
   <div class="section-header">
-    <div class="section-tag">Cazorla Events · DJ & Producción</div>
+    <div class="section-tag">Cazorla Events · DJ &amp; Producción</div>
     <h2 class="section-title">MODELOS <span>DJ</span></h2>
     <p class="section-sub">Elige el setup que mejor encaja con tu evento.</p>
   </div>
 
-  <!-- fila 1 -->
   <div class="g2" style="margin-bottom:16px">
     <div class="model-card">
-      <div class="model-img"><img src="static/src/img/Basic-Model.png" alt="Modelo Basic"></div>
+      <div class="model-img"><img src="static/src/img/Basic_Model.jpeg" alt="Modelo Basic"></div>
       <div class="model-info">
         <span class="model-badge">· Modelo 01 ·</span>
         <div class="model-name">BASIC</div>
@@ -480,9 +316,8 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
         </ul>
       </div>
     </div>
-
     <div class="model-card">
-      <div class="model-img"><img src="static/src/img/Foto-Model-U_1.png" alt="Modelo U"></div>
+      <div class="model-img"><img src="static/src/img/Foto_Model_U.jpeg" alt="Modelo U"></div>
       <div class="model-info">
         <span class="model-badge">· Modelo 02 ·</span>
         <div class="model-name">MODELO U</div>
@@ -499,10 +334,9 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
     </div>
   </div>
 
-  <!-- fila 2 -->
   <div class="g2">
     <div class="model-card">
-      <div class="model-img"><img src="static/src/img/Model-Torres_1.png" alt="Modelo Torres"></div>
+      <div class="model-img"><img src="static/src/img/Model_Torres.jpeg" alt="Modelo Torres"></div>
       <div class="model-info">
         <span class="model-badge">· Modelo 03 ·</span>
         <div class="model-name">TORRES</div>
@@ -517,7 +351,6 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
         </ul>
       </div>
     </div>
-
     <div class="model-card">
       <div class="model-img"><img src="static/src/img/modelo_feria.png" alt="Modelo Feria"></div>
       <div class="model-info">
@@ -540,179 +373,12 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
     <div class="nota-dot"></div>
     <div class="nota-txt">Todos los modelos a partir del <strong>Modelo U</strong> incluyen técnico especializado. Desplazamiento y montaje según distancia. Señal del <strong>20%</strong> para confirmar la reserva.</div>
   </div>
-
 </div>
 
 <div class="divider"></div>
 
-<script>
-(function(){
-
-  /* ── Estado ── */
-  var S = {
-    co2:         { qty:0, price:300, max:2 },
-    confeti:     { on:false, price:300 },
-    fotomaton:   { on:false, price:360 },
-    fotoestudio: { on:false, price:450 },
-    video360:    { price:0 },
-    telefono:    { price:0 },
-    modelo:      { price:0 }
-  };
-
-  /* ── Render resumen ── */
-  function render() {
-    var lines = [];
-    if (S.co2.qty > 0)        lines.push({ key:"co2",         name:"Pistolas CO2 x"+S.co2.qty,   price:S.co2.qty*S.co2.price });
-    if (S.confeti.on)         lines.push({ key:"confeti",     name:"Canon de Confeti",            price:S.confeti.price });
-    if (S.fotomaton.on)       lines.push({ key:"fotomaton",   name:"Fotomaton",                   price:S.fotomaton.price });
-    if (S.fotoestudio.on)     lines.push({ key:"fotoestudio", name:"Fotoestudio",                 price:S.fotoestudio.price });
-    if (S.video360.price > 0) lines.push({ key:"video360",    name:S.video360.price===400?"Video 360 - 2h":"Video 360 - 3h", price:S.video360.price });
-    if (S.telefono.price > 0) lines.push({ key:"telefono",    name:S.telefono.price===250?"Telefono - Coctel":"Telefono - Servicio", price:S.telefono.price });
-    if (S.modelo.price > 0)   lines.push({ key:"modelo",      name:({1200:"Modelo Basic",1600:"Modelo U",1800:"Modelo Torres",2000:"Modelo Feria"})[S.modelo.price]||"", price:S.modelo.price });
-
-    var total     = lines.reduce(function(a,b){ return a+b.price; },0);
-    var container = document.getElementById("calc-lines");
-    var empty     = document.getElementById("calc-empty");
-    var totalRow  = document.getElementById("calc-total-row");
-    var totalNum  = document.getElementById("calc-total-num");
-    if (!container) return;
-
-    var old = container.querySelectorAll(".calc-line");
-    for (var i=0;i<old.length;i++) old[i].remove();
-
-    if (lines.length===0) {
-      empty.style.display="flex";
-      totalRow.style.display="none";
-      return;
-    }
-    empty.style.display="none";
-    totalRow.style.display="block";
-
-    lines.forEach(function(l) {
-      var row   = document.createElement("div");
-      row.className = "calc-line";
-
-      var left  = document.createElement("div");
-      left.className = "calc-line-left";
-
-      var dot   = document.createElement("div");
-      dot.className = "calc-line-dot";
-
-      var name  = document.createElement("span");
-      name.className = "calc-line-name";
-      name.textContent = l.name;
-
-      var price = document.createElement("span");
-      price.className = "calc-line-price";
-      price.textContent = l.price.toLocaleString("es-ES") + "€";
-
-      var rm    = document.createElement("button");
-      rm.className = "calc-line-remove";
-      rm.textContent = "✕";
-      rm.title = "Quitar";
-      rm.addEventListener("click", (function(k){ return function(){ removeItem(k); }; })(l.key));
-
-      left.appendChild(dot);
-      left.appendChild(name);
-      row.appendChild(left);
-      row.appendChild(price);
-      row.appendChild(rm);
-      container.appendChild(row);
-    });
-
-    totalNum.textContent = total.toLocaleString("es-ES") + "€";
-  }
-
-  /* ── Acciones ── */
-  function setActive(key, val) {
-    var ci = document.getElementById("ci-"+key);
-    if (ci) ci.classList.toggle("active", val);
-  }
-
-  function changeQty(key, delta) {
-    var s = S[key];
-    s.qty = Math.max(0, Math.min(s.max, s.qty+delta));
-    var qv = document.getElementById("qty-"+key);
-    if (qv) qv.textContent = s.qty;
-    setActive(key, s.qty > 0);
-    render();
-  }
-
-  function toggleItem(key) {
-    S[key].on = !S[key].on;
-    var btn = document.getElementById("tb-"+key);
-    if (btn) { btn.textContent = S[key].on ? "Quitar" : "Añadir"; btn.classList.toggle("on", S[key].on); }
-    setActive(key, S[key].on);
-    render();
-  }
-
-  function removeItem(key) {
-    if (key==="co2") {
-      S.co2.qty = 0;
-      var qv = document.getElementById("qty-co2");
-      if (qv) qv.textContent = "0";
-    } else if (S[key] && S[key].on !== undefined) {
-      S[key].on = false;
-      var btn = document.getElementById("tb-"+key);
-      if (btn) { btn.textContent = "Añadir"; btn.classList.remove("on"); }
-    } else if (S[key]) {
-      S[key].price = 0;
-      var sel = document.getElementById("sel-"+key);
-      if (sel) sel.value = "0";
-    }
-    setActive(key, false);
-    render();
-  }
-
-  /* ── Bind de todos los controles al cargar el DOM ── */
-  function bindControls() {
-    /* Pistolas CO2 — botones +/- */
-    var btnMinus = document.querySelector("[data-action=co2-minus]");
-    var btnPlus  = document.querySelector("[data-action=co2-plus]");
-    if (btnMinus) btnMinus.addEventListener("click", function(){ changeQty("co2",-1); });
-    if (btnPlus)  btnPlus.addEventListener("click",  function(){ changeQty("co2", 1); });
-
-    /* Toggle items */
-    ["confeti","fotomaton","fotoestudio"].forEach(function(key) {
-      var btn = document.getElementById("tb-"+key);
-      if (btn) btn.addEventListener("click", function(){ toggleItem(key); });
-    });
-
-    /* Selects */
-    var selVideo = document.getElementById("sel-video360");
-    if (selVideo) selVideo.addEventListener("change", function() {
-      S.video360.price = parseInt(this.value)||0;
-      setActive("video360", S.video360.price > 0);
-      render();
-    });
-
-    var selTel = document.getElementById("sel-telefono");
-    if (selTel) selTel.addEventListener("change", function() {
-      S.telefono.price = parseInt(this.value)||0;
-      setActive("telefono", S.telefono.price > 0);
-      render();
-    });
-
-    var selModelo = document.getElementById("sel-modelo");
-    if (selModelo) selModelo.addEventListener("change", function() {
-      S.modelo.price = parseInt(this.value)||0;
-      setActive("modelo", S.modelo.price > 0);
-      render();
-    });
-  }
-
-  /* Ejecutar cuando el DOM esté listo */
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", bindControls);
-  } else {
-    bindControls();
-  }
-
-})();
-</script>
 <!-- ═══════ CALCULADORA ═══════ -->
 <div class="section" id="calc-section">
-
   <div class="section-header">
     <div class="section-tag">Cazorla Events · Presupuesto</div>
     <h2 class="section-title">TU <span>PRESUPUESTO</span></h2>
@@ -720,28 +386,22 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
   </div>
 
   <div class="calc-wrap">
-
-    <!-- columna izquierda: opciones -->
     <div class="calc-left">
 
       <div class="calc-group">
         <div class="calc-group-title"><span class="calc-group-dot"></span>Efectos Especiales</div>
-
-        <!-- pistolas CO2 — hasta 2 -->
         <div class="calc-item" id="ci-co2">
           <div class="calc-item-info">
             <div class="calc-item-name">Pistolas de CO2</div>
             <div class="calc-item-sub">Con 2 botellas de 12 kg cada una · <span class="calc-item-price-inline">300€ / unidad</span></div>
           </div>
           <div class="calc-qty">
-            <button class="qty-btn" data-action="co2-minus">−</button>
+            <button class="qty-btn" id="btn-co2-minus">−</button>
             <span class="qty-val" id="qty-co2">0</span>
-            <button class="qty-btn" data-action="co2-plus">+</button>
+            <button class="qty-btn" id="btn-co2-plus">+</button>
             <span class="qty-max">(máx. 2)</span>
           </div>
         </div>
-
-        <!-- cañón confeti -->
         <div class="calc-item" id="ci-confeti">
           <div class="calc-item-info">
             <div class="calc-item-name">Cañón de Confeti</div>
@@ -754,8 +414,7 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
       </div>
 
       <div class="calc-group">
-        <div class="calc-group-title"><span class="calc-group-dot"></span>Fotografía & Vídeo</div>
-
+        <div class="calc-group-title"><span class="calc-group-dot"></span>Fotografía &amp; Vídeo</div>
         <div class="calc-item" id="ci-fotomaton">
           <div class="calc-item-info">
             <div class="calc-item-name">Fotomatón</div>
@@ -765,7 +424,6 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
             <button class="toggle-btn" id="tb-fotomaton">Añadir</button>
           </div>
         </div>
-
         <div class="calc-item" id="ci-fotoestudio">
           <div class="calc-item-info">
             <div class="calc-item-name">Fotoestudio</div>
@@ -775,8 +433,6 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
             <button class="toggle-btn" id="tb-fotoestudio">Añadir</button>
           </div>
         </div>
-
-        <!-- vídeo 360: selector 2h/3h -->
         <div class="calc-item calc-item-select" id="ci-video360">
           <div class="calc-item-info">
             <div class="calc-item-name">Vídeo 360º</div>
@@ -794,8 +450,6 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
 
       <div class="calc-group">
         <div class="calc-group-title"><span class="calc-group-dot"></span>Entretenimiento</div>
-
-        <!-- teléfono firmas: selector -->
         <div class="calc-item calc-item-select" id="ci-telefono">
           <div class="calc-item-info">
             <div class="calc-item-name">Teléfono de Firmas</div>
@@ -813,7 +467,6 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
 
       <div class="calc-group">
         <div class="calc-group-title"><span class="calc-group-dot"></span>Modelo DJ</div>
-
         <div class="calc-item calc-item-select" id="ci-modelo">
           <div class="calc-item-info">
             <div class="calc-item-name">Setup DJ</div>
@@ -833,21 +486,17 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
 
     </div>
 
-    <!-- columna derecha: resumen -->
     <div class="calc-right">
       <div class="calc-summary">
         <div class="calc-summary-title">
-          <span class="calc-summary-dot"></span>
-          Resumen
+          <span class="calc-summary-dot"></span>Resumen
         </div>
-
         <div class="calc-lines" id="calc-lines">
           <div class="calc-empty" id="calc-empty">
             <div class="calc-empty-icon">◈</div>
             <div class="calc-empty-txt">Aún no has seleccionado ningún servicio</div>
           </div>
         </div>
-
         <div class="calc-total-row" id="calc-total-row" style="display:none">
           <div class="calc-total-divider"></div>
           <div class="calc-total">
@@ -855,8 +504,6 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
             <span class="calc-total-num" id="calc-total-num">0€</span>
           </div>
           <div class="calc-total-sub">* Sin incluir desplazamiento y montaje</div>
-
-          <!-- banner oferta -->
           <div class="calc-offer">
             <div class="calc-offer-pulse"></div>
             <div class="calc-offer-body">
@@ -864,26 +511,218 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
               <div class="calc-offer-txt">Los precios son orientativos. Casi siempre tenemos <strong>ofertas activas</strong> y somos <strong>flexibles</strong> según el pack o la fecha. Escríbenos y lo hablamos sin compromiso.</div>
             </div>
           </div>
-
-          <a class="calc-cta" href="https://wa.me/34635681045" target="_blank">
+          <button class="calc-cta" id="btn-whatsapp">
             Pedir presupuesto por WhatsApp
             <span class="calc-cta-arrow">→</span>
-          </a>
+          </button>
         </div>
       </div>
     </div>
-
   </div>
 </div>
 
 <div class="divider"></div>
 
 <div class="contact-strip">
-  <div class="ci"><div class="ci-dot"></div><div><span class="ci-lbl">Tel&eacute;fono</span><span class="ci-val">635 68 10 45</span></div></div>
-  <div class="ci"><div class="ci-dot"></div><div><span class="ci-lbl">Email</span><span class="ci-val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6407051e0b1608050112010a1017240309050d084a070b09">[email&#160;protected]</a></span></div></div>
+  <div class="ci"><div class="ci-dot"></div><div><span class="ci-lbl">Teléfono</span><span class="ci-val">635 68 10 45</span></div></div>
+  <div class="ci"><div class="ci-dot"></div><div><span class="ci-lbl">Email</span><span class="ci-val">cazorlaevents@gmail.com</span></div></div>
   <div class="ci"><div class="ci-dot"></div><div><span class="ci-lbl">Redes</span><span class="ci-val">@cazorla_event</span></div></div>
 </div>
 
+<script>
+(function() {
+
+  var S = {
+    co2:         { qty:0, price:300, max:2 },
+    confeti:     { on:false, price:300 },
+    fotomaton:   { on:false, price:360 },
+    fotoestudio: { on:false, price:450 },
+    video360:    { price:0 },
+    telefono:    { price:0 },
+    modelo:      { price:0 }
+  };
+
+  function setActive(key, val) {
+    var el = document.getElementById("ci-" + key);
+    if (el) el.classList.toggle("active", val);
+  }
+
+  function changeQty(delta) {
+    S.co2.qty = Math.max(0, Math.min(S.co2.max, S.co2.qty + delta));
+    var qv = document.getElementById("qty-co2");
+    if (qv) qv.textContent = S.co2.qty;
+    setActive("co2", S.co2.qty > 0);
+    render();
+  }
+
+  function toggleItem(key) {
+    S[key].on = !S[key].on;
+    var btn = document.getElementById("tb-" + key);
+    if (btn) {
+      btn.textContent = S[key].on ? "Quitar" : "A\xf1adir";
+      btn.classList.toggle("on", S[key].on);
+    }
+    setActive(key, S[key].on);
+    render();
+  }
+
+  function removeItem(key) {
+    if (key === "co2") {
+      S.co2.qty = 0;
+      var qv = document.getElementById("qty-co2");
+      if (qv) qv.textContent = "0";
+    } else if (S[key].on !== undefined) {
+      S[key].on = false;
+      var btn = document.getElementById("tb-" + key);
+      if (btn) { btn.textContent = "A\xf1adir"; btn.classList.remove("on"); }
+    } else {
+      S[key].price = 0;
+      var sel = document.getElementById("sel-" + key);
+      if (sel) sel.value = "0";
+    }
+    setActive(key, false);
+    render();
+  }
+
+  function render() {
+    var lines = [];
+    if (S.co2.qty > 0)        lines.push({ key:"co2",         label:"Pistolas CO2 x" + S.co2.qty,                                                                    price: S.co2.qty * S.co2.price });
+    if (S.confeti.on)         lines.push({ key:"confeti",     label:"Ca\xf1\xf3n de Confeti",                                                                         price: S.confeti.price });
+    if (S.fotomaton.on)       lines.push({ key:"fotomaton",   label:"Fotlomat\xf3n",                                                                                  price: S.fotomaton.price });
+    if (S.fotoestudio.on)     lines.push({ key:"fotoestudio", label:"Fotoestudio",                                                                                    price: S.fotoestudio.price });
+    if (S.video360.price > 0) lines.push({ key:"video360",    label:"V\xeddeo 360\xba " + (S.video360.price === 400 ? "2h" : "3h"),                                  price: S.video360.price });
+    if (S.telefono.price > 0) lines.push({ key:"telefono",    label:"Tel\xe9fono " + (S.telefono.price === 250 ? "C\xf3ctel" : "Servicio"),                          price: S.telefono.price });
+    if (S.modelo.price > 0)   lines.push({ key:"modelo",      label: ({1200:"Modelo Basic",1600:"Modelo U",1800:"Modelo Torres",2000:"Modelo Feria"})[S.modelo.price] || "", price: S.modelo.price });
+
+    var total     = lines.reduce(function(a, b) { return a + b.price; }, 0);
+    var container = document.getElementById("calc-lines");
+    var empty     = document.getElementById("calc-empty");
+    var totalRow  = document.getElementById("calc-total-row");
+    var totalNum  = document.getElementById("calc-total-num");
+    if (!container) return;
+
+    var old = container.querySelectorAll(".calc-line");
+    for (var i = 0; i < old.length; i++) old[i].remove();
+
+    if (lines.length === 0) {
+      empty.style.display    = "flex";
+      totalRow.style.display = "none";
+      return;
+    }
+    empty.style.display    = "none";
+    totalRow.style.display = "block";
+
+    lines.forEach(function(l) {
+      var row = document.createElement("div");
+      row.className = "calc-line";
+
+      var left = document.createElement("div");
+      left.className = "calc-line-left";
+
+      var dot = document.createElement("div");
+      dot.className = "calc-line-dot";
+
+      var name = document.createElement("span");
+      name.className = "calc-line-name";
+      name.textContent = l.label;
+
+      var priceEl = document.createElement("span");
+      priceEl.className = "calc-line-price";
+      priceEl.textContent = l.price.toLocaleString("es-ES") + "\u20ac";
+
+      var rm = document.createElement("button");
+      rm.className = "calc-line-remove";
+      rm.textContent = "\u2715";
+      rm.title = "Quitar";
+      rm.addEventListener("click", (function(k) { return function() { removeItem(k); }; })(l.key));
+
+      left.appendChild(dot);
+      left.appendChild(name);
+      row.appendChild(left);
+      row.appendChild(priceEl);
+      row.appendChild(rm);
+      container.appendChild(row);
+    });
+
+    totalNum.textContent = total.toLocaleString("es-ES") + "\u20ac";
+  }
+
+  function abrirWhatsApp() {
+    var servicios = [];
+    if (S.co2.qty > 0)        servicios.push("- Pistolas CO2 x" + S.co2.qty + " (" + (S.co2.qty * S.co2.price) + "\u20ac)");
+    if (S.confeti.on)         servicios.push("- Canon de Confeti (300\u20ac)");
+    if (S.fotomaton.on)       servicios.push("- Fotomaton (360\u20ac)");
+    if (S.fotoestudio.on)     servicios.push("- Fotoestudio (450\u20ac)");
+    if (S.video360.price > 0) servicios.push("- Video 360\u00ba " + (S.video360.price === 400 ? "2h" : "3h") + " (" + S.video360.price + "\u20ac)");
+    if (S.telefono.price > 0) servicios.push("- Telefono de Firmas " + (S.telefono.price === 250 ? "desde el coctel" : "desde vuestro servicio") + " (" + S.telefono.price + "\u20ac)");
+    if (S.modelo.price > 0)   servicios.push("- " + ({1200:"Modelo Basic",1600:"Modelo U",1800:"Modelo Torres",2000:"Modelo Feria"})[S.modelo.price] + " (" + S.modelo.price + "\u20ac)");
+
+    var total = 0;
+    if (S.co2.qty > 0)        total += S.co2.qty * S.co2.price;
+    if (S.confeti.on)         total += S.confeti.price;
+    if (S.fotomaton.on)       total += S.fotomaton.price;
+    if (S.fotoestudio.on)     total += S.fotoestudio.price;
+    if (S.video360.price > 0) total += S.video360.price;
+    if (S.telefono.price > 0) total += S.telefono.price;
+    if (S.modelo.price > 0)   total += S.modelo.price;
+
+    var msg;
+    if (servicios.length === 0) {
+      msg = "Hola! He visto vuestra pagina web y me gustaria recibir informacion sobre vuestros servicios para bodas. Podeis contarme mas? Muchas gracias!";
+    } else {
+      msg = "Hola! He visto en la pagina web los servicios que ofreceis para bodas y estaria interesado/a en:\n\n"
+          + servicios.join("\n")
+          + "\n\nTotal estimado: " + total.toLocaleString("es-ES") + "\u20ac (sin desplazamiento ni montaje)."
+          + "\n\nPodeis confirmarme disponibilidad y darme mas detalles? Muchas gracias!";
+    }
+
+    window.open("https://wa.me/34635681045?text=" + encodeURIComponent(msg), "_blank");
+  }
+
+  function bindControls() {
+    var btnMinus = document.getElementById("btn-co2-minus");
+    var btnPlus  = document.getElementById("btn-co2-plus");
+    if (btnMinus) btnMinus.addEventListener("click", function() { changeQty(-1); });
+    if (btnPlus)  btnPlus.addEventListener("click",  function() { changeQty(1); });
+
+    ["confeti", "fotomaton", "fotoestudio"].forEach(function(key) {
+      var btn = document.getElementById("tb-" + key);
+      if (btn) btn.addEventListener("click", function() { toggleItem(key); });
+    });
+
+    var selVideo = document.getElementById("sel-video360");
+    if (selVideo) selVideo.addEventListener("change", function() {
+      S.video360.price = parseInt(this.value) || 0;
+      setActive("video360", S.video360.price > 0);
+      render();
+    });
+
+    var selTel = document.getElementById("sel-telefono");
+    if (selTel) selTel.addEventListener("change", function() {
+      S.telefono.price = parseInt(this.value) || 0;
+      setActive("telefono", S.telefono.price > 0);
+      render();
+    });
+
+    var selModelo = document.getElementById("sel-modelo");
+    if (selModelo) selModelo.addEventListener("change", function() {
+      S.modelo.price = parseInt(this.value) || 0;
+      setActive("modelo", S.modelo.price > 0);
+      render();
+    });
+
+    var btnWa = document.getElementById("btn-whatsapp");
+    if (btnWa) btnWa.addEventListener("click", abrirWhatsApp);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", bindControls);
+  } else {
+    bindControls();
+  }
+
+})();
+</script>
 
 </body>
 </html>
