@@ -73,11 +73,15 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
 }
 .tel-card:hover{border-color:rgba(0,242,255,0.28);box-shadow:0 18px 55px rgba(0,0,0,0.6),0 0 35px rgba(0,242,255,0.07)}
 
-.tel-top{display:flex;flex-direction:column;align-items:center;padding:26px 28px 20px;border-bottom:1px solid var(--border)}
-.tel-img{width:160px;height:160px;border-radius:2px;overflow:hidden;border:1px solid rgba(255,255,255,0.08);margin-bottom:16px}
-.tel-img img{width:100%;height:100%;object-fit:cover;filter:brightness(0.88)}
-.tel-title{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:0.07em;color:#fff;margin-bottom:5px;text-align:center}
-.tel-sub{font-family:'DM Sans',sans-serif;font-weight:300;font-size:0.77rem;color:var(--txt2);text-align:center;line-height:1.6;max-width:380px}
+.tel-top{display:flex;flex-direction:column;align-items:center;padding:0 0 0;border-bottom:1px solid var(--border)}
+.tel-img{width:100%;height:0;padding-bottom:56.25%;position:relative;overflow:hidden;margin-bottom:0}
+.tel-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(0.88) saturate(1.1);transition:transform 0.6s cubic-bezier(0.16,1,0.3,1),filter 0.4s}
+.tel-card:hover .tel-img img{transform:scale(1.05);filter:brightness(1) saturate(1.2)}
+.tel-img::after{content:'';position:absolute;inset:0;pointer-events:none;z-index:2;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.1) 2px,rgba(0,0,0,0.1) 4px)}
+
+.tel-text{padding:18px 24px 16px;text-align:center;width:100%}
+.tel-title{font-family:'Bebas Neue',sans-serif;font-size:1.25rem;letter-spacing:0.07em;color:#fff;margin-bottom:5px;text-align:center}
+.tel-sub{font-family:'DM Sans',sans-serif;font-weight:300;font-size:0.77rem;color:var(--txt2);text-align:center;line-height:1.6;max-width:100%}
 
 .tel-options{display:grid;grid-template-columns:1fr 1fr}
 .tel-opt{padding:20px 24px;border-right:1px solid var(--border)}
@@ -337,7 +341,7 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
   <div class="g2">
     <div class="card">
       <div class="card-img">
-        <img src="static/src/img/pistolahumoboda.jpg" alt="Pistolas CO2">
+        <img src="static/src/img/pistolahumoboda.png" alt="Pistolas CO2">
         <div class="card-price">300€</div>
         <div class="card-led"><div class="dot"></div><span class="led-lbl">Efecto especial</span></div>
       </div>
@@ -349,7 +353,7 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
 
     <div class="card">
       <div class="card-img">
-        <img src="static/src/img/canonconfetiboda.png" alt="Cañón confeti" style="filter:brightness(0.7) hue-rotate(255deg) saturate(1.5)">
+        <img src="static/src/img/canonhumoboda.png" alt="Cañón confeti" style="filter:brightness(0.7) hue-rotate(255deg) saturate(1.5)">
         <div class="card-price">300€</div>
         <div class="card-led"><div class="dot"></div><span class="led-lbl">4 kg confeti</span></div>
       </div>
@@ -392,8 +396,10 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
     <div class="tel-card">
       <div class="tel-top">
         <div class="tel-img"><img src="static/src/img/video360boda.png" alt="Vídeo 360º"></div>
-        <div class="tel-title">Vídeo 360º</div>
-        <div class="tel-sub">Vídeos ilimitados + foco profesional + pistola de burbujas + adornos + envío de vídeos a los invitados.</div>
+        <div class="tel-text">
+          <div class="tel-title">Vídeo 360º</div>
+          <div class="tel-sub">Vídeos ilimitados + foco profesional + pistola de burbujas + adornos + envío de vídeos a los invitados.</div>
+        </div>
       </div>
       <div class="tel-options">
         <div class="tel-opt">
@@ -417,8 +423,10 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
     <div class="tel-card">
       <div class="tel-top">
         <div class="tel-img"><img src="static/src/img/telefono_firmas.jpg" alt="Teléfono de firmas"></div>
-        <div class="tel-title">Teléfono de Firmas</div>
-        <div class="tel-sub">Un teléfono vintage donde tus invitados dejan mensajes de voz. El recuerdo más emotivo de tu gran día.</div>
+        <div class="tel-text">
+          <div class="tel-title">Teléfono de Firmas</div>
+          <div class="tel-sub">Un teléfono vintage donde tus invitados dejan mensajes de voz. El recuerdo más emotivo de tu gran día.</div>
+        </div>
       </div>
       <div class="tel-options">
         <div class="tel-opt">
