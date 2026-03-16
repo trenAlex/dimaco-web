@@ -538,7 +538,9 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
 <div class="divider"></div>
 
 <script>
-(function() {
+(function(){
+
+  /* ── Estado ── */
   var S = {
     co2:         { qty:0, price:300, max:2 },
     confeti:     { on:false, price:300 },
@@ -549,17 +551,18 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
     modelo:      { price:0 }
   };
 
+  /* ── Render resumen ── */
   function render() {
     var lines = [];
-    if (S.co2.qty > 0)        lines.push({ key:"co2",         name:"Pistolas CO2 x"+S.co2.qty,       price: S.co2.qty*S.co2.price });
-    if (S.confeti.on)         lines.push({ key:"confeti",     name:"Canon de Confeti",               price: S.confeti.price });
-    if (S.fotomaton.on)       lines.push({ key:"fotomaton",   name:"Fotomaton",                      price: S.fotomaton.price });
-    if (S.fotoestudio.on)     lines.push({ key:"fotoestudio", name:"Fotoestudio",                    price: S.fotoestudio.price });
-    if (S.video360.price > 0) lines.push({ key:"video360",    name: S.video360.price===400 ? "Video 360 - 2h" : "Video 360 - 3h",             price: S.video360.price });
-    if (S.telefono.price > 0) lines.push({ key:"telefono",    name: S.telefono.price===250  ? "Telefono - Coctel" : "Telefono - Servicio",     price: S.telefono.price });
-    if (S.modelo.price > 0)   lines.push({ key:"modelo",      name: {1200:"Modelo Basic",1600:"Modelo U",1800:"Modelo Torres",2000:"Modelo Feria"}[S.modelo.price] || "", price: S.modelo.price });
+    if (S.co2.qty > 0)        lines.push({ key:"co2",         name:"Pistolas CO2 x"+S.co2.qty,   price:S.co2.qty*S.co2.price });
+    if (S.confeti.on)         lines.push({ key:"confeti",     name:"Canon de Confeti",            price:S.confeti.price });
+    if (S.fotomaton.on)       lines.push({ key:"fotomaton",   name:"Fotomaton",                   price:S.fotomaton.price });
+    if (S.fotoestudio.on)     lines.push({ key:"fotoestudio", name:"Fotoestudio",                 price:S.fotoestudio.price });
+    if (S.video360.price > 0) lines.push({ key:"video360",    name:S.video360.price===400?"Video 360 - 2h":"Video 360 - 3h", price:S.video360.price });
+    if (S.telefono.price > 0) lines.push({ key:"telefono",    name:S.telefono.price===250?"Telefono - Coctel":"Telefono - Servicio", price:S.telefono.price });
+    if (S.modelo.price > 0)   lines.push({ key:"modelo",      name:({1200:"Modelo Basic",1600:"Modelo U",1800:"Modelo Torres",2000:"Modelo Feria"})[S.modelo.price]||"", price:S.modelo.price });
 
-    var total     = lines.reduce(function(a,b){ return a+b.price; }, 0);
+    var total     = lines.reduce(function(a,b){ return a+b.price; },0);
     var container = document.getElementById("calc-lines");
     var empty     = document.getElementById("calc-empty");
     var totalRow  = document.getElementById("calc-total-row");
@@ -567,105 +570,135 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
     if (!container) return;
 
     var old = container.querySelectorAll(".calc-line");
-    for (var i=0; i<old.length; i++) old[i].remove();
+    for (var i=0;i<old.length;i++) old[i].remove();
 
-    if (lines.length === 0) {
-      empty.style.display    = "flex";
-      totalRow.style.display = "none";
+    if (lines.length===0) {
+      empty.style.display="flex";
+      totalRow.style.display="none";
       return;
     }
-    empty.style.display    = "none";
-    totalRow.style.display = "block";
+    empty.style.display="none";
+    totalRow.style.display="block";
 
-    for (var j=0; j<lines.length; j++) {
-      var l   = lines[j];
-      var div = document.createElement("div");
-      div.className = "calc-line";
-      var btn = document.createElement("button");
-      btn.className = "calc-line-remove";
-      btn.title = "Quitar";
-      btn.innerHTML = "&#x2715;";
-      btn.setAttribute("data-key", l.key);
-      btn.addEventListener("click", function(){ window.czRemove(this.getAttribute("data-key")); });
+    lines.forEach(function(l) {
+      var row   = document.createElement("div");
+      row.className = "calc-line";
 
-      var left = document.createElement("div");
+      var left  = document.createElement("div");
       left.className = "calc-line-left";
-      left.innerHTML = '<div class="calc-line-dot"></div><span class="calc-line-name">' + l.name + '</span>';
+
+      var dot   = document.createElement("div");
+      dot.className = "calc-line-dot";
+
+      var name  = document.createElement("span");
+      name.className = "calc-line-name";
+      name.textContent = l.name;
 
       var price = document.createElement("span");
       price.className = "calc-line-price";
       price.textContent = l.price.toLocaleString("es-ES") + "€";
 
-      div.appendChild(left);
-      div.appendChild(price);
-      div.appendChild(btn);
-      container.appendChild(div);
-    }
+      var rm    = document.createElement("button");
+      rm.className = "calc-line-remove";
+      rm.textContent = "✕";
+      rm.title = "Quitar";
+      rm.addEventListener("click", (function(k){ return function(){ removeItem(k); }; })(l.key));
+
+      left.appendChild(dot);
+      left.appendChild(name);
+      row.appendChild(left);
+      row.appendChild(price);
+      row.appendChild(rm);
+      container.appendChild(row);
+    });
 
     totalNum.textContent = total.toLocaleString("es-ES") + "€";
   }
 
-  window.czRemove = function(key) {
-    if (key === "co2") {
+  /* ── Acciones ── */
+  function setActive(key, val) {
+    var ci = document.getElementById("ci-"+key);
+    if (ci) ci.classList.toggle("active", val);
+  }
+
+  function changeQty(key, delta) {
+    var s = S[key];
+    s.qty = Math.max(0, Math.min(s.max, s.qty+delta));
+    var qv = document.getElementById("qty-"+key);
+    if (qv) qv.textContent = s.qty;
+    setActive(key, s.qty > 0);
+    render();
+  }
+
+  function toggleItem(key) {
+    S[key].on = !S[key].on;
+    var btn = document.getElementById("tb-"+key);
+    if (btn) { btn.textContent = S[key].on ? "Quitar" : "Añadir"; btn.classList.toggle("on", S[key].on); }
+    setActive(key, S[key].on);
+    render();
+  }
+
+  function removeItem(key) {
+    if (key==="co2") {
       S.co2.qty = 0;
       var qv = document.getElementById("qty-co2");
       if (qv) qv.textContent = "0";
     } else if (S[key] && S[key].on !== undefined) {
       S[key].on = false;
-      var btn2 = document.getElementById("tb-"+key);
-      if (btn2) { btn2.textContent = "Añadir"; btn2.classList.remove("on"); }
+      var btn = document.getElementById("tb-"+key);
+      if (btn) { btn.textContent = "Añadir"; btn.classList.remove("on"); }
     } else if (S[key]) {
       S[key].price = 0;
       var sel = document.getElementById("sel-"+key);
       if (sel) sel.value = "0";
     }
-    var ci = document.getElementById("ci-"+key);
-    if (ci) ci.classList.remove("active");
+    setActive(key, false);
     render();
-  };
+  }
 
-  window.changeQty = function(key, delta) {
-    var s = S[key];
-    s.qty = Math.max(0, Math.min(s.max, s.qty+delta));
-    var qv = document.getElementById("qty-"+key);
-    if (qv) qv.textContent = s.qty;
-    var ci = document.getElementById("ci-"+key);
-    if (ci) ci.classList.toggle("active", s.qty > 0);
-    render();
-  };
+  /* ── Bind de todos los controles al cargar el DOM ── */
+  function bindControls() {
+    /* Pistolas CO2 — botones +/- */
+    var btnMinus = document.querySelector("[data-action=co2-minus]");
+    var btnPlus  = document.querySelector("[data-action=co2-plus]");
+    if (btnMinus) btnMinus.addEventListener("click", function(){ changeQty("co2",-1); });
+    if (btnPlus)  btnPlus.addEventListener("click",  function(){ changeQty("co2", 1); });
 
-  window.toggleItem = function(key) {
-    S[key].on = !S[key].on;
-    var btn3 = document.getElementById("tb-"+key);
-    if (btn3) { btn3.textContent = S[key].on ? "Quitar" : "Añadir"; btn3.classList.toggle("on", S[key].on); }
-    var ci = document.getElementById("ci-"+key);
-    if (ci) ci.classList.toggle("active", S[key].on);
-    render();
-  };
+    /* Toggle items */
+    ["confeti","fotomaton","fotoestudio"].forEach(function(key) {
+      var btn = document.getElementById("tb-"+key);
+      if (btn) btn.addEventListener("click", function(){ toggleItem(key); });
+    });
 
-  window.selectVideo360 = function() {
-    var el = document.getElementById("sel-video360");
-    S.video360.price = el ? (parseInt(el.value)||0) : 0;
-    var ci = document.getElementById("ci-video360");
-    if (ci) ci.classList.toggle("active", S.video360.price > 0);
-    render();
-  };
+    /* Selects */
+    var selVideo = document.getElementById("sel-video360");
+    if (selVideo) selVideo.addEventListener("change", function() {
+      S.video360.price = parseInt(this.value)||0;
+      setActive("video360", S.video360.price > 0);
+      render();
+    });
 
-  window.selectTelefono = function() {
-    var el = document.getElementById("sel-telefono");
-    S.telefono.price = el ? (parseInt(el.value)||0) : 0;
-    var ci = document.getElementById("ci-telefono");
-    if (ci) ci.classList.toggle("active", S.telefono.price > 0);
-    render();
-  };
+    var selTel = document.getElementById("sel-telefono");
+    if (selTel) selTel.addEventListener("change", function() {
+      S.telefono.price = parseInt(this.value)||0;
+      setActive("telefono", S.telefono.price > 0);
+      render();
+    });
 
-  window.selectModelo = function() {
-    var el = document.getElementById("sel-modelo");
-    S.modelo.price = el ? (parseInt(el.value)||0) : 0;
-    var ci = document.getElementById("ci-modelo");
-    if (ci) ci.classList.toggle("active", S.modelo.price > 0);
-    render();
-  };
+    var selModelo = document.getElementById("sel-modelo");
+    if (selModelo) selModelo.addEventListener("change", function() {
+      S.modelo.price = parseInt(this.value)||0;
+      setActive("modelo", S.modelo.price > 0);
+      render();
+    });
+  }
+
+  /* Ejecutar cuando el DOM esté listo */
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", bindControls);
+  } else {
+    bindControls();
+  }
 
 })();
 </script>
@@ -693,9 +726,9 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
             <div class="calc-item-sub">Con 2 botellas de 12 kg cada una · <span class="calc-item-price-inline">300€ / unidad</span></div>
           </div>
           <div class="calc-qty">
-            <button class="qty-btn" onclick="changeQty('co2',-1)">−</button>
+            <button class="qty-btn" data-action="co2-minus">−</button>
             <span class="qty-val" id="qty-co2">0</span>
-            <button class="qty-btn" onclick="changeQty('co2',1)">+</button>
+            <button class="qty-btn" data-action="co2-plus">+</button>
             <span class="qty-max">(máx. 2)</span>
           </div>
         </div>
@@ -707,7 +740,7 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
             <div class="calc-item-sub">4 kg de confeti · <span class="calc-item-price-inline">300€</span></div>
           </div>
           <div class="calc-toggle">
-            <button class="toggle-btn" id="tb-confeti" onclick="toggleItem('confeti')">Añadir</button>
+            <button class="toggle-btn" id="tb-confeti">Añadir</button>
           </div>
         </div>
       </div>
@@ -721,7 +754,7 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
             <div class="calc-item-sub">3h · gifts ilimitados · álbum · USB · <span class="calc-item-price-inline">360€</span></div>
           </div>
           <div class="calc-toggle">
-            <button class="toggle-btn" id="tb-fotomaton" onclick="toggleItem('fotomaton')">Añadir</button>
+            <button class="toggle-btn" id="tb-fotomaton">Añadir</button>
           </div>
         </div>
 
@@ -731,7 +764,7 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
             <div class="calc-item-sub">3h · flash profesional · álbum · USB · <span class="calc-item-price-inline">450€</span></div>
           </div>
           <div class="calc-toggle">
-            <button class="toggle-btn" id="tb-fotoestudio" onclick="toggleItem('fotoestudio')">Añadir</button>
+            <button class="toggle-btn" id="tb-fotoestudio">Añadir</button>
           </div>
         </div>
 
@@ -742,7 +775,7 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
             <div class="calc-item-sub">Ilimitado · foco pro · burbujas · adornos · envío</div>
           </div>
           <div class="calc-select-row">
-            <select class="calc-select" id="sel-video360" onchange="selectVideo360()">
+            <select class="calc-select" id="sel-video360">
               <option value="0">— No añadir —</option>
               <option value="400">2 horas · 400€</option>
               <option value="500">3 horas · 500€</option>
@@ -761,7 +794,7 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
             <div class="calc-item-sub">Mensajes de voz de tus invitados</div>
           </div>
           <div class="calc-select-row">
-            <select class="calc-select" id="sel-telefono" onchange="selectTelefono()">
+            <select class="calc-select" id="sel-telefono">
               <option value="0">— No añadir —</option>
               <option value="250">Desde el cóctel · 250€</option>
               <option value="100">Desde nuestro servicio · 100€</option>
@@ -779,7 +812,7 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
             <div class="calc-item-sub">Pantalla LED · iluminación · sonido</div>
           </div>
           <div class="calc-select-row">
-            <select class="calc-select" id="sel-modelo" onchange="selectModelo()">
+            <select class="calc-select" id="sel-modelo">
               <option value="0">— No añadir —</option>
               <option value="1200">Basic · 1.200€</option>
               <option value="1600">Modelo U · 1.600€</option>
