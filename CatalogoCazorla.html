@@ -101,7 +101,7 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
 @keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
 
 /* calculadora */
-.calc-wrap{display:grid;grid-template-columns:1fr 380px;gap:24px;align-items:start}
+.calc-wrap{display:grid;grid-template-columns:1fr 380px;gap:24px;align-items:start;min-width:0;width:100%}
 .calc-group{margin-bottom:10px}
 .calc-group-title{display:flex;align-items:center;gap:10px;font-family:'DM Sans',sans-serif;font-size:0.55rem;font-weight:500;letter-spacing:5px;text-transform:uppercase;color:rgba(255,255,255,0.28);padding:14px 0 10px;border-top:1px solid var(--border)}
 .calc-group:first-child .calc-group-title{border-top:none;padding-top:0}
@@ -163,7 +163,8 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
 /* ─────────────────────────────────────────────────
    RESPONSIVE
 ───────────────────────────────────────────────── */
-@media(max-width:720px){
+/* Tablets y móvil — breakpoint subido a 900px */
+@media(max-width:900px){
   .g2{grid-template-columns:1fr}
   .model-card{grid-template-columns:1fr}
   .model-img{height:200px}.model-img::before{display:none}
@@ -172,34 +173,23 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
   .section{padding:56px 18px}
 
   /* ── CALCULADORA MÓVIL ── */
-  /* Columna única, resumen ARRIBA de los items */
+  /* Flex columna: resumen arriba, items debajo */
   .calc-wrap{
-    grid-template-columns: 1fr;
+    display: flex !important;
+    flex-direction: column !important;
     gap: 16px;
   }
-  /* El resumen (calc-right) sube al primer lugar visualmente */
-  .calc-right{ order: -1; }
-  .calc-left{  order:  1; }
-
-  /* Resumen deja de ser sticky y se queda en flujo normal */
-  .calc-summary{
-    position: static;
-    /* Barra de total compacta en móvil */
-  }
-
-  /* Total más compacto en móvil */
+  .calc-right{ order: 1 !important; width: 100% !important; }
+  .calc-left{  order: 2 !important; width: 100% !important; }
+  .calc-summary{ position: static !important; width: 100% !important; }
   .calc-total-num{ font-size: 1.28rem; }
-
-  /* Items de la calc con texto más compacto */
-  .calc-item{
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-  .calc-item-info{ min-width: 0; width: 100%; }
+  .calc-item{ flex-wrap: wrap; gap: 10px; }
+  .calc-item-info{ width: 100%; }
   .calc-qty{ justify-content: flex-start; }
-
-  /* Select ocupa todo el ancho */
-  .calc-select-row{ width: 100%; }
+  .calc-select-row{ width: 100% !important; }
+  .calc-toggle{ width: 100%; }
+  .toggle-btn{ width: 100%; text-align: center; }
+  .calc-line-name{ white-space: normal; }
 }
 </style>
 </head>
@@ -556,11 +546,11 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
 
 <div class="contact-strip">
   <div class="ci"><div class="ci-dot"></div><div><span class="ci-lbl">Teléfono</span><span class="ci-val">635 68 10 45</span></div></div>
-  <div class="ci"><div class="ci-dot"></div><div><span class="ci-lbl">Email</span><span class="ci-val">cazorlaevents@gmail.com</span></div></div>
+  <div class="ci"><div class="ci-dot"></div><div><span class="ci-lbl">Email</span><span class="ci-val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d7b4b6adb8a5bbb6b2a1b2b9a3a497b0bab6bebbf9b4b8ba">[email&#160;protected]</a></span></div></div>
   <div class="ci"><div class="ci-dot"></div><div><span class="ci-lbl">Redes</span><span class="ci-val">@cazorla_event</span></div></div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 (function() {
 
   var S = {
@@ -743,17 +733,4 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
     });
 
     var btnWa = document.getElementById("btn-whatsapp");
-    if (btnWa) btnWa.addEventListener("click", abrirWhatsApp);
-  }
-
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", bindControls);
-  } else {
-    bindControls();
-  }
-
-})();
-</script>
-
-</body>
-</html>
+    if (btn
