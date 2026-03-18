@@ -160,6 +160,9 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
 .calc-cta-arrow{font-size:1rem;transition:transform 0.25s}
 .calc-cta:hover .calc-cta-arrow{transform:translateX(4px)}
 
+/* ─────────────────────────────────────────────────
+   RESPONSIVE
+───────────────────────────────────────────────── */
 @media(max-width:720px){
   .g2{grid-template-columns:1fr}
   .model-card{grid-template-columns:1fr}
@@ -167,8 +170,36 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
   .tel-options{grid-template-columns:1fr}
   .tel-opt{border-right:none;border-bottom:1px solid var(--border)}.tel-opt:last-child{border-bottom:none}
   .section{padding:56px 18px}
-  .calc-wrap{grid-template-columns:1fr}
-  .calc-summary{position:static}
+
+  /* ── CALCULADORA MÓVIL ── */
+  /* Columna única, resumen ARRIBA de los items */
+  .calc-wrap{
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  /* El resumen (calc-right) sube al primer lugar visualmente */
+  .calc-right{ order: -1; }
+  .calc-left{  order:  1; }
+
+  /* Resumen deja de ser sticky y se queda en flujo normal */
+  .calc-summary{
+    position: static;
+    /* Barra de total compacta en móvil */
+  }
+
+  /* Total más compacto en móvil */
+  .calc-total-num{ font-size: 1.28rem; }
+
+  /* Items de la calc con texto más compacto */
+  .calc-item{
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .calc-item-info{ min-width: 0; width: 100%; }
+  .calc-qty{ justify-content: flex-start; }
+
+  /* Select ocupa todo el ancho */
+  .calc-select-row{ width: 100%; }
 }
 </style>
 </head>
