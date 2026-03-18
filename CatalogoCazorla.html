@@ -163,7 +163,7 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
 /* ─────────────────────────────────────────────────
    RESPONSIVE
 ───────────────────────────────────────────────── */
-/* Tablets y móvil — breakpoint subido a 900px */
+/* Tablets y móvil — tarjetas */
 @media(max-width:900px){
   .g2{grid-template-columns:1fr}
   .model-card{grid-template-columns:1fr}
@@ -171,9 +171,10 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
   .tel-options{grid-template-columns:1fr}
   .tel-opt{border-right:none;border-bottom:1px solid var(--border)}.tel-opt:last-child{border-bottom:none}
   .section{padding:56px 18px}
+}
 
-  /* ── CALCULADORA MÓVIL ── */
-  /* Flex columna: resumen arriba, items debajo */
+/* Móvil — calculadora */
+@media(max-width:720px){
   .calc-wrap{
     display: flex !important;
     flex-direction: column !important;
@@ -733,4 +734,17 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
     });
 
     var btnWa = document.getElementById("btn-whatsapp");
-    if (btn
+    if (btnWa) btnWa.addEventListener("click", abrirWhatsApp);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", bindControls);
+  } else {
+    bindControls();
+  }
+
+})();
+</script>
+
+</body>
+</html>
