@@ -3,748 +3,311 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cazorla Events — Productos & Modelos</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+<title>DimacoLed — Pantallas LED Profesionales</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --red:#00f2ff;--red2:#00d8e8;--purple:#ff00de;
-  --bg:#070707;--bg2:#0d0d0d;
-  --txt2:rgba(255,255,255,0.52);--txt3:rgba(255,255,255,0.22);
-  --border:rgba(255,255,255,0.07);
-  --glow-c:rgba(0,242,255,0.45);
-  --glow-p:rgba(255,0,222,0.45);
-}
-html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothing:antialiased}
-.section{width:100%;max-width:1140px;margin:0 auto;padding:80px 36px}
-.section-header{text-align:center;margin-bottom:52px}
-.section-tag{display:inline-flex;align-items:center;gap:12px;margin-bottom:14px;font-family:'DM Sans',sans-serif;font-size:0.56rem;font-weight:500;letter-spacing:6px;text-transform:uppercase;color:rgba(255,255,255,0.28)}
-.section-tag::before,.section-tag::after{content:'';width:24px;height:1px;background:var(--red);box-shadow:0 0 8px var(--glow-c)}
-.section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.8rem,5vw,4.8rem);letter-spacing:0.06em;line-height:0.95;text-shadow:0 0 50px rgba(0,242,255,0.1)}
-.section-title span{color:var(--red)}
-.section-sub{font-family:'DM Sans',sans-serif;font-weight:300;font-size:0.88rem;color:var(--txt2);margin-top:12px;max-width:430px;margin-left:auto;margin-right:auto;line-height:1.7}
-.divider{height:1px;background:linear-gradient(90deg,transparent,rgba(0,242,255,0.35) 30%,rgba(255,0,222,0.2) 50%,rgba(0,242,255,0.35) 70%,transparent)}
-.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
-.g1{display:grid;grid-template-columns:1fr;margin-bottom:16px}
-
-/* tarjeta producto */
-.card{position:relative;background:var(--bg2);border:1px solid var(--border);border-radius:3px;overflow:hidden;display:flex;flex-direction:column;transition:transform 0.4s cubic-bezier(0.16,1,0.3,1),border-color 0.4s,box-shadow 0.4s;opacity:0;animation:fadeUp 0.65s cubic-bezier(0.16,1,0.3,1) forwards}
-.card:hover{transform:translateY(-5px);border-color:rgba(0,242,255,0.28);box-shadow:0 18px 55px rgba(0,0,0,0.6),0 0 35px rgba(0,242,255,0.07)}
-.card:nth-child(1){animation-delay:.04s}.card:nth-child(2){animation-delay:.11s}
-.card-img{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;background:#0a0a0a;flex-shrink:0}
-.card-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.6s cubic-bezier(0.16,1,0.3,1),filter 0.4s;filter:brightness(0.85) saturate(1.1)}
-.card:hover .card-img img{transform:scale(1.05);filter:brightness(1) saturate(1.2)}
-.card-img::after{content:'';position:absolute;inset:0;pointer-events:none;z-index:2;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.1) 2px,rgba(0,0,0,0.1) 4px)}
-.card-price{position:absolute;top:12px;right:12px;z-index:5;background:rgba(7,7,7,0.88);border:1px solid rgba(0,242,255,0.5);padding:5px 13px;font-family:'Orbitron',sans-serif;font-size:0.72rem;font-weight:700;color:#fff;letter-spacing:1px;backdrop-filter:blur(8px);box-shadow:0 0 18px rgba(0,242,255,0.22)}
-.card-price.p{border-color:rgba(255,0,222,0.5);box-shadow:0 0 18px rgba(255,0,222,0.22)}
-.dot{width:5px;height:5px;border-radius:50%;background:var(--red);box-shadow:0 0 8px var(--glow-c);animation:lp 2.1s ease-in-out infinite;flex-shrink:0}
-.dot.p{background:var(--purple);box-shadow:0 0 8px var(--glow-p)}
-@keyframes lp{0%,100%{opacity:1}50%{opacity:.25}}
-.card-led{position:absolute;bottom:10px;left:12px;z-index:5;display:flex;align-items:center;gap:6px}
-.led-lbl{font-family:'DM Sans',sans-serif;font-size:0.5rem;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.4)}
-.card-body{padding:16px 18px 20px;display:flex;flex-direction:column;flex:1}
-.card-name{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:0.07em;color:#fff;margin-bottom:7px;line-height:1}
-.card-desc{font-family:'DM Sans',sans-serif;font-weight:300;font-size:0.79rem;color:var(--txt2);line-height:1.65;flex:1}
-
-/* tarjeta unificada */
-.tel-card{background:var(--bg2);border:1px solid var(--border);border-radius:3px;overflow:hidden;opacity:0;animation:fadeUp 0.65s cubic-bezier(0.16,1,0.3,1) .04s forwards;transition:border-color 0.4s,box-shadow 0.4s}
-.tel-card:hover{border-color:rgba(0,242,255,0.28);box-shadow:0 18px 55px rgba(0,0,0,0.6),0 0 35px rgba(0,242,255,0.07)}
-.tel-top{display:flex;flex-direction:column;align-items:center;padding:0;border-bottom:1px solid var(--border)}
-.tel-img{width:100%;height:0;padding-bottom:56.25%;position:relative;overflow:hidden}
-.tel-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(0.88) saturate(1.1);transition:transform 0.6s cubic-bezier(0.16,1,0.3,1),filter 0.4s}
-.tel-card:hover .tel-img img{transform:scale(1.05);filter:brightness(1) saturate(1.2)}
-.tel-img::after{content:'';position:absolute;inset:0;pointer-events:none;z-index:2;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.1) 2px,rgba(0,0,0,0.1) 4px)}
-.tel-text{padding:18px 24px 16px;text-align:center;width:100%}
-.tel-title{font-family:'Bebas Neue',sans-serif;font-size:1.25rem;letter-spacing:0.07em;color:#fff;margin-bottom:5px;text-align:center}
-.tel-sub{font-family:'DM Sans',sans-serif;font-weight:300;font-size:0.77rem;color:var(--txt2);text-align:center;line-height:1.6}
-.tel-options{display:grid;grid-template-columns:1fr 1fr}
-.tel-opt{padding:20px 24px;border-right:1px solid var(--border)}
-.tel-opt:last-child{border-right:none}
-.tel-opt-label{font-family:'DM Sans',sans-serif;font-size:0.5rem;font-weight:500;letter-spacing:4px;text-transform:uppercase;color:var(--txt3);margin-bottom:5px;display:block}
-.tel-opt-name{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:0.05em;color:#fff;margin-bottom:4px}
-.tel-opt-desc{font-family:'DM Sans',sans-serif;font-weight:300;font-size:0.75rem;color:var(--txt2);line-height:1.55;margin-bottom:12px}
-.tel-price{display:inline-block;font-family:'Orbitron',sans-serif;font-size:0.88rem;font-weight:700;color:#fff;border:1px solid rgba(0,242,255,0.42);padding:5px 14px;box-shadow:0 0 14px rgba(0,242,255,0.15)}
-
-/* modelo DJ */
-.model-card{position:relative;background:var(--bg2);border:1px solid var(--border);border-radius:3px;overflow:hidden;display:grid;grid-template-columns:1.1fr 1fr;min-height:270px;transition:transform 0.4s cubic-bezier(0.16,1,0.3,1),border-color 0.4s,box-shadow 0.4s;opacity:0;animation:fadeUp 0.65s cubic-bezier(0.16,1,0.3,1) forwards}
-.model-card::after{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,transparent,var(--red) 40%,transparent);opacity:0;transition:opacity 0.4s}
-.model-card:hover{transform:translateY(-5px);border-color:rgba(0,242,255,0.28);box-shadow:0 22px 60px rgba(0,0,0,0.65),0 0 45px rgba(0,242,255,0.07)}
-.model-card:hover::after{opacity:1}
-.model-card:nth-child(1){animation-delay:.04s}.model-card:nth-child(2){animation-delay:.12s}
-.model-img{position:relative;overflow:hidden;background:#0a0a0a}
-.model-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.7s cubic-bezier(0.16,1,0.3,1),filter 0.4s;filter:brightness(0.82) saturate(1.15)}
-.model-card:hover .model-img img{transform:scale(1.06);filter:brightness(0.95) saturate(1.25)}
-.model-img::after{content:'';position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.07) 2px,rgba(0,0,0,0.07) 4px)}
-.model-img::before{content:'';position:absolute;top:0;right:0;bottom:0;width:65px;background:linear-gradient(90deg,transparent,var(--bg2));z-index:3}
-.model-info{padding:24px 22px;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:2}
-.model-badge{font-family:'DM Sans',sans-serif;font-size:0.5rem;font-weight:500;letter-spacing:5px;text-transform:uppercase;color:var(--red);margin-bottom:7px;display:block}
-.model-name{font-family:'Bebas Neue',sans-serif;font-size:1.95rem;letter-spacing:0.06em;color:#fff;line-height:0.95;margin-bottom:12px}
-.model-price{display:inline-block;font-family:'Orbitron',sans-serif;font-size:1.05rem;font-weight:700;color:#fff;border:1px solid rgba(0,242,255,0.45);padding:5px 15px;margin-bottom:14px;box-shadow:0 0 18px rgba(0,242,255,0.16);letter-spacing:1px}
-.model-specs{list-style:none;display:flex;flex-direction:column;gap:5px}
-.model-specs li{display:flex;align-items:center;gap:9px;font-family:'DM Sans',sans-serif;font-weight:300;font-size:0.75rem;color:rgba(255,255,255,0.5)}
-.model-specs li::before{content:'';width:11px;height:1px;background:var(--red);flex-shrink:0;box-shadow:0 0 5px var(--glow-c)}
-.model-specs li strong{color:rgba(255,255,255,0.8);font-weight:500}
-
-/* nota */
-.nota{margin-top:44px;padding:18px 24px;border:1px solid rgba(0,242,255,0.08);background:rgba(0,242,255,0.02);display:flex;align-items:flex-start;gap:14px;border-left:2px solid var(--red)}
-.nota-dot{width:5px;height:5px;border-radius:50%;background:var(--red);box-shadow:0 0 8px var(--glow-c);flex-shrink:0;margin-top:5px;animation:lp 2s ease-in-out infinite}
-.nota-txt{font-family:'DM Sans',sans-serif;font-size:0.74rem;color:rgba(255,255,255,0.35);line-height:1.7}
-.nota-txt strong{color:rgba(255,255,255,0.6);font-weight:500}
-
-/* contacto */
-.contact-strip{display:flex;justify-content:center;align-items:center;gap:44px;padding:30px 40px;border-top:1px solid var(--border);flex-wrap:wrap}
-.ci{display:flex;align-items:center;gap:11px}
-.ci-dot{width:5px;height:5px;border-radius:50%;background:var(--red);box-shadow:0 0 8px var(--glow-c);flex-shrink:0}
-.ci-lbl{font-family:'DM Sans',sans-serif;font-size:0.5rem;letter-spacing:4px;text-transform:uppercase;color:var(--txt3);display:block}
-.ci-val{font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:500;color:rgba(255,255,255,0.65);display:block}
-
+:root{--red:#e8000a;--red2:#ff2820}
+html,body{background:#070707;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+.hero{position:relative;width:100%;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;overflow:hidden;background:#070707;}
+.hero::before{content:'';position:absolute;inset:0;z-index:2;pointer-events:none;background:radial-gradient(ellipse 65% 60% at 50% 50%,rgba(18,0,0,0.4) 0%,transparent 72%);}
+#ledCanvas{position:absolute;inset:0;width:100%;height:100%;z-index:1;}
+.screen-assembly{position:relative;z-index:12;display:flex;flex-direction:column;align-items:center;width:min(660px,88vw);flex-shrink:0;}
+.mount-rail{width:100%;height:5px;background:linear-gradient(180deg,#2e2e2e,#111 60%,#0a0a0a);border-bottom:1px solid rgba(255,255,255,0.05);display:flex;justify-content:space-between;align-items:flex-end;padding:0 7%;}
+.rail-bolt{width:8px;height:5px;background:radial-gradient(circle at 40% 30%,#666,#1a1a1a);border-radius:2px 2px 0 0;}
+.cables-row{width:86%;display:flex;justify-content:space-between;height:20px;}
+.cable{width:2px;background:linear-gradient(180deg,#3a3a3a,#1a1a1a);}
+.cable.main{width:3px;background:linear-gradient(180deg,#484848,#222);}
+.screen-body{width:100%;background:#050506;border:3px solid #161616;border-top:4px solid #252525;border-radius:2px;box-shadow:0 0 0 1px rgba(0,0,0,0.9),0 0 0 2px rgba(232,0,10,0.07),0 14px 55px rgba(0,0,0,0.85),inset 0 0 30px rgba(0,0,0,0.5);position:relative;overflow:hidden;}
+.screen-body::after{content:'';position:absolute;inset:0;z-index:20;pointer-events:none;background:repeating-linear-gradient(0deg,transparent,transparent 1px,rgba(0,0,0,0.16) 1px,rgba(0,0,0,0.16) 2px);}
+.screen-glass{position:absolute;top:0;left:0;right:0;height:35%;z-index:19;pointer-events:none;background:linear-gradient(180deg,rgba(255,255,255,0.03) 0%,transparent 100%);}
+.screw{position:absolute;width:8px;height:8px;border-radius:50%;z-index:21;background:radial-gradient(circle at 35% 35%,#555,#111);border:1px solid #2a2a2a;box-shadow:inset 0 1px 2px rgba(255,255,255,0.1);}
+.screw::before,.screw::after{content:'';position:absolute;background:rgba(0,0,0,0.5);top:50%;left:50%;transform:translate(-50%,-50%);}
+.screw::before{width:5px;height:1px}.screw::after{width:1px;height:5px}
+.screw.tl{top:5px;left:5px}.screw.tr{top:5px;right:5px}.screw.bl{bottom:5px;left:5px}.screw.br{bottom:5px;right:5px}
+.vent{position:absolute;top:50%;transform:translateY(-50%);width:4px;height:38%;z-index:21;display:flex;flex-direction:column;gap:3px;padding:2px 0}
+.vent.left{left:13px}.vent.right{right:13px}
+.vent-slot{flex:1;background:rgba(0,0,0,0.55);border-radius:1px;border:.5px solid rgba(255,255,255,0.04)}
+.status-led{position:absolute;bottom:7px;right:14px;z-index:22;display:flex;align-items:center;gap:5px}
+.status-dot{width:5px;height:5px;border-radius:50%;background:var(--red);box-shadow:0 0 6px var(--red);animation:sPulse 2.2s ease-in-out infinite}
+@keyframes sPulse{0%,100%{opacity:1}47%,53%{opacity:0.2}}
+.status-txt{font-family:'DM Sans',sans-serif;font-size:7px;letter-spacing:2px;text-transform:uppercase;color:rgba(232,0,10,0.55)}
+.model-tag{position:absolute;bottom:7px;left:14px;z-index:22;font-family:'Orbitron',sans-serif;font-size:7px;letter-spacing:2px;color:rgba(255,255,255,0.1)}
+#screenCanvas{display:block;width:100%;}
+.content{position:relative;z-index:10;text-align:center;padding:28px 32px 0;max-width:820px;width:100%;animation:fadeUp 1.4s cubic-bezier(0.16,1,0.3,1) both;animation-delay:0.5s;}
 @keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
-
-/* calculadora */
-.calc-wrap{display:grid;grid-template-columns:1fr 380px;gap:24px;align-items:start;min-width:0;width:100%}
-.calc-group{margin-bottom:10px}
-.calc-group-title{display:flex;align-items:center;gap:10px;font-family:'DM Sans',sans-serif;font-size:0.55rem;font-weight:500;letter-spacing:5px;text-transform:uppercase;color:rgba(255,255,255,0.28);padding:14px 0 10px;border-top:1px solid var(--border)}
-.calc-group:first-child .calc-group-title{border-top:none;padding-top:0}
-.calc-group-dot{width:4px;height:4px;border-radius:50%;background:var(--red);box-shadow:0 0 6px var(--glow-c);flex-shrink:0}
-.calc-item{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 18px;background:var(--bg2);border:1px solid var(--border);border-radius:2px;margin-bottom:8px;transition:border-color 0.3s,background 0.3s}
-.calc-item.active{border-color:rgba(0,242,255,0.3);background:rgba(0,242,255,0.03)}
-.calc-item-select{flex-wrap:wrap;gap:10px}
-.calc-item-info{flex:1;min-width:0}
-.calc-item-name{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:0.06em;color:#fff;margin-bottom:2px}
-.calc-item-sub{font-family:'DM Sans',sans-serif;font-size:0.7rem;font-weight:300;color:var(--txt2);line-height:1.5}
-.calc-item-price-inline{color:rgba(0,242,255,0.9);font-weight:500}
-.calc-qty{display:flex;align-items:center;gap:8px;flex-shrink:0}
-.qty-btn{width:28px;height:28px;border-radius:2px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.04);color:#fff;font-size:1rem;cursor:pointer;transition:background 0.2s,border-color 0.2s;display:flex;align-items:center;justify-content:center;font-family:'DM Sans',sans-serif}
-.qty-btn:hover{background:rgba(0,242,255,0.1);border-color:rgba(0,242,255,0.4)}
-.qty-val{font-family:'Orbitron',sans-serif;font-size:0.85rem;font-weight:700;color:#fff;min-width:18px;text-align:center}
-.qty-max{font-family:'DM Sans',sans-serif;font-size:0.58rem;color:var(--txt3);letter-spacing:1px;white-space:nowrap}
-.calc-toggle{flex-shrink:0}
-.toggle-btn{font-family:'DM Sans',sans-serif;font-size:0.6rem;font-weight:500;letter-spacing:3px;text-transform:uppercase;padding:8px 18px;border:1px solid rgba(255,255,255,0.14);background:transparent;color:rgba(255,255,255,0.45);cursor:pointer;border-radius:1px;transition:background 0.25s,border-color 0.25s,color 0.25s;white-space:nowrap}
-.toggle-btn:hover{background:rgba(0,242,255,0.08);border-color:rgba(0,242,255,0.4);color:#fff}
-.toggle-btn.on{background:rgba(0,242,255,0.12);border-color:rgba(0,242,255,0.55);color:#fff}
-.calc-select-row{width:100%}
-.calc-select{width:100%;padding:9px 14px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.12);border-radius:2px;color:#fff;font-family:'DM Sans',sans-serif;font-size:0.78rem;font-weight:300;cursor:pointer;outline:none;transition:border-color 0.25s;-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(255,255,255,0.3)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:36px}
-.calc-select:focus{border-color:rgba(0,242,255,0.45)}
-.calc-select option{background:#1a1a1a;color:#fff}
-.calc-summary{background:var(--bg2);border:1px solid var(--border);border-radius:3px;overflow:hidden;position:sticky;top:24px}
-.calc-summary-title{display:flex;align-items:center;gap:10px;padding:18px 20px;border-bottom:1px solid var(--border);font-family:'DM Sans',sans-serif;font-size:0.55rem;font-weight:500;letter-spacing:5px;text-transform:uppercase;color:rgba(255,255,255,0.28)}
-.calc-summary-dot{width:5px;height:5px;border-radius:50%;background:var(--red);box-shadow:0 0 8px var(--glow-c);animation:lp 2.1s ease-in-out infinite;flex-shrink:0}
-.calc-lines{padding:8px 0;min-height:80px}
-.calc-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:36px 20px;gap:10px}
-.calc-empty-icon{font-size:1.4rem;color:rgba(255,255,255,0.1)}
-.calc-empty-txt{font-family:'DM Sans',sans-serif;font-size:0.72rem;font-weight:300;color:var(--txt3);text-align:center;line-height:1.6}
-.calc-line{display:flex;align-items:center;justify-content:space-between;padding:11px 20px;border-bottom:1px solid rgba(255,255,255,0.04);animation:fadeUp 0.3s cubic-bezier(0.16,1,0.3,1) both}
-.calc-line:last-child{border-bottom:none}
-.calc-line-left{display:flex;align-items:center;gap:10px;flex:1;min-width:0}
-.calc-line-dot{width:4px;height:4px;border-radius:50%;background:var(--red);box-shadow:0 0 6px var(--glow-c);flex-shrink:0}
-.calc-line-name{font-family:'DM Sans',sans-serif;font-size:0.78rem;font-weight:400;color:rgba(255,255,255,0.75);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.calc-line-price{font-family:'Orbitron',sans-serif;font-size:0.72rem;font-weight:700;color:#fff;white-space:nowrap;margin-left:12px}
-.calc-line-remove{width:22px;height:22px;border-radius:50%;border:1px solid rgba(255,255,255,0.1);background:transparent;color:rgba(255,255,255,0.3);font-size:0.7rem;cursor:pointer;margin-left:8px;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:background 0.2s,color 0.2s,border-color 0.2s}
-.calc-line-remove:hover{background:rgba(0,242,255,0.12);color:#fff;border-color:rgba(0,242,255,0.4)}
-.calc-total-row{padding:0 20px 20px}
-.calc-total-divider{height:1px;background:linear-gradient(90deg,transparent,rgba(0,242,255,0.4),rgba(255,0,222,0.3),rgba(0,242,255,0.4),transparent);margin:0 0 16px}
-.calc-total{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
-.calc-total-label{font-family:'DM Sans',sans-serif;font-size:0.58rem;letter-spacing:4px;text-transform:uppercase;color:var(--txt3)}
-.calc-total-num{font-family:'Orbitron',sans-serif;font-size:1.6rem;font-weight:700;color:#fff;text-shadow:0 0 20px rgba(0,242,255,0.35),0 0 40px rgba(0,242,255,0.15)}
-.calc-total-sub{font-family:'DM Sans',sans-serif;font-size:0.62rem;font-weight:300;color:var(--txt3);margin-bottom:18px}
-.calc-offer{display:flex;align-items:flex-start;gap:12px;margin-bottom:14px;padding:14px 16px;background:rgba(0,242,255,0.03);border:1px solid rgba(0,242,255,0.14);border-left:2px solid var(--red);border-radius:2px;position:relative;overflow:hidden}
-.calc-offer::before{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(135deg,rgba(0,242,255,0.04) 0%,transparent 60%,rgba(255,0,222,0.03) 100%)}
-.calc-offer-pulse{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:3px;background:var(--red);box-shadow:0 0 8px var(--glow-c),0 0 16px var(--glow-c);animation:offerPulse 1.8s ease-in-out infinite}
-@keyframes offerPulse{0%,100%{opacity:1;box-shadow:0 0 8px var(--glow-c),0 0 16px var(--glow-c)}50%{opacity:0.35;box-shadow:none}}
-.calc-offer-body{flex:1;min-width:0;position:relative;z-index:1}
-.calc-offer-title{font-family:'Orbitron',sans-serif;font-size:0.62rem;font-weight:500;letter-spacing:0.05em;color:rgba(0,242,255,0.85);margin-bottom:5px}
-.calc-offer-txt{font-family:'DM Sans',sans-serif;font-weight:300;font-size:0.73rem;color:rgba(255,255,255,0.42);line-height:1.65}
-.calc-offer-txt strong{color:rgba(255,255,255,0.72);font-weight:500}
-.calc-cta{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:13px;background:linear-gradient(90deg,var(--red),var(--purple));color:#fff;font-family:'DM Sans',sans-serif;font-size:0.65rem;font-weight:500;letter-spacing:3px;text-transform:uppercase;border:none;border-radius:1px;cursor:pointer;box-shadow:0 0 24px rgba(0,242,255,0.25),0 0 40px rgba(255,0,222,0.1);transition:box-shadow 0.3s,transform 0.3s}
-.calc-cta:hover{box-shadow:0 0 45px rgba(0,242,255,0.5),0 0 60px rgba(255,0,222,0.2);transform:translateY(-2px)}
-.calc-cta-arrow{font-size:1rem;transition:transform 0.25s}
-.calc-cta:hover .calc-cta-arrow{transform:translateX(4px)}
-
-/* ─────────────────────────────────────────────────
-   RESPONSIVE
-───────────────────────────────────────────────── */
-/* Tablets y móvil — tarjetas */
-@media(max-width:900px){
-  .g2{grid-template-columns:1fr}
-  .model-card{grid-template-columns:1fr}
-  .model-img{height:200px}.model-img::before{display:none}
-  .tel-options{grid-template-columns:1fr}
-  .tel-opt{border-right:none;border-bottom:1px solid var(--border)}.tel-opt:last-child{border-bottom:none}
-  .section{padding:56px 18px}
-}
-
-/* Móvil — calculadora */
-@media(max-width:720px){
-  .calc-wrap{
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 16px;
-  }
-  .calc-right{ order: 1 !important; width: 100% !important; }
-  .calc-left{  order: 2 !important; width: 100% !important; }
-  .calc-summary{ position: static !important; width: 100% !important; }
-  .calc-total-num{ font-size: 1.28rem; }
-  .calc-item{ flex-wrap: wrap; gap: 10px; }
-  .calc-item-info{ width: 100%; }
-  .calc-qty{ justify-content: flex-start; }
-  .calc-select-row{ width: 100% !important; }
-  .calc-toggle{ width: 100%; }
-  .toggle-btn{ width: 100%; text-align: center; }
-  .calc-line-name{ white-space: normal; }
-}
+.eyebrow{display:inline-flex;align-items:center;gap:13px;margin-bottom:20px;font-family:'DM Sans',sans-serif;font-size:0.6rem;font-weight:500;letter-spacing:5px;text-transform:uppercase;color:rgba(255,255,255,0.28);}
+.eyebrow-rule{width:24px;height:1px;background:var(--red);box-shadow:0 0 7px var(--red)}
+.brand{font-family:'Orbitron',sans-serif;font-weight:700;font-size:clamp(2.8rem,8vw,6.5rem);line-height:1;letter-spacing:0.04em;color:#fff;display:inline-block;}
+.brand .letter{display:inline-block;color:rgba(255,255,255,0.07);text-shadow:none}
+.brand .letter.accent{color:rgba(232,0,10,0.1)}
+.brand .letter.flash{animation:ledFlash .22s forwards}
+.brand .letter.accent.flash{animation:ledFlashRed .22s forwards}
+.brand .letter.on{color:#fff;text-shadow:0 0 12px rgba(232,0,10,0.5),0 0 30px rgba(232,0,10,0.2)}
+.brand .letter.accent.on{color:var(--red2);text-shadow:0 0 14px rgba(255,40,20,0.85),0 0 36px rgba(255,20,10,0.4)}
+@keyframes ledFlash{0%{color:rgba(255,255,255,0.07);text-shadow:none}18%{color:#fff;text-shadow:0 0 60px #fff,0 0 100px rgba(232,0,10,0.7)}38%{color:rgba(255,255,255,0.25);text-shadow:none}55%{color:#fff;text-shadow:0 0 30px rgba(232,0,10,0.6)}100%{color:#fff;text-shadow:0 0 12px rgba(232,0,10,0.5),0 0 30px rgba(232,0,10,0.2)}}
+@keyframes ledFlashRed{0%{color:rgba(232,0,10,0.1);text-shadow:none}18%{color:#fff;text-shadow:0 0 60px #fff,0 0 100px rgba(255,40,20,0.9)}38%{color:rgba(255,40,20,0.3);text-shadow:none}55%{color:var(--red2);text-shadow:0 0 30px rgba(255,40,20,0.9)}100%{color:var(--red2);text-shadow:0 0 14px rgba(255,40,20,0.85),0 0 36px rgba(255,20,10,0.4)}}
+.brand-cursor{display:inline-block;width:.1em;height:.72em;background:var(--red);margin-left:.06em;vertical-align:middle;opacity:0;box-shadow:0 0 10px var(--red);animation:cBlink .9s 2.8s step-end infinite;}
+@keyframes cBlink{0%,100%{opacity:0}50%{opacity:1}}
+.mark-row{display:flex;align-items:center;justify-content:center;gap:13px;margin:15px 0}
+.mark-line{flex:1;max-width:80px;height:1px;background:rgba(255,255,255,0.08)}
+.mark-diamond{width:5px;height:5px;border:1.5px solid var(--red);transform:rotate(45deg);box-shadow:0 0 8px rgba(232,0,10,0.5)}
+.mark-sub{font-family:'DM Sans',sans-serif;font-weight:300;font-size:0.65rem;letter-spacing:6px;text-transform:uppercase;color:rgba(255,255,255,0.24)}
+.tagline{font-family:'DM Sans',sans-serif;font-weight:300;font-size:clamp(0.88rem,1.7vw,1.08rem);color:rgba(255,255,255,0.46);line-height:1.75;max-width:460px;margin:0 auto 36px;}
+.cta-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn-main{font-family:'DM Sans',sans-serif;font-size:0.67rem;font-weight:500;letter-spacing:3px;text-transform:uppercase;text-decoration:none;padding:13px 46px;background:var(--red);color:#fff;position:relative;overflow:hidden;transition:box-shadow .4s,transform .3s;box-shadow:0 0 22px rgba(232,0,10,0.35),0 2px 12px rgba(0,0,0,0.45);}
+.btn-main::before{content:'';position:absolute;top:0;left:-100%;width:50%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.18),transparent);transform:skewX(-20deg);transition:left .5s}
+.btn-main:hover{box-shadow:0 0 50px rgba(232,0,10,0.65);transform:translateY(-2px)}
+.btn-main:hover::before{left:160%}
+.btn-ghost{font-family:'DM Sans',sans-serif;font-size:0.67rem;font-weight:400;letter-spacing:3px;text-transform:uppercase;text-decoration:none;padding:12px 34px;background:transparent;color:rgba(255,255,255,0.42);border:1px solid rgba(255,255,255,0.11);transition:color .3s,border-color .3s;}
+.btn-ghost:hover{color:#fff;border-color:rgba(255,255,255,0.33)}
+.corner{position:absolute;top:26px;right:30px;z-index:15;text-align:right;font-family:'DM Sans',sans-serif}
+.corner-top{font-size:0.52rem;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.15);margin-bottom:3px}
+.corner-bot{font-size:0.63rem;font-weight:500;letter-spacing:1px;color:rgba(255,255,255,0.32)}
+.footer-line{position:absolute;bottom:0;left:0;right:0;height:1px;z-index:15;background:linear-gradient(90deg,transparent 0%,rgba(232,0,10,0.4) 30%,rgba(255,255,255,0.08) 50%,rgba(232,0,10,0.4) 70%,transparent 100%);}
 </style>
 </head>
 <body>
-
-<!-- ═══════ EXTRAS & SHOW ═══════ -->
-<div class="section">
-  <div class="section-header">
-    <div class="section-tag">Cazorla Events · Servicios</div>
-    <h2 class="section-title">EXTRAS <span>&</span> SHOW</h2>
-    <p class="section-sub">Complementa tu evento con los mejores efectos especiales y entretenimiento.</p>
-  </div>
-
-  <div class="g2">
-    <div class="card">
-      <div class="card-img">
-        <img src="static/src/img/pistolahumoboda.jpg" alt="Pistolas CO2">
-        <div class="card-price">300€</div>
-        <div class="card-led"><div class="dot"></div><span class="led-lbl">Efecto especial</span></div>
-      </div>
-      <div class="card-body">
-        <div class="card-name">2 Pistolas de CO2</div>
-        <div class="card-desc">2 Pistolas de CO2 con dos botellas de CO2 de 12 Kg cada una.</div>
-      </div>
+<section class="hero">
+  <canvas id="ledCanvas"></canvas>
+  <div class="screen-assembly" id="screenAssembly">
+    <div class="mount-rail">
+      <div class="rail-bolt"></div><div class="rail-bolt"></div><div class="rail-bolt"></div><div class="rail-bolt"></div><div class="rail-bolt"></div>
     </div>
-    <div class="card">
-      <div class="card-img">
-        <img src="static/src/img/canonconfetiboda.png" alt="Cañón confeti" style="filter:brightness(0.7) hue-rotate(255deg) saturate(1.5)">
-        <div class="card-price">300€</div>
-        <div class="card-led"><div class="dot"></div><span class="led-lbl">4 kg confeti</span></div>
-      </div>
-      <div class="card-body">
-        <div class="card-name">Cañón de Confeti</div>
-        <div class="card-desc">Cañón de confeti con 4 kg de confeti.</div>
-      </div>
+    <div class="cables-row">
+      <div class="cable main"></div><div class="cable"></div><div class="cable"></div><div class="cable main"></div>
+    </div>
+    <div class="screen-body" id="screenBody">
+      <div class="screen-glass"></div>
+      <div class="screw tl"></div><div class="screw tr"></div><div class="screw bl"></div><div class="screw br"></div>
+      <div class="vent left"><div class="vent-slot"></div><div class="vent-slot"></div><div class="vent-slot"></div><div class="vent-slot"></div></div>
+      <div class="vent right"><div class="vent-slot"></div><div class="vent-slot"></div><div class="vent-slot"></div><div class="vent-slot"></div></div>
+      <div class="status-led"><div class="status-dot"></div><span class="status-txt">ON · LIVE</span></div>
+      <div class="model-tag">DMC-P2.5-HD</div>
+      <canvas id="screenCanvas"></canvas>
     </div>
   </div>
-
-  <div class="g2">
-    <div class="card">
-      <div class="card-img">
-        <img src="static/src/img/fotomatonboda.png" alt="Fotomatón">
-        <div class="card-price p">360€</div>
-        <div class="card-led"><div class="dot p"></div><span class="led-lbl">3h de servicio</span></div>
-      </div>
-      <div class="card-body">
-        <div class="card-name">Fotomatón</div>
-        <div class="card-desc">3 horas + gifts ilimitados + adornos + álbum + USB personalizado.</div>
-      </div>
+  <div class="content">
+    <div class="eyebrow"><span class="eyebrow-rule"></span>Fabricantes de Pantallas LED<span class="eyebrow-rule"></span></div>
+    <div style="position:relative;display:inline-block;">
+      <h1 class="brand" id="brandTitle"></h1>
+      <span class="brand-cursor"></span>
     </div>
-    <div class="card">
-      <div class="card-img">
-        <img src="static/src/img/fotoestudioboda.png" alt="Fotoestudio">
-        <div class="card-price">450€</div>
-        <div class="card-led"><div class="dot"></div><span class="led-lbl">Flash profesional</span></div>
-      </div>
-      <div class="card-body">
-        <div class="card-name">Fotoestudio</div>
-        <div class="card-desc">3 horas + flash profesional + adornos + álbum + USB personalizado.</div>
-      </div>
+    <div class="mark-row">
+      <div class="mark-line"></div><div class="mark-diamond"></div>
+      <p class="mark-sub">Visual Excellence</p>
+      <div class="mark-diamond"></div><div class="mark-line"></div>
     </div>
+    <p class="tagline">Diseño, fabricación e instalación de pantallas LED<br>para cualquier entorno y aplicación.</p>
   </div>
+  <div class="corner"><div class="corner-top">Est. 2008</div><div class="corner-bot">Madrid, España</div></div>
+  <div class="footer-line"></div>
+</section>
 
-  <div class="g1">
-    <div class="tel-card">
-      <div class="tel-top">
-        <div class="tel-img"><img src="static/src/img/video360boda.png" alt="Vídeo 360º"></div>
-        <div class="tel-text">
-          <div class="tel-title">Vídeo 360º</div>
-          <div class="tel-sub">Vídeos ilimitados + foco profesional + pistola de burbujas + adornos + envío de vídeos a los invitados.</div>
-        </div>
-      </div>
-      <div class="tel-options">
-        <div class="tel-opt">
-          <span class="tel-opt-label">· Opción 01 ·</span>
-          <div class="tel-opt-name">3 Horas</div>
-          <div class="tel-opt-desc">Sesión de 3 horas con vídeos ilimitados para todos tus invitados.</div>
-          <span class="tel-price">500€</span>
-        </div>
-        <div class="tel-opt">
-          <span class="tel-opt-label">· Opción 02 ·</span>
-          <div class="tel-opt-name">2 Horas</div>
-          <div class="tel-opt-desc">Sesión de 2 horas con vídeos ilimitados para todos tus invitados.</div>
-          <span class="tel-price">400€</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="g1">
-    <div class="tel-card">
-      <div class="tel-top">
-        <div class="tel-img"><img src="static/src/img/telefonofirmasboda.jpg" alt="Teléfono de firmas"></div>
-        <div class="tel-text">
-          <div class="tel-title">Teléfono de Firmas</div>
-          <div class="tel-sub">Un teléfono vintage donde tus invitados dejan mensajes de voz. El recuerdo más emotivo de tu gran día.</div>
-        </div>
-      </div>
-      <div class="tel-options">
-        <div class="tel-opt">
-          <span class="tel-opt-label">· Opción 01 ·</span>
-          <div class="tel-opt-name">Desde el Cóctel</div>
-          <div class="tel-opt-desc">Disponible desde el cóctel para que los primeros invitados puedan dejar su mensaje.</div>
-          <span class="tel-price">250€</span>
-        </div>
-        <div class="tel-opt">
-          <span class="tel-opt-label">· Opción 02 ·</span>
-          <div class="tel-opt-name">Desde Nuestro Servicio</div>
-          <div class="tel-opt-desc">Añádelo como complemento a cualquiera de nuestros servicios contratados.</div>
-          <span class="tel-price">100€</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="nota">
-    <div class="nota-dot"></div>
-    <div class="nota-txt">Los precios son <strong>independientes</strong>. El coste de <strong>desplazamiento y montaje</strong> se calcula según la distancia y necesidades del evento. Para confirmar el servicio se requiere una señal del <strong>20% del total</strong>.</div>
-  </div>
-</div>
-
-<div class="divider"></div>
-
-<!-- ═══════ MODELOS DJ ═══════ -->
-<div class="section">
-  <div class="section-header">
-    <div class="section-tag">Cazorla Events · DJ &amp; Producción</div>
-    <h2 class="section-title">MODELOS <span>DJ</span></h2>
-    <p class="section-sub">Elige el setup que mejor encaja con tu evento.</p>
-  </div>
-
-  <div class="g2" style="margin-bottom:16px">
-    <div class="model-card">
-      <div class="model-img"><img src="static/src/img/Basic-Model.png" alt="Modelo Basic"></div>
-      <div class="model-info">
-        <span class="model-badge">· Modelo 01 ·</span>
-        <div class="model-name">BASIC</div>
-        <div class="model-price">1.200€</div>
-        <ul class="model-specs">
-          <li><strong>Pantalla LED</strong> 2 metros</li>
-          <li>4 cabezas portátiles</li>
-          <li>4 truss</li>
-          <li>2 humos verticales</li>
-          <li>Equipo de sonido 2000w</li>
-        </ul>
-      </div>
-    </div>
-    <div class="model-card">
-      <div class="model-img"><img src="static/src/img/Foto-Model-U_1.png" alt="Modelo U"></div>
-      <div class="model-info">
-        <span class="model-badge">· Modelo 02 ·</span>
-        <div class="model-name">MODELO U</div>
-        <div class="model-price">1.600€</div>
-        <ul class="model-specs">
-          <li><strong>Pantalla LED</strong> 3 metros</li>
-          <li>Iluminación con estrobos</li>
-          <li>Portería · Truss</li>
-          <li>2 humos verticales</li>
-          <li>Equipo de sonido 2000w</li>
-          <li>Un técnico</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <div class="g2">
-    <div class="model-card">
-      <div class="model-img"><img src="static/src/img/Foto-Model-U_1.png" alt="Modelo Torres"></div>
-      <div class="model-info">
-        <span class="model-badge">· Modelo 03 ·</span>
-        <div class="model-name">TORRES</div>
-        <div class="model-price">1.800€</div>
-        <ul class="model-specs">
-          <li><strong>Pantalla LED</strong> 6 metros</li>
-          <li>6 cabezas móviles</li>
-          <li>4 truss</li>
-          <li>2 humos verticales</li>
-          <li>Equipo de sonido 2000w</li>
-          <li>Un técnico</li>
-        </ul>
-      </div>
-    </div>
-    <div class="model-card">
-      <div class="model-img"><img src="static/src/img/modelo_feria.png" alt="Modelo Feria"></div>
-      <div class="model-info">
-        <span class="model-badge">· Modelo 04 ·</span>
-        <div class="model-name">FERIA</div>
-        <div class="model-price">2.000€</div>
-        <ul class="model-specs">
-          <li><strong>Pantalla LED</strong> 8 metros</li>
-          <li>Iluminación con estrobos</li>
-          <li>Puente con torres</li>
-          <li>2 humos verticales</li>
-          <li>Equipo de sonido 2000–3000w</li>
-          <li>Un técnico</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <div class="nota">
-    <div class="nota-dot"></div>
-    <div class="nota-txt">Todos los modelos a partir del <strong>Modelo U</strong> incluyen técnico especializado. Desplazamiento y montaje según distancia. Señal del <strong>20%</strong> para confirmar la reserva.</div>
-  </div>
-</div>
-
-<div class="divider"></div>
-
-<!-- ═══════ CALCULADORA ═══════ -->
-<div class="section" id="calc-section">
-  <div class="section-header">
-    <div class="section-tag">Cazorla Events · Presupuesto</div>
-    <h2 class="section-title">TU <span>PRESUPUESTO</span></h2>
-    <p class="section-sub">Selecciona los servicios que quieres y calcula el total al momento.</p>
-  </div>
-
-  <div class="calc-wrap">
-    <div class="calc-left">
-
-      <div class="calc-group">
-        <div class="calc-group-title"><span class="calc-group-dot"></span>Efectos Especiales</div>
-        <div class="calc-item" id="ci-co2">
-          <div class="calc-item-info">
-            <div class="calc-item-name">Pistolas de CO2</div>
-            <div class="calc-item-sub">Con 2 botellas de 12 kg cada una · <span class="calc-item-price-inline">300€ / unidad</span></div>
-          </div>
-          <div class="calc-qty">
-            <button class="qty-btn" id="btn-co2-minus">−</button>
-            <span class="qty-val" id="qty-co2">0</span>
-            <button class="qty-btn" id="btn-co2-plus">+</button>
-            <span class="qty-max">(máx. 2)</span>
-          </div>
-        </div>
-        <div class="calc-item" id="ci-confeti">
-          <div class="calc-item-info">
-            <div class="calc-item-name">Cañón de Confeti</div>
-            <div class="calc-item-sub">4 kg de confeti · <span class="calc-item-price-inline">300€</span></div>
-          </div>
-          <div class="calc-toggle">
-            <button class="toggle-btn" id="tb-confeti">Añadir</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="calc-group">
-        <div class="calc-group-title"><span class="calc-group-dot"></span>Fotografía &amp; Vídeo</div>
-        <div class="calc-item" id="ci-fotomaton">
-          <div class="calc-item-info">
-            <div class="calc-item-name">Fotomatón</div>
-            <div class="calc-item-sub">3h · gifts ilimitados · álbum · USB · <span class="calc-item-price-inline">360€</span></div>
-          </div>
-          <div class="calc-toggle">
-            <button class="toggle-btn" id="tb-fotomaton">Añadir</button>
-          </div>
-        </div>
-        <div class="calc-item" id="ci-fotoestudio">
-          <div class="calc-item-info">
-            <div class="calc-item-name">Fotoestudio</div>
-            <div class="calc-item-sub">3h · flash profesional · álbum · USB · <span class="calc-item-price-inline">450€</span></div>
-          </div>
-          <div class="calc-toggle">
-            <button class="toggle-btn" id="tb-fotoestudio">Añadir</button>
-          </div>
-        </div>
-        <div class="calc-item calc-item-select" id="ci-video360">
-          <div class="calc-item-info">
-            <div class="calc-item-name">Vídeo 360º</div>
-            <div class="calc-item-sub">Ilimitado · foco pro · burbujas · adornos · envío</div>
-          </div>
-          <div class="calc-select-row">
-            <select class="calc-select" id="sel-video360">
-              <option value="0">— No añadir —</option>
-              <option value="400">2 horas · 400€</option>
-              <option value="500">3 horas · 500€</option>
-            </select>
-          </div>
-        </div>
-      </div>
-
-      <div class="calc-group">
-        <div class="calc-group-title"><span class="calc-group-dot"></span>Entretenimiento</div>
-        <div class="calc-item calc-item-select" id="ci-telefono">
-          <div class="calc-item-info">
-            <div class="calc-item-name">Teléfono de Firmas</div>
-            <div class="calc-item-sub">Mensajes de voz de tus invitados</div>
-          </div>
-          <div class="calc-select-row">
-            <select class="calc-select" id="sel-telefono">
-              <option value="0">— No añadir —</option>
-              <option value="250">Desde el cóctel · 250€</option>
-              <option value="100">Desde nuestro servicio · 100€</option>
-            </select>
-          </div>
-        </div>
-      </div>
-
-      <div class="calc-group">
-        <div class="calc-group-title"><span class="calc-group-dot"></span>Modelo DJ</div>
-        <div class="calc-item calc-item-select" id="ci-modelo">
-          <div class="calc-item-info">
-            <div class="calc-item-name">Setup DJ</div>
-            <div class="calc-item-sub">Pantalla LED · iluminación · sonido</div>
-          </div>
-          <div class="calc-select-row">
-            <select class="calc-select" id="sel-modelo">
-              <option value="0">— No añadir —</option>
-              <option value="1200">Basic · 1.200€</option>
-              <option value="1600">Modelo U · 1.600€</option>
-              <option value="1800">Torres · 1.800€</option>
-              <option value="2000">Feria · 2.000€</option>
-            </select>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="calc-right">
-      <div class="calc-summary">
-        <div class="calc-summary-title">
-          <span class="calc-summary-dot"></span>Resumen
-        </div>
-        <div class="calc-lines" id="calc-lines">
-          <div class="calc-empty" id="calc-empty">
-            <div class="calc-empty-icon">◈</div>
-            <div class="calc-empty-txt">Aún no has seleccionado ningún servicio</div>
-          </div>
-        </div>
-        <div class="calc-total-row" id="calc-total-row" style="display:none">
-          <div class="calc-total-divider"></div>
-          <div class="calc-total">
-            <span class="calc-total-label">Total estimado</span>
-            <span class="calc-total-num" id="calc-total-num">0€</span>
-          </div>
-          <div class="calc-total-sub">* Sin incluir desplazamiento y montaje</div>
-          <div class="calc-offer">
-            <div class="calc-offer-pulse"></div>
-            <div class="calc-offer-body">
-              <div class="calc-offer-title">¿Hay algo que no encaje?</div>
-              <div class="calc-offer-txt">Los precios son orientativos. Casi siempre tenemos <strong>ofertas activas</strong> y somos <strong>flexibles</strong> según el pack o la fecha. Escríbenos y lo hablamos sin compromiso.</div>
-            </div>
-          </div>
-          <button class="calc-cta" id="btn-whatsapp">
-            Pedir presupuesto por WhatsApp
-            <span class="calc-cta-arrow">→</span>
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="divider"></div>
-
-<div class="contact-strip">
-  <div class="ci"><div class="ci-dot"></div><div><span class="ci-lbl">Teléfono</span><span class="ci-val">635 68 10 45</span></div></div>
-  <div class="ci"><div class="ci-dot"></div><div><span class="ci-lbl">Email</span><span class="ci-val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d7b4b6adb8a5bbb6b2a1b2b9a3a497b0bab6bebbf9b4b8ba">[email&#160;protected]</a></span></div></div>
-  <div class="ci"><div class="ci-dot"></div><div><span class="ci-lbl">Redes</span><span class="ci-val">@cazorla_event</span></div></div>
-</div>
-
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-(function() {
-
-  var S = {
-    co2:         { qty:0, price:300, max:2 },
-    confeti:     { on:false, price:300 },
-    fotomaton:   { on:false, price:360 },
-    fotoestudio: { on:false, price:450 },
-    video360:    { price:0 },
-    telefono:    { price:0 },
-    modelo:      { price:0 }
-  };
-
-  function setActive(key, val) {
-    var el = document.getElementById("ci-" + key);
-    if (el) el.classList.toggle("active", val);
-  }
-
-  function changeQty(delta) {
-    S.co2.qty = Math.max(0, Math.min(S.co2.max, S.co2.qty + delta));
-    var qv = document.getElementById("qty-co2");
-    if (qv) qv.textContent = S.co2.qty;
-    setActive("co2", S.co2.qty > 0);
-    render();
-  }
-
-  function toggleItem(key) {
-    S[key].on = !S[key].on;
-    var btn = document.getElementById("tb-" + key);
-    if (btn) {
-      btn.textContent = S[key].on ? "Quitar" : "A\xf1adir";
-      btn.classList.toggle("on", S[key].on);
-    }
-    setActive(key, S[key].on);
-    render();
-  }
-
-  function removeItem(key) {
-    if (key === "co2") {
-      S.co2.qty = 0;
-      var qv = document.getElementById("qty-co2");
-      if (qv) qv.textContent = "0";
-    } else if (S[key].on !== undefined) {
-      S[key].on = false;
-      var btn = document.getElementById("tb-" + key);
-      if (btn) { btn.textContent = "A\xf1adir"; btn.classList.remove("on"); }
-    } else {
-      S[key].price = 0;
-      var sel = document.getElementById("sel-" + key);
-      if (sel) sel.value = "0";
-    }
-    setActive(key, false);
-    render();
-  }
-
-  function render() {
-    var lines = [];
-    if (S.co2.qty > 0)        lines.push({ key:"co2",         label:"Pistolas CO2 x" + S.co2.qty,                                                                    price: S.co2.qty * S.co2.price });
-    if (S.confeti.on)         lines.push({ key:"confeti",     label:"Ca\xf1\xf3n de Confeti",                                                                         price: S.confeti.price });
-    if (S.fotomaton.on)       lines.push({ key:"fotomaton",   label:"Fotlomat\xf3n",                                                                                  price: S.fotomaton.price });
-    if (S.fotoestudio.on)     lines.push({ key:"fotoestudio", label:"Fotoestudio",                                                                                    price: S.fotoestudio.price });
-    if (S.video360.price > 0) lines.push({ key:"video360",    label:"V\xeddeo 360\xba " + (S.video360.price === 400 ? "2h" : "3h"),                                  price: S.video360.price });
-    if (S.telefono.price > 0) lines.push({ key:"telefono",    label:"Tel\xe9fono " + (S.telefono.price === 250 ? "C\xf3ctel" : "Servicio"),                          price: S.telefono.price });
-    if (S.modelo.price > 0)   lines.push({ key:"modelo",      label: ({1200:"Modelo Basic",1600:"Modelo U",1800:"Modelo Torres",2000:"Modelo Feria"})[S.modelo.price] || "", price: S.modelo.price });
-
-    var total     = lines.reduce(function(a, b) { return a + b.price; }, 0);
-    var container = document.getElementById("calc-lines");
-    var empty     = document.getElementById("calc-empty");
-    var totalRow  = document.getElementById("calc-total-row");
-    var totalNum  = document.getElementById("calc-total-num");
-    if (!container) return;
-
-    var old = container.querySelectorAll(".calc-line");
-    for (var i = 0; i < old.length; i++) old[i].remove();
-
-    if (lines.length === 0) {
-      empty.style.display    = "flex";
-      totalRow.style.display = "none";
-      return;
-    }
-    empty.style.display    = "none";
-    totalRow.style.display = "block";
-
-    lines.forEach(function(l) {
-      var row = document.createElement("div");
-      row.className = "calc-line";
-
-      var left = document.createElement("div");
-      left.className = "calc-line-left";
-
-      var dot = document.createElement("div");
-      dot.className = "calc-line-dot";
-
-      var name = document.createElement("span");
-      name.className = "calc-line-name";
-      name.textContent = l.label;
-
-      var priceEl = document.createElement("span");
-      priceEl.className = "calc-line-price";
-      priceEl.textContent = l.price.toLocaleString("es-ES") + "\u20ac";
-
-      var rm = document.createElement("button");
-      rm.className = "calc-line-remove";
-      rm.textContent = "\u2715";
-      rm.title = "Quitar";
-      rm.addEventListener("click", (function(k) { return function() { removeItem(k); }; })(l.key));
-
-      left.appendChild(dot);
-      left.appendChild(name);
-      row.appendChild(left);
-      row.appendChild(priceEl);
-      row.appendChild(rm);
-      container.appendChild(row);
-    });
-
-    totalNum.textContent = total.toLocaleString("es-ES") + "\u20ac";
-  }
-
-  function abrirWhatsApp() {
-    var servicios = [];
-    if (S.co2.qty > 0)        servicios.push("- Pistolas CO2 x" + S.co2.qty + " (" + (S.co2.qty * S.co2.price) + "\u20ac)");
-    if (S.confeti.on)         servicios.push("- Canon de Confeti (300\u20ac)");
-    if (S.fotomaton.on)       servicios.push("- Fotomaton (360\u20ac)");
-    if (S.fotoestudio.on)     servicios.push("- Fotoestudio (450\u20ac)");
-    if (S.video360.price > 0) servicios.push("- Video 360\u00ba " + (S.video360.price === 400 ? "2h" : "3h") + " (" + S.video360.price + "\u20ac)");
-    if (S.telefono.price > 0) servicios.push("- Telefono de Firmas " + (S.telefono.price === 250 ? "desde el coctel" : "desde vuestro servicio") + " (" + S.telefono.price + "\u20ac)");
-    if (S.modelo.price > 0)   servicios.push("- " + ({1200:"Modelo Basic",1600:"Modelo U",1800:"Modelo Torres",2000:"Modelo Feria"})[S.modelo.price] + " (" + S.modelo.price + "\u20ac)");
-
-    var total = 0;
-    if (S.co2.qty > 0)        total += S.co2.qty * S.co2.price;
-    if (S.confeti.on)         total += S.confeti.price;
-    if (S.fotomaton.on)       total += S.fotomaton.price;
-    if (S.fotoestudio.on)     total += S.fotoestudio.price;
-    if (S.video360.price > 0) total += S.video360.price;
-    if (S.telefono.price > 0) total += S.telefono.price;
-    if (S.modelo.price > 0)   total += S.modelo.price;
-
-    var msg;
-    if (servicios.length === 0) {
-      msg = "Hola! He visto vuestra pagina web y me gustaria recibir informacion sobre vuestros servicios para bodas. Podeis contarme mas? Muchas gracias!";
-    } else {
-      msg = "Hola! He visto en la pagina web los servicios que ofreceis para bodas y estaria interesado/a en:\n\n"
-          + servicios.join("\n")
-          + "\n\nTotal estimado: " + total.toLocaleString("es-ES") + "\u20ac (sin desplazamiento ni montaje)."
-          + "\n\nPodeis confirmarme disponibilidad y darme mas detalles? Muchas gracias!";
-    }
-
-    window.open("https://wa.me/34660068182?text=" + encodeURIComponent(msg), "_blank");
-  }
-
-  function bindControls() {
-    var btnMinus = document.getElementById("btn-co2-minus");
-    var btnPlus  = document.getElementById("btn-co2-plus");
-    if (btnMinus) btnMinus.addEventListener("click", function() { changeQty(-1); });
-    if (btnPlus)  btnPlus.addEventListener("click",  function() { changeQty(1); });
-
-    ["confeti", "fotomaton", "fotoestudio"].forEach(function(key) {
-      var btn = document.getElementById("tb-" + key);
-      if (btn) btn.addEventListener("click", function() { toggleItem(key); });
-    });
-
-    var selVideo = document.getElementById("sel-video360");
-    if (selVideo) selVideo.addEventListener("change", function() {
-      S.video360.price = parseInt(this.value) || 0;
-      setActive("video360", S.video360.price > 0);
-      render();
-    });
-
-    var selTel = document.getElementById("sel-telefono");
-    if (selTel) selTel.addEventListener("change", function() {
-      S.telefono.price = parseInt(this.value) || 0;
-      setActive("telefono", S.telefono.price > 0);
-      render();
-    });
-
-    var selModelo = document.getElementById("sel-modelo");
-    if (selModelo) selModelo.addEventListener("change", function() {
-      S.modelo.price = parseInt(this.value) || 0;
-      setActive("modelo", S.modelo.price > 0);
-      render();
-    });
-
-    var btnWa = document.getElementById("btn-whatsapp");
-    if (btnWa) btnWa.addEventListener("click", abrirWhatsApp);
-  }
-
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", bindControls);
-  } else {
-    bindControls();
-  }
-
+<script>
+/* ── Título ── */
+(function(){
+  const text='DimacoLed',acc=new Set([0,7]),el=document.getElementById('brandTitle');
+  text.split('').forEach((ch,i)=>{const s=document.createElement('span');s.className='letter'+(acc.has(i)?' accent':'');s.textContent=ch;el.appendChild(s);});
+  [...el.querySelectorAll('.letter')].forEach((s,i)=>{setTimeout(()=>s.classList.add('flash'),700+i*110);setTimeout(()=>{s.classList.remove('flash');s.classList.add('on');},700+i*110+320);});
 })();
-</script>
 
+/* ── Pantalla slides ── */
+(function(){
+  const sc=document.getElementById('screenCanvas'),sct=sc.getContext('2d');
+  function sizeCanvas(){const body=document.getElementById('screenBody'),r=body.getBoundingClientRect(),w=Math.max(200,Math.round(r.width)),h=Math.max(60,Math.round(w*0.175));sc.width=w;sc.height=h;body.style.minHeight=h+'px';}
+  const SLIDES=[
+    {tag:'EXTERIOR',title:'PANTALLAS OUTDOOR',spec:'IP65 · 6000 nits · Gran Formato',detail:'Resistentes a lluvia, viento y sol directo',badge:'DESDE 890 €/m²',accent:true},
+    {tag:'INTERIOR',title:'PANTALLAS INDOOR',spec:'P1.5 – P4 · Full HD · Ultra Thin',detail:'Alta resolución para espacios premium',badge:'VER MODELOS',accent:false},
+    {tag:'COMERCIO',title:'RETAIL & ESCAPARATES',spec:'Plug & Play · 24/7 · Modular',detail:'Pantallas que venden. Instala y listo.',badge:'SOLICITAR DEMO',accent:true},
+    {tag:'PUBLICIDAD',title:'VALLAS PUBLICITARIAS LED',spec:'P6 – P10 · DOOH · Impacto máximo',detail:'Visibilidad total en exteriores urbanos',badge:'CONSULTAR',accent:false},
+    {tag:'EVENTOS',title:'PANTALLAS PARA EVENTOS',spec:'Alquiler y venta · Montaje rápido',detail:'Conciertos, ferias, presentaciones y más',badge:'PEDIR PRESUPUESTO',accent:true},
+    {tag:'A MEDIDA',title:'PROYECTOS SINGULARES',spec:'Curvo · Transparente · Floor LED',detail:'Cualquier forma, cualquier tamaño, cualquier uso',badge:'HABLEMOS',accent:false},
+  ];
+  let idx=0,alpha=0,phase='boot',timer=0,bootLine=0;
+  const HOLD=3000,FADE=0.003,BOOT=3;
+  const F={'A':[[0,1,1,0],[1,0,0,1],[1,1,1,1],[1,0,0,1],[1,0,0,1]],'B':[[1,1,1,0],[1,0,0,1],[1,1,1,0],[1,0,0,1],[1,1,1,0]],'C':[[0,1,1,1],[1,0,0,0],[1,0,0,0],[1,0,0,0],[0,1,1,1]],'D':[[1,1,1,0],[1,0,0,1],[1,0,0,1],[1,0,0,1],[1,1,1,0]],'E':[[1,1,1,1],[1,0,0,0],[1,1,1,0],[1,0,0,0],[1,1,1,1]],'F':[[1,1,1,1],[1,0,0,0],[1,1,1,0],[1,0,0,0],[1,0,0,0]],'G':[[0,1,1,1],[1,0,0,0],[1,0,1,1],[1,0,0,1],[0,1,1,0]],'H':[[1,0,0,1],[1,0,0,1],[1,1,1,1],[1,0,0,1],[1,0,0,1]],'I':[[1,1,1],[0,1,0],[0,1,0],[0,1,0],[1,1,1]],'J':[[0,1,1],[0,0,1],[0,0,1],[1,0,1],[0,1,1]],'K':[[1,0,1],[1,0,1],[1,1,0],[1,0,1],[1,0,1]],'L':[[1,0,0,0],[1,0,0,0],[1,0,0,0],[1,0,0,0],[1,1,1,1]],'M':[[1,0,0,0,1],[1,1,0,1,1],[1,0,1,0,1],[1,0,0,0,1],[1,0,0,0,1]],'N':[[1,0,0,1],[1,1,0,1],[1,0,1,1],[1,0,0,1],[1,0,0,1]],'O':[[0,1,1,0],[1,0,0,1],[1,0,0,1],[1,0,0,1],[0,1,1,0]],'P':[[1,1,1,0],[1,0,0,1],[1,1,1,0],[1,0,0,0],[1,0,0,0]],'R':[[1,1,1,0],[1,0,0,1],[1,1,1,0],[1,0,1,0],[1,0,0,1]],'S':[[0,1,1,1],[1,0,0,0],[0,1,1,0],[0,0,0,1],[1,1,1,0]],'T':[[1,1,1,1,1],[0,0,1,0,0],[0,0,1,0,0],[0,0,1,0,0],[0,0,1,0,0]],'U':[[1,0,0,1],[1,0,0,1],[1,0,0,1],[1,0,0,1],[0,1,1,0]],'V':[[1,0,0,0,1],[1,0,0,0,1],[0,1,0,1,0],[0,1,0,1,0],[0,0,1,0,0]],'X':[[1,0,0,0,1],[0,1,0,1,0],[0,0,1,0,0],[0,1,0,1,0],[1,0,0,0,1]],' ':[[0,0],[0,0],[0,0],[0,0],[0,0]]};
+  function drawTag(tag,ox,oy,sz,col){const gap=1;let cx=ox;for(const ch of tag){const map=F[ch]||F[' '];const cols=map[0].length;for(let r=0;r<5;r++)for(let c=0;c<cols;c++){sct.save();sct.fillStyle=map[r][c]?col:'rgba(255,255,255,0.05)';if(map[r][c]){sct.shadowColor=col;sct.shadowBlur=3;}sct.beginPath();sct.arc(cx+c*(sz+gap)+sz/2,oy+r*(sz+gap)+sz/2,sz/2,0,Math.PI*2);sct.fill();sct.restore();}cx+=(cols*(sz+gap))+3;}}
+  function drawSlide(s,a,W,H){sct.save();sct.globalAlpha=Math.max(0,Math.min(1,a));const bg=sct.createLinearGradient(0,0,W,0);if(s.accent){bg.addColorStop(0,'#0e0000');bg.addColorStop(.4,'#180000');bg.addColorStop(1,'#0a0000');}else{bg.addColorStop(0,'#060608');bg.addColorStop(.4,'#0c000a');bg.addColorStop(1,'#060606');}sct.fillStyle=bg;sct.fillRect(0,0,W,H);const bar=sct.createLinearGradient(0,0,0,H);bar.addColorStop(0,s.accent?'rgba(232,0,10,1)':'rgba(160,100,220,0.7)');bar.addColorStop(1,s.accent?'rgba(120,0,5,0.4)':'rgba(80,40,140,0.2)');sct.fillStyle=bar;sct.fillRect(0,0,5,H);sct.fillStyle=s.accent?'rgba(255,80,50,0.25)':'rgba(180,120,255,0.15)';sct.fillRect(5,0,1,H);sct.save();sct.font=`bold ${H*.7}px monospace`;sct.fillStyle=s.accent?'rgba(232,0,10,0.05)':'rgba(140,80,255,0.04)';sct.textAlign='right';sct.textBaseline='middle';sct.fillText(s.accent?'▣':'◈',W-14,H*.46);sct.restore();const pad=20;drawTag(s.tag,pad,7,3,s.accent?'rgba(232,0,10,0.9)':'rgba(160,110,255,0.85)');const tfs=Math.min(H*.3,21);sct.font=`700 ${tfs}px "Orbitron",sans-serif`;sct.fillStyle='#ffffff';sct.textAlign='left';sct.textBaseline='top';sct.shadowColor=s.accent?'rgba(232,0,10,0.3)':'rgba(140,80,255,0.25)';sct.shadowBlur=14;sct.fillText(s.title,pad,H*.29);sct.shadowBlur=0;sct.font=`300 ${Math.min(H*.125,10)}px "DM Sans",sans-serif`;sct.fillStyle=s.accent?'rgba(255,100,80,0.8)':'rgba(170,120,255,0.75)';sct.fillText(s.spec,pad,H*.29+tfs+4);sct.font=`300 ${Math.min(H*.115,9)}px "DM Sans",sans-serif`;sct.fillStyle='rgba(255,255,255,0.32)';sct.fillText(s.detail,pad,H-20);const bfs=Math.min(H*.115,9);sct.font=`600 ${bfs}px "DM Sans",sans-serif`;sct.textAlign='right';const bw=sct.measureText(s.badge).width+18,bh=bfs+11,bx=W-bw-16,by=H-bh-8;if(s.accent){sct.fillStyle='rgba(232,0,10,0.85)';sct.fillRect(bx,by,bw,bh);sct.fillStyle='#fff';}else{sct.strokeStyle='rgba(160,110,255,0.5)';sct.lineWidth=1;sct.strokeRect(bx,by,bw,bh);sct.fillStyle='rgba(140,80,255,0.08)';sct.fillRect(bx,by,bw,bh);sct.fillStyle='rgba(180,140,255,0.9)';}sct.fillText(s.badge,W-16,by+bh*.68);const prog=Math.min(1,timer/HOLD);sct.fillStyle='rgba(255,255,255,0.04)';sct.fillRect(0,H-2,W,2);const pg=sct.createLinearGradient(0,0,W*prog,0);pg.addColorStop(0,s.accent?'rgba(232,0,10,0.55)':'rgba(120,60,220,0.55)');pg.addColorStop(1,s.accent?'rgba(255,80,50,0.9)':'rgba(180,140,255,0.9)');sct.fillStyle=pg;sct.fillRect(0,H-2,W*prog,2);SLIDES.forEach((_,i)=>{const dx=W/2-(SLIDES.length*8)/2+i*8+4,dy=H-8;sct.beginPath();sct.arc(dx,dy,i===idx?2.5:1.5,0,Math.PI*2);sct.fillStyle=i===idx?(s.accent?'rgba(232,0,10,0.9)':'rgba(160,110,255,0.85)'):'rgba(255,255,255,0.14)';sct.fill();});sct.restore();}
+  let lastT=0;
+  function loop(ts){const dt=Math.min(ts-lastT,48);lastT=ts;const W=sc.width,H=sc.height;if(!W||!H){requestAnimationFrame(loop);return;}sct.clearRect(0,0,W,H);sct.fillStyle='#040404';sct.fillRect(0,0,W,H);if(phase==='boot'){bootLine+=dt*BOOT;sct.fillStyle='rgba(232,0,10,0.05)';sct.fillRect(0,0,W,Math.min(bootLine,H));for(let i=0;i<2;i++){sct.fillStyle=`rgba(232,0,10,${Math.random()*.1})`;sct.fillRect(0,Math.random()*Math.min(bootLine,H),W,1+Math.random()*2);}if(bootLine>=H){phase='fadein';alpha=0;}requestAnimationFrame(loop);return;}if(phase==='fadein'){alpha=Math.min(1,alpha+FADE*dt);if(alpha>=1){phase='hold';timer=0;}}else if(phase==='hold'){timer+=dt;alpha=1;if(timer>=HOLD)phase='fadeout';}else{alpha=Math.max(0,alpha-FADE*dt*1.4);if(alpha<=0){idx=(idx+1)%SLIDES.length;phase='fadein';alpha=0;timer=0;}}if(phase==='fadein'&&alpha<1)drawSlide(SLIDES[(idx-1+SLIDES.length)%SLIDES.length],1-alpha,W,H);drawSlide(SLIDES[idx],alpha,W,H);requestAnimationFrame(loop);}
+  setTimeout(()=>{sizeCanvas();requestAnimationFrame(loop);},80);
+  window.addEventListener('resize',sizeCanvas);
+})();
+
+
+/* ══ CANVAS PRINCIPAL ══ */
+const canvas=document.getElementById('ledCanvas');
+const ctx=canvas.getContext('2d');
+let screenLeft=0,screenRight=1;
+const isMobile=()=>window.innerWidth<768;
+
+function getScreenBounds(){
+  const el=document.getElementById('screenAssembly');if(!el)return;
+  const r=el.getBoundingClientRect(),W=window.innerWidth,margin=W*0.018;
+  screenLeft=Math.max(0,(r.left-margin)/W);
+  screenRight=Math.min(1,(r.right+margin)/W);
+}
+
+/* ── LedStrip ── */
+class LedStrip{
+  constructor(cfg){Object.assign(this,{nx:cfg.nx,scale:cfg.scale??1,alpha:cfg.alpha??1,speed:cfg.speed??0.00055,length:cfg.length??0.87,hookDir:cfg.hookDir??1,hookW:cfg.hookW??0.012,state:0,front:cfg.phase??0,pauseMs:0,PAUSE:650+Math.random()*750,N:80,dirty:true,_pts:[],_W:0,_H:0});}
+  buildPath(W,H){if(!this.dirty&&this._W===W&&this._H===H)return this._pts;this._W=W;this._H=H;this.dirty=false;const x=this.nx*W,yBot=H*(0.04+this.length),hkX=x+this.hookDir*this.hookW*W,hkH=H*0.026,hN=Math.max(3,Math.floor(this.N*.07)),bN=this.N-hN;this._pts=[];for(let i=0;i<=hN;i++){const t=i/hN,mt=1-t;this._pts.push({x:mt*mt*hkX+2*mt*t*hkX+t*t*x,y:mt*mt*0+2*mt*t*hkH*.08+t*t*hkH,t:t*.07});}for(let i=1;i<=bN;i++){const t=i/bN;this._pts.push({x,y:hkH+(yBot-hkH)*t,t:.07+t*.93});}return this._pts;}
+  update(dt){const s=this.speed*dt;if(this.state===0){this.front+=s;if(this.front>=1){this.front=1;this.state=1;this.pauseMs=0;}}else if(this.state===1){this.pauseMs+=dt;if(this.pauseMs>=this.PAUSE)this.state=2;}else{this.front-=s*1.25;if(this.front<=0){this.front=0;this.state=0;}}}
+  draw(W,H){const pts=this.buildPath(W,H),N=pts.length-1,fr=this.front,ba=this.alpha,lit=t=>this.state===1||t<=fr;ctx.save();ctx.beginPath();ctx.moveTo(pts[0].x,pts[0].y);for(let i=1;i<=N;i++)ctx.lineTo(pts[i].x,pts[i].y);ctx.strokeStyle=`rgba(40,0,0,${.28*ba})`;ctx.lineWidth=4*this.scale;ctx.lineCap='round';ctx.lineJoin='round';ctx.stroke();ctx.restore();for(let i=0;i<N;i++){const p0=pts[i],p1=pts[i+1],tv=(p0.t+p1.t)*.5;if(!lit(tv))continue;let I=this.state===1?.72+.28*Math.sin(Date.now()*.0022+this.nx*12):(()=>{const d=Math.abs(tv-fr);let v=Math.max(.12,1-d*2.4);if(d<.04)v=Math.min(1,v*(1+(1-d/.04)*2.8));return v;})();const wb=Math.round(I*I*205);ctx.save();ctx.beginPath();ctx.moveTo(p0.x,p0.y);ctx.lineTo(p1.x,p1.y);ctx.strokeStyle=`rgba(232,0,10,${ba*I*.17})`;ctx.lineWidth=(11+I*6)*this.scale;ctx.lineCap='round';ctx.shadowColor=`rgba(232,0,10,${I})`;ctx.shadowBlur=18*I;ctx.stroke();ctx.restore();ctx.save();ctx.beginPath();ctx.moveTo(p0.x,p0.y);ctx.lineTo(p1.x,p1.y);ctx.strokeStyle=`rgba(232,${wb},${wb},${ba*(.52+I*.44)})`;ctx.lineWidth=2.2*this.scale;ctx.lineCap='round';ctx.stroke();ctx.restore();if(I>.28){ctx.save();ctx.beginPath();ctx.moveTo(p0.x,p0.y);ctx.lineTo(p1.x,p1.y);ctx.strokeStyle=`rgba(255,255,255,${ba*I*.22})`;ctx.lineWidth=.8*this.scale;ctx.lineCap='round';ctx.stroke();ctx.restore();}}if(this.state!==1){const fp=pts[Math.min(Math.floor(fr*N),N)],p=.72+.28*Math.sin(Date.now()*.013),gr=ctx.createRadialGradient(fp.x,fp.y,0,fp.x,fp.y,38*this.scale);gr.addColorStop(0,`rgba(255,255,255,${.68*ba*p})`);gr.addColorStop(.15,`rgba(255,130,110,${.42*ba*p})`);gr.addColorStop(.4,`rgba(232,0,10,${.16*ba*p})`);gr.addColorStop(1,'rgba(0,0,0,0)');ctx.save();ctx.beginPath();ctx.arc(fp.x,fp.y,38*this.scale,0,Math.PI*2);ctx.fillStyle=gr;ctx.fill();ctx.restore();ctx.save();ctx.beginPath();ctx.arc(fp.x,fp.y,2.8*this.scale,0,Math.PI*2);ctx.fillStyle=`rgba(255,255,255,${.93*ba})`;ctx.shadowColor='#fff';ctx.shadowBlur=14;ctx.fill();ctx.restore();}const top=pts[0];ctx.save();ctx.beginPath();ctx.arc(top.x,top.y,2.6*this.scale,0,Math.PI*2);ctx.fillStyle='rgba(185,185,185,.6)';ctx.shadowColor='rgba(232,0,10,.5)';ctx.shadowBlur=8;ctx.fill();ctx.restore();}
+}
+
+/* ── Dust sutil ── */
+class Dust{
+  constructor(init){this.reset(init??true);}
+  reset(init){
+    const W=canvas.width,H=canvas.height;
+    const side=Math.random()<.5;
+    const zone=side?Math.random()*screenLeft:screenRight+Math.random()*(1-screenRight);
+    this.x=zone*W;this.y=init?Math.random()*H:H+4;
+    this.vy=-(0.016+Math.random()*.04);this.vx=(Math.random()-.5)*.010;
+    this.r=.2+Math.random()*.7;this.maxA=.03+Math.random()*.06;
+    this.life=init?Math.random()*7000:0;this.maxL=6000+Math.random()*7000;
+  }
+  get a(){const p=this.life/this.maxL;return p<.15?(p/.15)*this.maxA:p>.75?((1-p)/.25)*this.maxA:this.maxA}
+  update(dt){this.life+=dt;this.x+=this.vx*dt;this.y+=this.vy*dt;if(this.life>this.maxL||this.y<-4)this.reset(false);}
+  draw(){ctx.save();ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);ctx.fillStyle=`rgba(200,60,40,${this.a})`;ctx.fill();ctx.restore();}
+}
+
+/* ── Grilla técnica de fondo (desktop) ── */
+class Grid{
+  constructor(){this.t=0;}
+  update(dt){this.t+=dt;}
+  draw(W,H){
+    const SL=screenLeft*W,SR=screenRight*W;
+    ctx.save();
+    ctx.globalAlpha=0.022+0.006*Math.sin(this.t*0.00035);
+    ctx.strokeStyle='rgba(232,0,10,1)';ctx.lineWidth=0.5;
+    // Verticales izquierda
+    const colsL=Math.max(1,Math.floor(SL/50));
+    for(let i=0;i<=colsL;i++){const x=(i/colsL)*SL;ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
+    // Verticales derecha
+    const colsR=Math.max(1,Math.floor((W-SR)/50));
+    for(let i=0;i<=colsR;i++){const x=SR+(i/colsR)*(W-SR);ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
+    // Horizontales — solo zonas laterales
+    const rows=Math.max(1,Math.floor(H/60));
+    for(let i=0;i<=rows;i++){const y=(i/rows)*H;ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(SL,y);ctx.stroke();ctx.beginPath();ctx.moveTo(SR,y);ctx.lineTo(W,y);ctx.stroke();}
+    ctx.restore();
+  }
+}
+
+/* ── Línea de escaneo (desktop) ── */
+class ScanLine{
+  constructor(){this.y=0;this.speed=0.020;}
+  update(dt){this.y+=this.speed*(dt/1000);if(this.y>1)this.y=0;}
+  draw(W,H){
+    const SL=screenLeft*W,SR=screenRight*W,py=this.y*H;
+    ctx.save();
+    ctx.strokeStyle='rgba(232,0,10,0.055)';ctx.lineWidth=1;
+    ctx.beginPath();ctx.moveTo(0,py);ctx.lineTo(SL,py);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(SR,py);ctx.lineTo(W,py);ctx.stroke();
+    const gL=ctx.createLinearGradient(0,py,SL,py);
+    gL.addColorStop(0,'rgba(232,0,10,0)');gL.addColorStop(0.5,'rgba(232,0,10,0.032)');gL.addColorStop(1,'rgba(232,0,10,0)');
+    ctx.strokeStyle=gL;ctx.lineWidth=7;
+    ctx.beginPath();ctx.moveTo(0,py);ctx.lineTo(SL,py);ctx.stroke();
+    const gR=ctx.createLinearGradient(SR,py,W,py);
+    gR.addColorStop(0,'rgba(232,0,10,0)');gR.addColorStop(0.5,'rgba(232,0,10,0.032)');gR.addColorStop(1,'rgba(232,0,10,0)');
+    ctx.strokeStyle=gR;ctx.lineWidth=7;
+    ctx.beginPath();ctx.moveTo(SR,py);ctx.lineTo(W,py);ctx.stroke();
+    ctx.restore();
+  }
+}
+
+let strips=[],dustArr=[],grid=null,scanLine=null;
+
+function buildStrips(){
+  const W=canvas.width,SL=screenLeft,SR=screenRight;
+  const leftPx=SL*W,rightPx=(1-SR)*W;
+  const mobile=isMobile();
+
+  /*
+    DISTRIBUCIÓN:
+    - Las barras se reparten con espaciado uniforme en todo el espacio disponible.
+    - La barra más cercana a la pantalla va a ~90% del espacio (justo al lado).
+    - La barra más lejana va a ~4% (casi tocando el borde de la ventana).
+    - Opacidad y escala decrecen linealmente desde la pantalla hacia el borde.
+  */
+
+  function makeSide(n, side){
+    // side='left': barra 0 = más cerca de pantalla (nx alto), barra n-1 = borde (nx bajo)
+    // side='right': barra 0 = más cerca de pantalla (nx bajo desde SR), barra n-1 = borde (nx alto)
+    const arr=[];
+    for(let i=0;i<n;i++){
+      // t=0 → junto a pantalla, t=1 → borde de ventana
+      const t= n===1 ? 0.5 : i/(n-1);
+      // Posición: de 0.88 (junto pantalla) a 0.04 (borde ventana)
+      const frac=0.88-t*0.84;
+      const nx= side==='left' ? frac*SL : SR + frac*(1-SR);
+      // Opacidad: alta junto a pantalla, baja en borde
+      const alpha=0.88-t*0.72;  // 0.88 → 0.16
+      // Escala: grande junto a pantalla, pequeña en borde
+      const scale=1.05-t*0.72;  // 1.05 → 0.33
+      // Longitud: larga junto a pantalla, corta en borde
+      const length=0.90-t*0.38; // 0.90 → 0.52
+      // Velocidad: lenta junto pantalla, algo más rápida en borde
+      const speed=0.00050+t*0.00045;
+      // Hook alterna
+      const hookDir=(i%2===0)?-1:1;
+      const hookW=0.014-t*0.008;
+      const phase=(i*0.37)%1;
+      arr.push({nx,scale,alpha,length,speed,hookDir,hookW,phase});
+    }
+    return arr;
+  }
+
+  if(mobile){
+    // Móvil: máx 2 por lado, muy sutiles
+    const MIN_PX=22;
+    const nL=leftPx<MIN_PX?0:Math.min(2,Math.floor(leftPx/MIN_PX));
+    const nR=rightPx<MIN_PX?0:Math.min(2,Math.floor(rightPx/MIN_PX));
+    const defs=[
+      ...makeSide(nL,'left').map(d=>({...d,alpha:d.alpha*0.28,scale:d.scale*0.5})),
+      ...makeSide(nR,'right').map(d=>({...d,alpha:d.alpha*0.28,scale:d.scale*0.5})),
+    ];
+    strips=defs.map(c=>new LedStrip(c));
+    return;
+  }
+
+  // Desktop: cuántas caben en cada lado con separación mínima de 40px entre barras
+  const MIN_GAP=40;
+  const nL=Math.min(8,Math.max(1,Math.floor(leftPx/MIN_GAP)));
+  const nR=Math.min(8,Math.max(1,Math.floor(rightPx/MIN_GAP)));
+  const defs=[...makeSide(nL,'left'),...makeSide(nR,'right')];
+  strips=defs.map(c=>new LedStrip(c));
+}
+
+function buildEffects(){
+  const mobile=isMobile();
+  dustArr=Array.from({length:mobile?10:28},()=>new Dust(true));
+  grid  =mobile?null:new Grid();
+  scanLine=mobile?null:new ScanLine();
+}
+
+function resize(){
+  canvas.width=window.innerWidth;canvas.height=window.innerHeight;
+  getScreenBounds();buildStrips();buildEffects();
+}
+setTimeout(resize,200);
+window.addEventListener('resize',()=>setTimeout(resize,50));
+
+let lastT=0;
+function loop(ts){
+  const dt=Math.min(ts-lastT,48);lastT=ts;
+  const W=canvas.width,H=canvas.height;
+  ctx.fillStyle='rgba(7,7,7,0.22)';ctx.fillRect(0,0,W,H);
+  if(grid){grid.update(dt);grid.draw(W,H);}
+  if(scanLine){scanLine.update(dt);scanLine.draw(W,H);}
+  dustArr.forEach(d=>{d.update(dt);d.draw();});
+  strips.forEach(s=>{s.update(dt);s.draw(W,H);});
+  requestAnimationFrame(loop);
+}
+requestAnimationFrame(loop);
+</script>
 </body>
 </html>
