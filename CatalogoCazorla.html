@@ -945,4 +945,13 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
     if(selTel) selTel.addEventListener("change",function(){S.telefono.price=parseInt(this.value)||0;setActive("telefono",S.telefono.price>0);render();});
     var selModelo=document.getElementById("sel-modelo");
     if(selModelo) selModelo.addEventListener("change",function(){S.modelo.price=parseInt(this.value)||0;setActive("modelo",S.modelo.price>0);render();});
-    var btnWa=document.getElementById("btn-
+    var btnWa=document.getElementById("btn-whatsapp");
+    if(btnWa) btnWa.addEventListener("click",abrirWhatsApp);
+  }
+
+  if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",bindControls);}
+  else{bindControls();}
+})();
+</script>
+</body>
+</html>
