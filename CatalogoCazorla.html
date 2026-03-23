@@ -761,11 +761,13 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
 
 <div class="contact-strip">
   <div class="ci"><div class="ci-dot"></div><div><span class="ci-lbl">Teléfono</span><span class="ci-val">635 68 10 45</span></div></div>
-  <div class="ci"><div class="ci-dot"></div><div><span class="ci-lbl">Email</span><span class="ci-val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="620b0c040d220103180d100e030714070c16114c010d0f">[email&#160;protected]</a></span></div></div>
+  <div class="ci"><div class="ci-dot"></div><div><span class="ci-lbl">Email</span><span class="ci-val">info@cazorlaevents.com</span></div></div>
   <div class="ci"><div class="ci-dot"></div><div><span class="ci-lbl">Redes</span><span class="ci-val">@cazorla_event</span></div></div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+
 /* ═══ HERO ANIMATIONS ═══ */
 (function(){
   var letters = document.querySelectorAll('#czeCazorla .l');
@@ -949,9 +951,10 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
     if(btnWa) btnWa.addEventListener("click",abrirWhatsApp);
   }
 
-  if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",bindControls);}
-  else{bindControls();}
+  bindControls();
 })();
+
+}); // DOMContentLoaded
 </script>
 </body>
 </html>
