@@ -651,6 +651,25 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
       </div>
 
       <div class="calc-group">
+        <div class="calc-group-title"><span class="calc-group-dot"></span>Modelo DJ</div>
+        <div class="calc-item calc-item-select" id="ci-modelo">
+          <div class="calc-item-info">
+            <div class="calc-item-name">Setup DJ</div>
+            <div class="calc-item-sub">Pantalla LED · iluminación · sonido</div>
+          </div>
+          <div class="calc-select-row">
+            <select class="calc-select" id="sel-modelo">
+              <option value="0">— No añadir —</option>
+              <option value="1200">Basic · 1.200€</option>
+              <option value="1600">Modelo U · 1.600€</option>
+              <option value="1800">Torres · 1.800€</option>
+              <option value="2000">Feria · 2.000€</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="calc-group">
         <div class="calc-group-title"><span class="calc-group-dot"></span>Fotografía &amp; Vídeo</div>
         <div class="calc-item" id="ci-fotomaton">
           <div class="calc-item-info">
@@ -701,25 +720,6 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
           </div>
         </div>
       </div>
-
-      <div class="calc-group">
-        <div class="calc-group-title"><span class="calc-group-dot"></span>Modelo DJ</div>
-        <div class="calc-item calc-item-select" id="ci-modelo">
-          <div class="calc-item-info">
-            <div class="calc-item-name">Setup DJ</div>
-            <div class="calc-item-sub">Pantalla LED · iluminación · sonido</div>
-          </div>
-          <div class="calc-select-row">
-            <select class="calc-select" id="sel-modelo">
-              <option value="0">— No añadir —</option>
-              <option value="1200">Basic · 1.200€</option>
-              <option value="1600">Modelo U · 1.600€</option>
-              <option value="1800">Torres · 1.800€</option>
-              <option value="2000">Feria · 2.000€</option>
-            </select>
-          </div>
-        </div>
-      </div>
     </div>
 
     <div class="calc-right">
@@ -761,11 +761,11 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
 
 <div class="contact-strip">
   <div class="ci"><div class="ci-dot"></div><div><span class="ci-lbl">Teléfono</span><span class="ci-val">635 68 10 45</span></div></div>
-  <div class="ci"><div class="ci-dot"></div><div><span class="ci-lbl">Email</span><span class="ci-val">info@cazorlaevents.com</span></div></div>
+  <div class="ci"><div class="ci-dot"></div><div><span class="ci-lbl">Email</span><span class="ci-val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="620b0c040d220103180d100e030714070c16114c010d0f">[email&#160;protected]</a></span></div></div>
   <div class="ci"><div class="ci-dot"></div><div><span class="ci-lbl">Redes</span><span class="ci-val">@cazorla_event</span></div></div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 /* ═══ HERO ANIMATIONS ═══ */
 (function(){
   var letters = document.querySelectorAll('#czeCazorla .l');
@@ -945,13 +945,4 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
     if(selTel) selTel.addEventListener("change",function(){S.telefono.price=parseInt(this.value)||0;setActive("telefono",S.telefono.price>0);render();});
     var selModelo=document.getElementById("sel-modelo");
     if(selModelo) selModelo.addEventListener("change",function(){S.modelo.price=parseInt(this.value)||0;setActive("modelo",S.modelo.price>0);render();});
-    var btnWa=document.getElementById("btn-whatsapp");
-    if(btnWa) btnWa.addEventListener("click",abrirWhatsApp);
-  }
-
-  if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",bindControls);}
-  else{bindControls();}
-})();
-</script>
-</body>
-</html>
+    var btnWa=document.getElementById("btn-
