@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cazorla Events — Productos & Modelos</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -14,8 +14,192 @@
   --border:rgba(255,255,255,0.07);
   --glow-c:rgba(0,242,255,0.45);
   --glow-p:rgba(255,0,222,0.45);
+  --cyan:#00f2ff;--pink:#ff00de;
+  --cyan-glow:rgba(0,242,255,0.45);
+  --pink-glow:rgba(255,0,222,0.45);
 }
 html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* ═══════════════════════════════════
+   HERO / TÍTULO
+═══════════════════════════════════ */
+.cze-wrap{
+  position:relative;
+  background:var(--bg);
+  padding:72px 24px 80px;
+  text-align:center;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+}
+.cze-wrap::before{
+  content:'';
+  position:absolute;inset:0;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(0,242,255,0.05) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,242,255,0.05) 1px,transparent 1px);
+  background-size:36px 36px;
+  mask-image:radial-gradient(ellipse 85% 75% at 50% 50%,black 20%,transparent 100%);
+  -webkit-mask-image:radial-gradient(ellipse 85% 75% at 50% 50%,black 20%,transparent 100%);
+}
+.cze-wrap::after{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 70% 65% at 50% 50%,transparent 0%,rgba(7,7,7,0.82) 100%);
+}
+#czeCanvas{
+  position:absolute;inset:0;width:100%;height:100%;
+  pointer-events:none;z-index:1;
+}
+.cze-eyebrow{
+  position:relative;z-index:3;
+  display:flex;align-items:center;gap:14px;margin-bottom:24px;
+  animation:czeFadeUp 0.8s 0.1s cubic-bezier(0.16,1,0.3,1) both;
+}
+.cze-eyebrow-line{width:32px;height:1px;background:linear-gradient(90deg,transparent,var(--cyan));box-shadow:0 0 6px var(--cyan-glow)}
+.cze-eyebrow-line.r{background:linear-gradient(90deg,var(--cyan),transparent)}
+.cze-eyebrow-dot{width:4px;height:4px;background:var(--cyan);border-radius:50%;box-shadow:0 0 8px var(--cyan),0 0 16px var(--cyan-glow);animation:czePulse 2s ease-in-out infinite}
+.cze-eyebrow-text{font-family:'Orbitron',sans-serif;font-size:0.52rem;font-weight:500;letter-spacing:0.38em;text-transform:uppercase;color:rgba(0,242,255,0.6)}
+.cze-title{position:relative;z-index:3;margin:0;line-height:1;display:flex;flex-direction:column;align-items:center;gap:0}
+.cze-cazorla{
+  font-family:'Orbitron',sans-serif;font-weight:900;
+  font-size:clamp(3.2rem,13vw,8rem);letter-spacing:0.07em;text-indent:0.07em;
+  color:#fff;display:flex;
+  animation:czeFadeUp 0.9s 0.3s cubic-bezier(0.16,1,0.3,1) both;
+}
+.cze-cazorla .l{display:inline-block;color:#222;text-shadow:none}
+.cze-cazorla .l.lit{animation:neonTravel 3s infinite linear}
+@keyframes neonTravel{
+  0%,100%{color:#222;text-shadow:none}
+  20%{color:var(--cyan);text-shadow:0 0 10px var(--cyan),0 0 20px var(--cyan),0 0 40px var(--cyan)}
+  50%{color:var(--pink);text-shadow:0 0 10px var(--pink),0 0 20px var(--pink),0 0 40px var(--pink)}
+  80%{color:var(--cyan);text-shadow:0 0 10px var(--cyan),0 0 20px var(--cyan)}
+}
+.cze-sep{
+  position:relative;z-index:3;display:flex;align-items:center;gap:12px;
+  width:min(480px,88%);margin:14px 0 12px;
+  animation:czeFadeUp 0.8s 0.7s cubic-bezier(0.16,1,0.3,1) both;
+}
+.cze-sep-line{flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(0,242,255,0.35))}
+.cze-sep-line.r{background:linear-gradient(90deg,rgba(255,0,222,0.35),transparent)}
+.cze-sep-icon{font-family:'Orbitron',sans-serif;font-size:0.48rem;letter-spacing:0.4em;text-indent:0.4em;color:rgba(0,242,255,0.3);text-transform:uppercase;white-space:nowrap}
+.cze-events{
+  font-family:'Orbitron',sans-serif;font-weight:400;
+  font-size:clamp(0.9rem,3.2vw,2rem);letter-spacing:0.62em;text-indent:0.62em;
+  color:transparent;text-shadow:none;text-transform:uppercase;
+  animation:czeFadeUp 0.8s 0.65s cubic-bezier(0.16,1,0.3,1) both,eventsReveal 1s 1.3s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+@keyframes eventsReveal{
+  from{color:transparent;letter-spacing:0.9em;text-indent:0.9em}
+  to{color:rgba(255,255,255,0.42);letter-spacing:0.62em;text-indent:0.62em}
+}
+.cze-redline{
+  position:relative;z-index:3;margin-top:30px;
+  width:min(340px,70%);height:1px;
+  background:linear-gradient(90deg,transparent,var(--cyan),var(--pink),var(--cyan),transparent);
+  box-shadow:0 0 12px var(--cyan),0 0 28px var(--cyan-glow);
+  animation:czeFadeUp 0.8s 1s cubic-bezier(0.16,1,0.3,1) both,lineBreath 3s 2s ease-in-out infinite;
+}
+@keyframes lineBreath{
+  0%,100%{box-shadow:0 0 12px var(--cyan),0 0 28px var(--cyan-glow)}
+  50%{box-shadow:0 0 20px var(--pink),0 0 50px var(--pink-glow),0 0 80px rgba(255,0,222,0.15)}
+}
+.cze-tagline{
+  position:relative;z-index:3;margin-top:18px;
+  font-family:'DM Sans',sans-serif;font-style:italic;font-weight:300;
+  font-size:clamp(0.72rem,1.4vw,0.88rem);letter-spacing:0.2em;
+  color:rgba(255,255,255,0.2);
+  animation:czeFadeUp 0.8s 1.1s cubic-bezier(0.16,1,0.3,1) both;
+}
+
+/* ── CTA BUTTON ── */
+.cze-cta-wrap{
+  position:relative;z-index:3;
+  margin-top:40px;
+  animation:czeFadeUp 0.9s 1.4s cubic-bezier(0.16,1,0.3,1) both;
+  display:flex;flex-direction:column;align-items:center;gap:14px;
+}
+.cze-cta-btn{
+  position:relative;
+  display:inline-flex;align-items:center;gap:14px;
+  padding:16px 40px;
+  background:transparent;
+  border:none;
+  cursor:pointer;
+  font-family:'Orbitron',sans-serif;
+  font-size:0.72rem;font-weight:700;
+  letter-spacing:0.22em;text-transform:uppercase;
+  color:#fff;
+  text-decoration:none;
+  overflow:hidden;
+  transition:transform 0.35s cubic-bezier(0.16,1,0.3,1);
+}
+.cze-cta-btn::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(90deg,var(--cyan),var(--pink),var(--cyan));
+  background-size:200% 100%;
+  animation:ctaShift 3s linear infinite;
+  z-index:0;
+}
+.cze-cta-btn::after{
+  content:'';position:absolute;inset:1px;
+  background:var(--bg);
+  z-index:1;
+  transition:background 0.3s;
+}
+@keyframes ctaShift{
+  0%{background-position:0% 0%}
+  100%{background-position:200% 0%}
+}
+.cze-cta-btn:hover::after{background:rgba(7,7,7,0.6)}
+.cze-cta-btn:hover{transform:translateY(-3px)}
+.cze-cta-btn:hover .cze-cta-glow{opacity:1}
+.cze-cta-text{position:relative;z-index:2}
+.cze-cta-arrow{
+  position:relative;z-index:2;
+  font-size:1.1rem;
+  transition:transform 0.25s cubic-bezier(0.16,1,0.3,1);
+}
+.cze-cta-btn:hover .cze-cta-arrow{transform:translateX(5px)}
+.cze-cta-glow{
+  position:absolute;inset:-2px;z-index:-1;
+  background:linear-gradient(90deg,var(--cyan),var(--pink));
+  opacity:0;
+  filter:blur(14px);
+  transition:opacity 0.4s;
+  border-radius:2px;
+}
+.cze-cta-hint{
+  font-family:'DM Sans',sans-serif;font-size:0.6rem;font-weight:300;
+  letter-spacing:0.15em;color:rgba(255,255,255,0.18);
+  animation:czePulse 3s ease-in-out infinite;
+}
+
+/* ── CORNER DECO ── */
+.cze-corner{position:absolute;z-index:3;width:22px;height:22px;pointer-events:none}
+.cze-corner.tl{top:20px;left:20px;border-top:1px solid rgba(0,242,255,0.4);border-left:1px solid rgba(0,242,255,0.4)}
+.cze-corner.tr{top:20px;right:20px;border-top:1px solid rgba(0,242,255,0.4);border-right:1px solid rgba(0,242,255,0.4)}
+.cze-corner.bl{bottom:20px;left:20px;border-bottom:1px solid rgba(0,242,255,0.4);border-left:1px solid rgba(0,242,255,0.4)}
+.cze-corner.br{bottom:20px;right:20px;border-bottom:1px solid rgba(0,242,255,0.4);border-right:1px solid rgba(0,242,255,0.4)}
+
+@keyframes czeFadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes czePulse{
+  0%,100%{opacity:1;box-shadow:0 0 8px var(--cyan),0 0 16px var(--cyan-glow)}
+  50%{opacity:0.3;box-shadow:none}
+}
+.cze-cazorla .l:nth-child(1).lit{animation-delay:0.0s}
+.cze-cazorla .l:nth-child(2).lit{animation-delay:0.15s}
+.cze-cazorla .l:nth-child(3).lit{animation-delay:0.30s}
+.cze-cazorla .l:nth-child(4).lit{animation-delay:0.45s}
+.cze-cazorla .l:nth-child(5).lit{animation-delay:0.60s}
+.cze-cazorla .l:nth-child(6).lit{animation-delay:0.75s}
+.cze-cazorla .l:nth-child(7).lit{animation-delay:0.90s}
+
+/* ═══════════════════════════════════
+   CATÁLOGO
+═══════════════════════════════════ */
 .section{width:100%;max-width:1140px;margin:0 auto;padding:80px 36px}
 .section-header{text-align:center;margin-bottom:52px}
 .section-tag{display:inline-flex;align-items:center;gap:12px;margin-bottom:14px;font-family:'DM Sans',sans-serif;font-size:0.56rem;font-weight:500;letter-spacing:6px;text-transform:uppercase;color:rgba(255,255,255,0.28)}
@@ -27,7 +211,6 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
 .g1{display:grid;grid-template-columns:1fr;margin-bottom:16px}
 
-/* tarjeta producto */
 .card{position:relative;background:var(--bg2);border:1px solid var(--border);border-radius:3px;overflow:hidden;display:flex;flex-direction:column;transition:transform 0.4s cubic-bezier(0.16,1,0.3,1),border-color 0.4s,box-shadow 0.4s;opacity:0;animation:fadeUp 0.65s cubic-bezier(0.16,1,0.3,1) forwards}
 .card:hover{transform:translateY(-5px);border-color:rgba(0,242,255,0.28);box-shadow:0 18px 55px rgba(0,0,0,0.6),0 0 35px rgba(0,242,255,0.07)}
 .card:nth-child(1){animation-delay:.04s}.card:nth-child(2){animation-delay:.11s}
@@ -46,7 +229,6 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
 .card-name{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:0.07em;color:#fff;margin-bottom:7px;line-height:1}
 .card-desc{font-family:'DM Sans',sans-serif;font-weight:300;font-size:0.79rem;color:var(--txt2);line-height:1.65;flex:1}
 
-/* tarjeta unificada */
 .tel-card{background:var(--bg2);border:1px solid var(--border);border-radius:3px;overflow:hidden;opacity:0;animation:fadeUp 0.65s cubic-bezier(0.16,1,0.3,1) .04s forwards;transition:border-color 0.4s,box-shadow 0.4s}
 .tel-card:hover{border-color:rgba(0,242,255,0.28);box-shadow:0 18px 55px rgba(0,0,0,0.6),0 0 35px rgba(0,242,255,0.07)}
 .tel-top{display:flex;flex-direction:column;align-items:center;padding:0;border-bottom:1px solid var(--border)}
@@ -65,7 +247,6 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
 .tel-opt-desc{font-family:'DM Sans',sans-serif;font-weight:300;font-size:0.75rem;color:var(--txt2);line-height:1.55;margin-bottom:12px}
 .tel-price{display:inline-block;font-family:'Orbitron',sans-serif;font-size:0.88rem;font-weight:700;color:#fff;border:1px solid rgba(0,242,255,0.42);padding:5px 14px;box-shadow:0 0 14px rgba(0,242,255,0.15)}
 
-/* modelo DJ */
 .model-card{position:relative;background:var(--bg2);border:1px solid var(--border);border-radius:3px;overflow:hidden;display:grid;grid-template-columns:1.1fr 1fr;min-height:270px;transition:transform 0.4s cubic-bezier(0.16,1,0.3,1),border-color 0.4s,box-shadow 0.4s;opacity:0;animation:fadeUp 0.65s cubic-bezier(0.16,1,0.3,1) forwards}
 .model-card::after{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,transparent,var(--red) 40%,transparent);opacity:0;transition:opacity 0.4s}
 .model-card:hover{transform:translateY(-5px);border-color:rgba(0,242,255,0.28);box-shadow:0 22px 60px rgba(0,0,0,0.65),0 0 45px rgba(0,242,255,0.07)}
@@ -85,13 +266,11 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
 .model-specs li::before{content:'';width:11px;height:1px;background:var(--red);flex-shrink:0;box-shadow:0 0 5px var(--glow-c)}
 .model-specs li strong{color:rgba(255,255,255,0.8);font-weight:500}
 
-/* nota */
 .nota{margin-top:44px;padding:18px 24px;border:1px solid rgba(0,242,255,0.08);background:rgba(0,242,255,0.02);display:flex;align-items:flex-start;gap:14px;border-left:2px solid var(--red)}
 .nota-dot{width:5px;height:5px;border-radius:50%;background:var(--red);box-shadow:0 0 8px var(--glow-c);flex-shrink:0;margin-top:5px;animation:lp 2s ease-in-out infinite}
 .nota-txt{font-family:'DM Sans',sans-serif;font-size:0.74rem;color:rgba(255,255,255,0.35);line-height:1.7}
 .nota-txt strong{color:rgba(255,255,255,0.6);font-weight:500}
 
-/* contacto */
 .contact-strip{display:flex;justify-content:center;align-items:center;gap:44px;padding:30px 40px;border-top:1px solid var(--border);flex-wrap:wrap}
 .ci{display:flex;align-items:center;gap:11px}
 .ci-dot{width:5px;height:5px;border-radius:50%;background:var(--red);box-shadow:0 0 8px var(--glow-c);flex-shrink:0}
@@ -100,7 +279,7 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
 
 @keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
 
-/* calculadora */
+/* ── CALCULADORA ── */
 .calc-wrap{display:grid;grid-template-columns:1fr 380px;gap:24px;align-items:start;min-width:0;width:100%}
 .calc-group{margin-bottom:10px}
 .calc-group-title{display:flex;align-items:center;gap:10px;font-family:'DM Sans',sans-serif;font-size:0.55rem;font-weight:500;letter-spacing:5px;text-transform:uppercase;color:rgba(255,255,255,0.28);padding:14px 0 10px;border-top:1px solid var(--border)}
@@ -160,10 +339,7 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
 .calc-cta-arrow{font-size:1rem;transition:transform 0.25s}
 .calc-cta:hover .calc-cta-arrow{transform:translateX(4px)}
 
-/* ─────────────────────────────────────────────────
-   RESPONSIVE
-───────────────────────────────────────────────── */
-/* Tablets y móvil — tarjetas */
+/* RESPONSIVE */
 @media(max-width:900px){
   .g2{grid-template-columns:1fr}
   .model-card{grid-template-columns:1fr}
@@ -172,29 +348,69 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
   .tel-opt{border-right:none;border-bottom:1px solid var(--border)}.tel-opt:last-child{border-bottom:none}
   .section{padding:56px 18px}
 }
-
-/* Móvil — calculadora */
 @media(max-width:720px){
-  .calc-wrap{
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 16px;
-  }
-  .calc-right{ order: 1 !important; width: 100% !important; }
-  .calc-left{  order: 2 !important; width: 100% !important; }
-  .calc-summary{ position: static !important; width: 100% !important; }
-  .calc-total-num{ font-size: 1.28rem; }
-  .calc-item{ flex-wrap: wrap; gap: 10px; }
-  .calc-item-info{ width: 100%; }
-  .calc-qty{ justify-content: flex-start; }
-  .calc-select-row{ width: 100% !important; }
-  .calc-toggle{ width: 100%; }
-  .toggle-btn{ width: 100%; text-align: center; }
-  .calc-line-name{ white-space: normal; }
+  .calc-wrap{display:flex!important;flex-direction:column!important;gap:16px}
+  .calc-right{order:1!important;width:100%!important}
+  .calc-left{order:2!important;width:100%!important}
+  .calc-summary{position:static!important;width:100%!important}
+  .calc-total-num{font-size:1.28rem}
+  .calc-item{flex-wrap:wrap;gap:10px}
+  .calc-item-info{width:100%}
+  .calc-qty{justify-content:flex-start}
+  .calc-select-row{width:100%!important}
+  .calc-toggle{width:100%}
+  .toggle-btn{width:100%;text-align:center}
+  .calc-line-name{white-space:normal}
+  .cze-cta-btn{padding:14px 24px}
 }
 </style>
 </head>
 <body>
+
+<!-- ═══════ HERO TÍTULO ═══════ -->
+<div class="cze-wrap">
+  <div class="cze-corner tl"></div>
+  <div class="cze-corner tr"></div>
+  <div class="cze-corner bl"></div>
+  <div class="cze-corner br"></div>
+
+  <canvas id="czeCanvas"></canvas>
+
+  <div class="cze-eyebrow">
+    <div class="cze-eyebrow-line"></div>
+    <div class="cze-eyebrow-dot"></div>
+    <span class="cze-eyebrow-text">Producción &amp; Eventos</span>
+    <div class="cze-eyebrow-dot"></div>
+    <div class="cze-eyebrow-line r"></div>
+  </div>
+
+  <h1 class="cze-title">
+    <div class="cze-cazorla" id="czeCazorla">
+      <span class="l">C</span><span class="l">A</span><span class="l">Z</span><span class="l">O</span><span class="l">R</span><span class="l">L</span><span class="l">A</span>
+    </div>
+    <div class="cze-sep">
+      <div class="cze-sep-line"></div>
+      <span class="cze-sep-icon">LED · Eventos · Producción</span>
+      <div class="cze-sep-line r"></div>
+    </div>
+    <div class="cze-events">Events</div>
+  </h1>
+
+  <div class="cze-redline"></div>
+  <p class="cze-tagline">Iluminamos cada momento</p>
+
+  <!-- CTA BUTTON -->
+  <div class="cze-cta-wrap">
+    <a class="cze-cta-btn" href="#calc-section" id="hero-cta">
+      <div class="cze-cta-glow"></div>
+      <span class="cze-cta-text">Calcular mi presupuesto</span>
+      <span class="cze-cta-arrow">↓</span>
+    </a>
+    <span class="cze-cta-hint">Sin compromiso · Respuesta inmediata</span>
+  </div>
+</div>
+
+<div class="divider"></div>
 
 <!-- ═══════ EXTRAS & SHOW ═══════ -->
 <div class="section">
@@ -409,7 +625,6 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
 
   <div class="calc-wrap">
     <div class="calc-left">
-
       <div class="calc-group">
         <div class="calc-group-title"><span class="calc-group-dot"></span>Efectos Especiales</div>
         <div class="calc-item" id="ci-co2">
@@ -505,7 +720,6 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
           </div>
         </div>
       </div>
-
     </div>
 
     <div class="calc-right">
@@ -547,204 +761,197 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
 
 <div class="contact-strip">
   <div class="ci"><div class="ci-dot"></div><div><span class="ci-lbl">Teléfono</span><span class="ci-val">635 68 10 45</span></div></div>
-  <div class="ci"><div class="ci-dot"></div><div><span class="ci-lbl">Email</span><span class="ci-val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d7b4b6adb8a5bbb6b2a1b2b9a3a497b0bab6bebbf9b4b8ba">[email&#160;protected]</a></span></div></div>
+  <div class="ci"><div class="ci-dot"></div><div><span class="ci-lbl">Email</span><span class="ci-val">info@cazorlaevents.com</span></div></div>
   <div class="ci"><div class="ci-dot"></div><div><span class="ci-lbl">Redes</span><span class="ci-val">@cazorla_event</span></div></div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-(function() {
+<script>
+/* ═══ HERO ANIMATIONS ═══ */
+(function(){
+  var letters = document.querySelectorAll('#czeCazorla .l');
+  letters.forEach(function(el,i){
+    setTimeout(function(){ el.classList.add('lit'); }, 400 + i*110);
+  });
 
-  var S = {
-    co2:         { qty:0, price:300, max:2 },
-    confeti:     { on:false, price:300 },
-    fotomaton:   { on:false, price:360 },
-    fotoestudio: { on:false, price:450 },
-    video360:    { price:0 },
-    telefono:    { price:0 },
-    modelo:      { price:0 }
+  function randomFlicker(){
+    var idx = Math.floor(Math.random()*letters.length);
+    var el = letters[idx];
+    el.style.transition='opacity 0.06s';el.style.opacity='0.1';
+    setTimeout(function(){el.style.opacity='1'},80);
+    setTimeout(function(){el.style.opacity='0.2'},150);
+    setTimeout(function(){el.style.opacity='1';el.style.transition=''},220);
+    setTimeout(randomFlicker, 2500+Math.random()*4500);
+  }
+  setTimeout(randomFlicker, 4000);
+
+  /* Partículas */
+  var cv=document.getElementById('czeCanvas');
+  var ctx=cv.getContext('2d');
+  var W,H;
+  function resize(){
+    var wrap=cv.closest('.cze-wrap')||cv.parentElement;
+    W=cv.width=wrap.offsetWidth;H=cv.height=wrap.offsetHeight;
+  }
+  resize();window.addEventListener('resize',resize);
+  var dots=[];
+  for(var i=0;i<45;i++){
+    dots.push({x:Math.random(),y:Math.random(),vy:-(0.00003+Math.random()*0.00008),vx:(Math.random()-0.5)*0.00002,r:0.4+Math.random()*1.2,a:0.04+Math.random()*0.10});
+  }
+  function loop(){
+    ctx.clearRect(0,0,W,H);
+    dots.forEach(function(d){
+      d.x+=d.vx;d.y+=d.vy;
+      if(d.y<-0.01){d.y=1.01;d.x=Math.random();}
+      if(d.x<0)d.x=1;if(d.x>1)d.x=0;
+      ctx.beginPath();ctx.arc(d.x*W,d.y*H,d.r,0,Math.PI*2);
+      var colors=['rgba(0,242,255,','rgba(255,0,222,','rgba(0,200,255,'];
+      ctx.fillStyle=colors[Math.floor(Math.random()*colors.length)]+d.a+')';
+      ctx.fill();
+    });
+    requestAnimationFrame(loop);
+  }
+  requestAnimationFrame(loop);
+
+  /* Scan line */
+  var scanStyle=document.createElement('style');
+  scanStyle.textContent='.cze-scan{position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,242,255,0.15),transparent);pointer-events:none;z-index:2;animation:czeScan 6s linear infinite;}@keyframes czeScan{0%{top:-2px;opacity:0}3%{opacity:1}97%{opacity:0.4}100%{top:100%;opacity:0}}';
+  document.head.appendChild(scanStyle);
+  var scan=document.createElement('div');scan.className='cze-scan';
+  document.querySelector('.cze-wrap').appendChild(scan);
+
+  /* Smooth scroll CTA */
+  document.getElementById('hero-cta').addEventListener('click',function(e){
+    e.preventDefault();
+    var target=document.getElementById('calc-section');
+    if(target) target.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+})();
+
+/* ═══ CALCULADORA ═══ */
+(function(){
+  var S={
+    co2:{qty:0,price:300,max:2},
+    confeti:{on:false,price:300},
+    fotomaton:{on:false,price:360},
+    fotoestudio:{on:false,price:450},
+    video360:{price:0},
+    telefono:{price:0},
+    modelo:{price:0}
   };
 
-  function setActive(key, val) {
-    var el = document.getElementById("ci-" + key);
-    if (el) el.classList.toggle("active", val);
+  function setActive(key,val){
+    var el=document.getElementById("ci-"+key);
+    if(el) el.classList.toggle("active",val);
   }
-
-  function changeQty(delta) {
-    S.co2.qty = Math.max(0, Math.min(S.co2.max, S.co2.qty + delta));
-    var qv = document.getElementById("qty-co2");
-    if (qv) qv.textContent = S.co2.qty;
-    setActive("co2", S.co2.qty > 0);
-    render();
+  function changeQty(delta){
+    S.co2.qty=Math.max(0,Math.min(S.co2.max,S.co2.qty+delta));
+    var qv=document.getElementById("qty-co2");
+    if(qv) qv.textContent=S.co2.qty;
+    setActive("co2",S.co2.qty>0);render();
   }
-
-  function toggleItem(key) {
-    S[key].on = !S[key].on;
-    var btn = document.getElementById("tb-" + key);
-    if (btn) {
-      btn.textContent = S[key].on ? "Quitar" : "A\xf1adir";
-      btn.classList.toggle("on", S[key].on);
-    }
-    setActive(key, S[key].on);
-    render();
+  function toggleItem(key){
+    S[key].on=!S[key].on;
+    var btn=document.getElementById("tb-"+key);
+    if(btn){btn.textContent=S[key].on?"Quitar":"A\xf1adir";btn.classList.toggle("on",S[key].on);}
+    setActive(key,S[key].on);render();
   }
-
-  function removeItem(key) {
-    if (key === "co2") {
-      S.co2.qty = 0;
-      var qv = document.getElementById("qty-co2");
-      if (qv) qv.textContent = "0";
-    } else if (S[key].on !== undefined) {
-      S[key].on = false;
-      var btn = document.getElementById("tb-" + key);
-      if (btn) { btn.textContent = "A\xf1adir"; btn.classList.remove("on"); }
-    } else {
-      S[key].price = 0;
-      var sel = document.getElementById("sel-" + key);
-      if (sel) sel.value = "0";
-    }
-    setActive(key, false);
-    render();
+  function removeItem(key){
+    if(key==="co2"){S.co2.qty=0;var qv=document.getElementById("qty-co2");if(qv)qv.textContent="0";}
+    else if(S[key].on!==undefined){S[key].on=false;var btn=document.getElementById("tb-"+key);if(btn){btn.textContent="A\xf1adir";btn.classList.remove("on");}}
+    else{S[key].price=0;var sel=document.getElementById("sel-"+key);if(sel)sel.value="0";}
+    setActive(key,false);render();
   }
+  function render(){
+    var lines=[];
+    if(S.co2.qty>0)        lines.push({key:"co2",label:"Pistolas CO2 x"+S.co2.qty,price:S.co2.qty*S.co2.price});
+    if(S.confeti.on)       lines.push({key:"confeti",label:"Ca\xf1\xf3n de Confeti",price:S.confeti.price});
+    if(S.fotomaton.on)     lines.push({key:"fotomaton",label:"Fotlomat\xf3n",price:S.fotomaton.price});
+    if(S.fotoestudio.on)   lines.push({key:"fotoestudio",label:"Fotoestudio",price:S.fotoestudio.price});
+    if(S.video360.price>0) lines.push({key:"video360",label:"V\xeddeo 360\xba "+(S.video360.price===400?"2h":"3h"),price:S.video360.price});
+    if(S.telefono.price>0) lines.push({key:"telefono",label:"Tel\xe9fono "+(S.telefono.price===250?"C\xf3ctel":"Servicio"),price:S.telefono.price});
+    if(S.modelo.price>0)   lines.push({key:"modelo",label:({1200:"Modelo Basic",1600:"Modelo U",1800:"Modelo Torres",2000:"Modelo Feria"})[S.modelo.price]||"",price:S.modelo.price});
 
-  function render() {
-    var lines = [];
-    if (S.co2.qty > 0)        lines.push({ key:"co2",         label:"Pistolas CO2 x" + S.co2.qty,                                                                    price: S.co2.qty * S.co2.price });
-    if (S.confeti.on)         lines.push({ key:"confeti",     label:"Ca\xf1\xf3n de Confeti",                                                                         price: S.confeti.price });
-    if (S.fotomaton.on)       lines.push({ key:"fotomaton",   label:"Fotlomat\xf3n",                                                                                  price: S.fotomaton.price });
-    if (S.fotoestudio.on)     lines.push({ key:"fotoestudio", label:"Fotoestudio",                                                                                    price: S.fotoestudio.price });
-    if (S.video360.price > 0) lines.push({ key:"video360",    label:"V\xeddeo 360\xba " + (S.video360.price === 400 ? "2h" : "3h"),                                  price: S.video360.price });
-    if (S.telefono.price > 0) lines.push({ key:"telefono",    label:"Tel\xe9fono " + (S.telefono.price === 250 ? "C\xf3ctel" : "Servicio"),                          price: S.telefono.price });
-    if (S.modelo.price > 0)   lines.push({ key:"modelo",      label: ({1200:"Modelo Basic",1600:"Modelo U",1800:"Modelo Torres",2000:"Modelo Feria"})[S.modelo.price] || "", price: S.modelo.price });
+    var total=lines.reduce(function(a,b){return a+b.price;},0);
+    var container=document.getElementById("calc-lines");
+    var empty=document.getElementById("calc-empty");
+    var totalRow=document.getElementById("calc-total-row");
+    var totalNum=document.getElementById("calc-total-num");
+    if(!container) return;
 
-    var total     = lines.reduce(function(a, b) { return a + b.price; }, 0);
-    var container = document.getElementById("calc-lines");
-    var empty     = document.getElementById("calc-empty");
-    var totalRow  = document.getElementById("calc-total-row");
-    var totalNum  = document.getElementById("calc-total-num");
-    if (!container) return;
+    var old=container.querySelectorAll(".calc-line");
+    for(var i=0;i<old.length;i++) old[i].remove();
 
-    var old = container.querySelectorAll(".calc-line");
-    for (var i = 0; i < old.length; i++) old[i].remove();
+    if(lines.length===0){empty.style.display="flex";totalRow.style.display="none";return;}
+    empty.style.display="none";totalRow.style.display="block";
 
-    if (lines.length === 0) {
-      empty.style.display    = "flex";
-      totalRow.style.display = "none";
-      return;
-    }
-    empty.style.display    = "none";
-    totalRow.style.display = "block";
-
-    lines.forEach(function(l) {
-      var row = document.createElement("div");
-      row.className = "calc-line";
-
-      var left = document.createElement("div");
-      left.className = "calc-line-left";
-
-      var dot = document.createElement("div");
-      dot.className = "calc-line-dot";
-
-      var name = document.createElement("span");
-      name.className = "calc-line-name";
-      name.textContent = l.label;
-
-      var priceEl = document.createElement("span");
-      priceEl.className = "calc-line-price";
-      priceEl.textContent = l.price.toLocaleString("es-ES") + "\u20ac";
-
-      var rm = document.createElement("button");
-      rm.className = "calc-line-remove";
-      rm.textContent = "\u2715";
-      rm.title = "Quitar";
-      rm.addEventListener("click", (function(k) { return function() { removeItem(k); }; })(l.key));
-
-      left.appendChild(dot);
-      left.appendChild(name);
-      row.appendChild(left);
-      row.appendChild(priceEl);
-      row.appendChild(rm);
+    lines.forEach(function(l){
+      var row=document.createElement("div");row.className="calc-line";
+      var left=document.createElement("div");left.className="calc-line-left";
+      var dot=document.createElement("div");dot.className="calc-line-dot";
+      var name=document.createElement("span");name.className="calc-line-name";name.textContent=l.label;
+      var priceEl=document.createElement("span");priceEl.className="calc-line-price";priceEl.textContent=l.price.toLocaleString("es-ES")+"\u20ac";
+      var rm=document.createElement("button");rm.className="calc-line-remove";rm.textContent="\u2715";rm.title="Quitar";
+      rm.addEventListener("click",(function(k){return function(){removeItem(k);};})(l.key));
+      left.appendChild(dot);left.appendChild(name);
+      row.appendChild(left);row.appendChild(priceEl);row.appendChild(rm);
       container.appendChild(row);
     });
-
-    totalNum.textContent = total.toLocaleString("es-ES") + "\u20ac";
+    totalNum.textContent=total.toLocaleString("es-ES")+"\u20ac";
   }
 
-  function abrirWhatsApp() {
-    var servicios = [];
-    if (S.co2.qty > 0)        servicios.push("- Pistolas CO2 x" + S.co2.qty + " (" + (S.co2.qty * S.co2.price) + "\u20ac)");
-    if (S.confeti.on)         servicios.push("- Canon de Confeti (300\u20ac)");
-    if (S.fotomaton.on)       servicios.push("- Fotomaton (360\u20ac)");
-    if (S.fotoestudio.on)     servicios.push("- Fotoestudio (450\u20ac)");
-    if (S.video360.price > 0) servicios.push("- Video 360\u00ba " + (S.video360.price === 400 ? "2h" : "3h") + " (" + S.video360.price + "\u20ac)");
-    if (S.telefono.price > 0) servicios.push("- Telefono de Firmas " + (S.telefono.price === 250 ? "desde el coctel" : "desde vuestro servicio") + " (" + S.telefono.price + "\u20ac)");
-    if (S.modelo.price > 0)   servicios.push("- " + ({1200:"Modelo Basic",1600:"Modelo U",1800:"Modelo Torres",2000:"Modelo Feria"})[S.modelo.price] + " (" + S.modelo.price + "\u20ac)");
+  function abrirWhatsApp(){
+    var servicios=[];
+    if(S.co2.qty>0)        servicios.push("- Pistolas CO2 x"+S.co2.qty+" ("+(S.co2.qty*S.co2.price)+"\u20ac)");
+    if(S.confeti.on)       servicios.push("- Canon de Confeti (300\u20ac)");
+    if(S.fotomaton.on)     servicios.push("- Fotomaton (360\u20ac)");
+    if(S.fotoestudio.on)   servicios.push("- Fotoestudio (450\u20ac)");
+    if(S.video360.price>0) servicios.push("- Video 360\u00ba "+(S.video360.price===400?"2h":"3h")+" ("+S.video360.price+"\u20ac)");
+    if(S.telefono.price>0) servicios.push("- Telefono de Firmas "+(S.telefono.price===250?"desde el coctel":"desde vuestro servicio")+" ("+S.telefono.price+"\u20ac)");
+    if(S.modelo.price>0)   servicios.push("- "+({1200:"Modelo Basic",1600:"Modelo U",1800:"Modelo Torres",2000:"Modelo Feria"})[S.modelo.price]+" ("+S.modelo.price+"\u20ac)");
 
-    var total = 0;
-    if (S.co2.qty > 0)        total += S.co2.qty * S.co2.price;
-    if (S.confeti.on)         total += S.confeti.price;
-    if (S.fotomaton.on)       total += S.fotomaton.price;
-    if (S.fotoestudio.on)     total += S.fotoestudio.price;
-    if (S.video360.price > 0) total += S.video360.price;
-    if (S.telefono.price > 0) total += S.telefono.price;
-    if (S.modelo.price > 0)   total += S.modelo.price;
+    var total=0;
+    if(S.co2.qty>0)        total+=S.co2.qty*S.co2.price;
+    if(S.confeti.on)       total+=S.confeti.price;
+    if(S.fotomaton.on)     total+=S.fotomaton.price;
+    if(S.fotoestudio.on)   total+=S.fotoestudio.price;
+    if(S.video360.price>0) total+=S.video360.price;
+    if(S.telefono.price>0) total+=S.telefono.price;
+    if(S.modelo.price>0)   total+=S.modelo.price;
 
     var msg;
-    if (servicios.length === 0) {
-      msg = "Hola! He visto vuestra pagina web y me gustaria recibir informacion sobre vuestros servicios para bodas. Podeis contarme mas? Muchas gracias!";
+    if(servicios.length===0){
+      msg="Hola! He visto vuestra pagina web y me gustaria recibir informacion sobre vuestros servicios para bodas. Podeis contarme mas? Muchas gracias!";
     } else {
-      msg = "Hola! He visto en la pagina web los servicios que ofreceis para bodas y estaria interesado/a en:\n\n"
-          + servicios.join("\n")
-          + "\n\nTotal estimado: " + total.toLocaleString("es-ES") + "\u20ac (sin desplazamiento ni montaje)."
-          + "\n\nPodeis confirmarme disponibilidad y darme mas detalles? Muchas gracias!";
+      msg="Hola! He visto en la pagina web los servicios que ofreceis para bodas y estaria interesado/a en:\n\n"
+        +servicios.join("\n")
+        +"\n\nTotal estimado: "+total.toLocaleString("es-ES")+"\u20ac (sin desplazamiento ni montaje)."
+        +"\n\nPodeis confirmarme disponibilidad y darme mas detalles? Muchas gracias!";
     }
-
-    window.open("https://wa.me/34660068182?text=" + encodeURIComponent(msg), "_blank");
+    window.open("https://wa.me/34660068182?text="+encodeURIComponent(msg),"_blank");
   }
 
-  function bindControls() {
-    var btnMinus = document.getElementById("btn-co2-minus");
-    var btnPlus  = document.getElementById("btn-co2-plus");
-    if (btnMinus) btnMinus.addEventListener("click", function() { changeQty(-1); });
-    if (btnPlus)  btnPlus.addEventListener("click",  function() { changeQty(1); });
-
-    ["confeti", "fotomaton", "fotoestudio"].forEach(function(key) {
-      var btn = document.getElementById("tb-" + key);
-      if (btn) btn.addEventListener("click", function() { toggleItem(key); });
+  function bindControls(){
+    var btnMinus=document.getElementById("btn-co2-minus");
+    var btnPlus=document.getElementById("btn-co2-plus");
+    if(btnMinus) btnMinus.addEventListener("click",function(){changeQty(-1);});
+    if(btnPlus)  btnPlus.addEventListener("click",function(){changeQty(1);});
+    ["confeti","fotomaton","fotoestudio"].forEach(function(key){
+      var btn=document.getElementById("tb-"+key);
+      if(btn) btn.addEventListener("click",function(){toggleItem(key);});
     });
-
-    var selVideo = document.getElementById("sel-video360");
-    if (selVideo) selVideo.addEventListener("change", function() {
-      S.video360.price = parseInt(this.value) || 0;
-      setActive("video360", S.video360.price > 0);
-      render();
-    });
-
-    var selTel = document.getElementById("sel-telefono");
-    if (selTel) selTel.addEventListener("change", function() {
-      S.telefono.price = parseInt(this.value) || 0;
-      setActive("telefono", S.telefono.price > 0);
-      render();
-    });
-
-    var selModelo = document.getElementById("sel-modelo");
-    if (selModelo) selModelo.addEventListener("change", function() {
-      S.modelo.price = parseInt(this.value) || 0;
-      setActive("modelo", S.modelo.price > 0);
-      render();
-    });
-
-    var btnWa = document.getElementById("btn-whatsapp");
-    if (btnWa) btnWa.addEventListener("click", abrirWhatsApp);
+    var selVideo=document.getElementById("sel-video360");
+    if(selVideo) selVideo.addEventListener("change",function(){S.video360.price=parseInt(this.value)||0;setActive("video360",S.video360.price>0);render();});
+    var selTel=document.getElementById("sel-telefono");
+    if(selTel) selTel.addEventListener("change",function(){S.telefono.price=parseInt(this.value)||0;setActive("telefono",S.telefono.price>0);render();});
+    var selModelo=document.getElementById("sel-modelo");
+    if(selModelo) selModelo.addEventListener("change",function(){S.modelo.price=parseInt(this.value)||0;setActive("modelo",S.modelo.price>0);render();});
+    var btnWa=document.getElementById("btn-whatsapp");
+    if(btnWa) btnWa.addEventListener("click",abrirWhatsApp);
   }
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", bindControls);
-  } else {
-    bindControls();
-  }
-
+  if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",bindControls);}
+  else{bindControls();}
 })();
 </script>
-
 </body>
 </html>
