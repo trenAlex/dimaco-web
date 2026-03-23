@@ -1,1 +1,413 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DimacoLed — Sobre Nosotros</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --red:#e8000a;
+  --bg:#070707;--bg2:#0d0d0d;
+  --border:rgba(255,255,255,0.07);
+  --border-red:rgba(232,0,10,0.18);
+  --muted:rgba(255,255,255,0.42);
+  --fd:'Orbitron',sans-serif;
+  --fb:'DM Sans',sans-serif;
+  --px:clamp(24px,7vw,110px);
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:#fff;font-family:var(--fb);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--red)}
 
+/* utilidades */
+.px{padding-left:var(--px);padding-right:var(--px)}
+.tag{display:inline-flex;align-items:center;gap:11px;font-family:var(--fb);font-size:.54rem;font-weight:500;letter-spacing:.35em;text-transform:uppercase;color:rgba(232,0,10,.72)}
+.tag::before{content:'';width:16px;height:1px;background:var(--red)}
+.h2{font-family:var(--fd);font-size:clamp(1.5rem,3vw,2.5rem);font-weight:700;line-height:1.08;letter-spacing:.03em;color:#fff}
+.h2 span{color:var(--red)}
+.rule-h{height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent)}
+.rule-red{height:1px;background:linear-gradient(90deg,transparent,rgba(232,0,10,.25),transparent)}
+
+/* reveal */
+.r{opacity:0;transform:translateY(22px);transition:opacity .65s cubic-bezier(.16,1,.3,1),transform .65s cubic-bezier(.16,1,.3,1)}
+.r.on{opacity:1;transform:none}
+.d1{transition-delay:.10s}.d2{transition-delay:.20s}.d3{transition-delay:.30s}
+
+/* ── HERO ── */
+.hero{
+  position:relative;min-height:88vh;
+  display:flex;align-items:center;
+  padding:clamp(52px,8vw,96px) var(--px);
+  overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 55% 65% at 68% 35%,rgba(232,0,10,.05) 0%,transparent 62%);
+}
+.hero-grid{
+  position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(rgba(232,0,10,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(232,0,10,.02) 1px,transparent 1px);
+  background-size:56px 56px;
+  mask-image:radial-gradient(ellipse 88% 88% at 50% 50%,black 10%,transparent 70%);
+}
+.hero-body{position:relative;z-index:2;max-width:640px}
+.hero-eye{margin-bottom:24px}
+.hero-h1{
+  font-family:var(--fd);font-weight:900;line-height:.93;letter-spacing:.02em;
+  font-size:clamp(2.6rem,6.2vw,5.6rem);color:#fff;margin-bottom:8px;
+}
+.hero-h1 em{display:block;font-style:normal;font-size:.8em;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.14)}
+.hero-line{width:52px;height:3px;margin:24px 0;background:linear-gradient(90deg,var(--red),rgba(232,0,10,.15))}
+.hero-lead{font-size:clamp(.9rem,1.4vw,1.02rem);font-weight:300;line-height:1.82;color:rgba(255,255,255,.46);max-width:480px;margin-bottom:36px}
+.hero-pills{display:flex;flex-wrap:wrap;gap:8px}
+.pill{font-family:var(--fb);font-size:.53rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;padding:7px 15px;border:1px solid var(--border);color:var(--muted)}
+.pill.hot{border-color:var(--border-red);color:rgba(232,0,10,.78)}
+.hero-ghost{position:absolute;right:var(--px);bottom:8%;z-index:1;font-family:var(--fd);font-weight:900;font-size:clamp(5rem,12vw,11rem);color:transparent;-webkit-text-stroke:1px rgba(232,0,10,.05);line-height:1;user-select:none;pointer-events:none}
+
+/* ── QUIÉNES SOMOS ── */
+.quienes{padding:clamp(68px,9vw,120px) var(--px)}
+.q-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,7vw,96px);align-items:start;margin-top:44px}
+.q-text p{font-size:clamp(.87rem,1.22vw,.97rem);font-weight:300;line-height:1.88;color:rgba(255,255,255,.44);margin-bottom:18px}
+.q-text p strong{color:rgba(255,255,255,.76);font-weight:500}
+.q-text blockquote{border-left:2px solid var(--red);padding-left:20px;margin:28px 0;font-size:clamp(.96rem,1.4vw,1.08rem);font-weight:300;font-style:italic;color:rgba(255,255,255,.55);line-height:1.68}
+/* Lista de puntos fuertes */
+.q-list{display:flex;flex-direction:column;gap:20px}
+.q-item{display:flex;align-items:flex-start;gap:14px;padding:18px 20px;border:1px solid var(--border);transition:border-color .3s}
+.q-item:hover{border-color:var(--border-red)}
+.q-dot{width:6px;height:6px;background:var(--red);border-radius:50%;flex-shrink:0;margin-top:5px;box-shadow:0 0 8px rgba(232,0,10,.5)}
+.q-item-head{font-family:var(--fd);font-size:.65rem;font-weight:700;letter-spacing:.1em;color:#fff;margin-bottom:5px}
+.q-item-body{font-size:.74rem;font-weight:300;color:var(--muted);line-height:1.62}
+
+/* ── CIFRAS ── */
+.cifras{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:clamp(46px,6vw,80px) var(--px);position:relative;overflow:hidden}
+.cifras::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 55% 100% at 50% 110%,rgba(232,0,10,.038),transparent);pointer-events:none}
+.cifras-grid{display:grid;grid-template-columns:repeat(4,1fr);position:relative;z-index:1}
+.cf{padding:clamp(26px,3.5vw,44px) clamp(14px,2.5vw,30px);border-right:1px solid var(--border);position:relative}
+.cf:last-child{border-right:none}
+.cf::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--red),transparent);opacity:0;transition:opacity .4s}
+.cf:hover::after{opacity:1}
+.cf-n{font-family:var(--fd);font-size:clamp(1.9rem,4vw,3.4rem);font-weight:900;line-height:1;letter-spacing:-.01em;color:#fff;margin-bottom:6px}
+.cf-n span{color:var(--red)}
+.cf-l{font-size:.58rem;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.cf-d{font-size:.7rem;font-weight:300;color:rgba(255,255,255,.2);margin-top:6px;line-height:1.5}
+
+/* ── SECTORES ── */
+.sectores{padding:clamp(68px,9vw,120px) var(--px)}
+.sect-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:44px}
+.s-card{padding:clamp(22px,2.8vw,32px);border:1px solid var(--border);display:flex;align-items:flex-start;gap:13px;transition:border-color .3s,background .3s}
+.s-card:hover{border-color:var(--border-red);background:rgba(232,0,10,.016)}
+.s-dot{width:6px;height:6px;background:var(--red);border-radius:50%;flex-shrink:0;margin-top:4px;box-shadow:0 0 7px rgba(232,0,10,.5)}
+.s-name{font-family:var(--fd);font-size:.63rem;font-weight:700;letter-spacing:.1em;color:#fff;margin-bottom:5px}
+.s-text{font-size:.72rem;font-weight:300;color:var(--muted);line-height:1.62}
+
+/* ── UBICACIÓN ── */
+.ubi{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:clamp(52px,7vw,88px) var(--px)}
+.ubi-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(44px,7vw,96px);align-items:center;margin-top:42px}
+.ubi-rows{display:flex;flex-direction:column;gap:24px}
+.ubi-row{display:flex;align-items:flex-start;gap:14px}
+.ubi-icon{width:34px;height:34px;border:1px solid var(--border-red);flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.ubi-icon svg{width:14px;height:14px;stroke:var(--red);fill:none;stroke-width:1.5}
+.ubi-lbl{font-family:var(--fd);font-size:.55rem;letter-spacing:.16em;color:rgba(232,0,10,.62);margin-bottom:4px}
+.ubi-val{font-size:clamp(.84rem,1.2vw,.94rem);font-weight:300;color:rgba(255,255,255,.68);line-height:1.5}
+/* Mapa */
+.ubi-map{position:relative;background:var(--bg);border:1px solid var(--border);height:260px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.ubi-map::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(232,0,10,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(232,0,10,.025) 1px,transparent 1px);background-size:26px 26px}
+.map-pin{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px}
+.pin-dot{width:12px;height:12px;background:var(--red);border-radius:50%;box-shadow:0 0 0 4px rgba(232,0,10,.18),0 0 0 10px rgba(232,0,10,.07),0 0 26px rgba(232,0,10,.4);animation:pp 2.4s ease-in-out infinite}
+@keyframes pp{0%,100%{box-shadow:0 0 0 4px rgba(232,0,10,.18),0 0 0 10px rgba(232,0,10,.07),0 0 26px rgba(232,0,10,.4)}50%{box-shadow:0 0 0 6px rgba(232,0,10,.22),0 0 0 15px rgba(232,0,10,.09),0 0 40px rgba(232,0,10,.5)}}
+.pin-label{font-family:var(--fd);font-size:.58rem;letter-spacing:.16em;color:rgba(232,0,10,.85);background:var(--bg);padding:5px 12px;border:1px solid var(--border-red)}
+.pin-sub{font-size:.54rem;letter-spacing:.1em;color:rgba(255,255,255,.2)}
+
+/* ── CTA ── */
+.cta{position:relative;padding:clamp(78px,11vw,130px) var(--px);text-align:center;overflow:hidden}
+.cta::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 56% 65% at 50% 50%,rgba(232,0,10,.06),transparent 64%)}
+.cta::after{content:'';position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(232,0,10,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(232,0,10,.025) 1px,transparent 1px);background-size:48px 48px;mask-image:radial-gradient(ellipse 68% 68% at 50% 50%,black,transparent)}
+.cta-inner{position:relative;z-index:2;max-width:540px;margin:0 auto}
+.cta-lbl{font-family:var(--fb);font-size:.53rem;letter-spacing:.34em;text-transform:uppercase;color:rgba(232,0,10,.65);margin-bottom:16px}
+.cta-h2{font-family:var(--fd);font-size:clamp(1.65rem,3.6vw,3rem);font-weight:900;line-height:1.06;color:#fff;margin-bottom:16px}
+.cta-sub{font-size:clamp(.84rem,1.22vw,.93rem);font-weight:300;line-height:1.82;color:var(--muted);margin-bottom:38px}
+.cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn-p{font-family:var(--fb);font-size:.61rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;padding:13px 44px;background:var(--red);color:#fff;position:relative;overflow:hidden;transition:box-shadow .4s,transform .3s;box-shadow:0 0 20px rgba(232,0,10,.26)}
+.btn-p::before{content:'';position:absolute;top:0;left:-100%;width:50%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.18),transparent);transform:skewX(-20deg);transition:left .5s}
+.btn-p:hover{box-shadow:0 0 46px rgba(232,0,10,.58);transform:translateY(-2px)}
+.btn-p:hover::before{left:160%}
+.btn-o{font-family:var(--fb);font-size:.61rem;font-weight:400;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;padding:12px 32px;color:var(--muted);border:1px solid var(--border);transition:color .3s,border-color .3s}
+.btn-o:hover{color:#fff;border-color:rgba(255,255,255,.26)}
+
+/* ── FOOTER ── */
+footer{border-top:1px solid var(--border);padding:clamp(28px,4vw,44px) var(--px);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.f-logo{font-family:var(--fd);font-size:.68rem;font-weight:700;letter-spacing:.12em;color:rgba(255,255,255,.26)}
+.f-logo span{color:rgba(232,0,10,.46)}
+.f-copy{font-size:.57rem;letter-spacing:.12em;color:rgba(255,255,255,.14)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:860px){
+  .q-grid,.ubi-grid{grid-template-columns:1fr}
+  .cifras-grid{grid-template-columns:repeat(2,1fr)}
+  .cf:nth-child(2){border-right:none}
+  .cf:nth-child(3){border-top:1px solid var(--border)}
+  .sect-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:540px){
+  .hero-ghost{display:none}
+  .sect-grid{grid-template-columns:1fr}
+  .cifras-grid{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-body">
+    <div class="tag hero-eye r">Sobre DimacoLed</div>
+    <h1 class="hero-h1 r d1">
+      Especialistas en<br>
+      <em>pantallas LED</em>
+    </h1>
+    <div class="hero-line r d2"></div>
+    <p class="hero-lead r d2">
+      Venta y alquiler de pantallas LED con amplia experiencia en el sector.
+      Atendemos proyectos de cualquier escala con el mismo nivel de compromiso,
+      calidad y servicio personalizado.
+    </p>
+    <div class="hero-pills r d3">
+      <span class="pill hot">Alquerías, Murcia</span>
+      <span class="pill">Venta &amp; Alquiler</span>
+      <span class="pill">⭐ Mejor valorados</span>
+      <span class="pill">CE Certified</span>
+    </div>
+  </div>
+  <div class="hero-ghost r d3">LED</div>
+</section>
+
+<div class="rule-red"></div>
+
+<!-- QUIÉNES SOMOS -->
+<section class="quienes">
+  <div class="tag r">Quiénes somos</div>
+  <h2 class="h2 r d1" style="margin-top:12px">Años de experiencia<br><span>a tu servicio</span></h2>
+  <div class="q-grid">
+    <div class="q-text r d1">
+      <p>
+        DimacoLed es una empresa murciana especializada en la <strong>venta e instalación de pantallas LED</strong> para todo tipo de entornos, y en el <strong>alquiler de equipos</strong> para eventos, espectáculos y actos corporativos.
+      </p>
+      <p>
+        Con muchos años en el sector, hemos trabajado con centenares de clientes —desde pequeños comercios hasta grandes productoras de eventos— construyendo una reputación basada en la honestidad, el trato cercano y los resultados.
+      </p>
+      <blockquote>
+        Nos mueve la pasión por la tecnología LED y el compromiso de dar siempre el mejor servicio, sin importar el tamaño del proyecto.
+      </blockquote>
+    </div>
+    <div class="q-list r d2">
+      <div class="q-item">
+        <div class="q-dot"></div>
+        <div>
+          <div class="q-item-head">Asesoramiento sin rodeos</div>
+          <div class="q-item-body">Te orientamos con criterio técnico real para que elijas la pantalla que de verdad necesitas, no la más cara.</div>
+        </div>
+      </div>
+      <div class="q-item">
+        <div class="q-dot"></div>
+        <div>
+          <div class="q-item-head">Instalación profesional</div>
+          <div class="q-item-body">Nuestro equipo técnico se encarga del montaje completo, garantizando un resultado limpio y duradero.</div>
+        </div>
+      </div>
+      <div class="q-item">
+        <div class="q-dot"></div>
+        <div>
+          <div class="q-item-head">Soporte post-venta real</div>
+          <div class="q-item-body">No desaparecemos tras la venta. Respondemos rápido y resolvemos cualquier incidencia con agilidad.</div>
+        </div>
+      </div>
+      <div class="q-item">
+        <div class="q-dot"></div>
+        <div>
+          <div class="q-item-head">Flexibilidad total</div>
+          <div class="q-item-body">Alquiler por días o semanas, venta con o sin instalación. Adaptamos la fórmula a cada proyecto.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="rule-h px"></div>
+
+<!-- CIFRAS -->
+<section class="cifras">
+  <div class="cifras-grid">
+    <div class="cf r">
+      <div class="cf-n"><span>+</span>500</div>
+      <div class="cf-l">Instalaciones</div>
+      <div class="cf-d">Proyectos completados con éxito</div>
+    </div>
+    <div class="cf r d1">
+      <div class="cf-n">98<span>%</span></div>
+      <div class="cf-l">Satisfacción</div>
+      <div class="cf-d">Valoraciones de 5 estrellas verificadas</div>
+    </div>
+    <div class="cf r d2">
+      <div class="cf-n"><span>+</span>200</div>
+      <div class="cf-l">Eventos</div>
+      <div class="cf-d">Festivales, ferias y actos corporativos</div>
+    </div>
+    <div class="cf r d3">
+      <div class="cf-n">24<span>h</span></div>
+      <div class="cf-l">Soporte</div>
+      <div class="cf-d">Tiempo de respuesta ante incidencias</div>
+    </div>
+  </div>
+</section>
+
+<div class="rule-h px"></div>
+
+<!-- SECTORES -->
+<section class="sectores">
+  <div class="tag r">Dónde trabajamos</div>
+  <h2 class="h2 r d1" style="margin-top:12px">Sectores que <span>atendemos</span></h2>
+  <div class="sect-grid">
+    <div class="s-card r">
+      <div class="s-dot"></div>
+      <div>
+        <div class="s-name">Comercios &amp; Retail</div>
+        <div class="s-text">Escaparates, pantallas de interior y fachadas LED para destacar tu negocio.</div>
+      </div>
+    </div>
+    <div class="s-card r d1">
+      <div class="s-dot"></div>
+      <div>
+        <div class="s-name">Hostelería</div>
+        <div class="s-text">Cartas digitales, ambientación y señalización en bares, restaurantes y hoteles.</div>
+      </div>
+    </div>
+    <div class="s-card r d2">
+      <div class="s-dot"></div>
+      <div>
+        <div class="s-name">Eventos &amp; Espectáculos</div>
+        <div class="s-text">Alquiler de pantallas para conciertos, bodas, ferias y presentaciones.</div>
+      </div>
+    </div>
+    <div class="s-card r">
+      <div class="s-dot"></div>
+      <div>
+        <div class="s-name">Publicidad Exterior</div>
+        <div class="s-text">Vallas y totems LED de gran formato para campañas y comunicación corporativa.</div>
+      </div>
+    </div>
+    <div class="s-card r d1">
+      <div class="s-dot"></div>
+      <div>
+        <div class="s-name">Deporte &amp; Institucional</div>
+        <div class="s-text">Instalaciones en polideportivos, ayuntamientos y recintos deportivos.</div>
+      </div>
+    </div>
+    <div class="s-card r d2">
+      <div class="s-dot"></div>
+      <div>
+        <div class="s-name">Industria &amp; Logística</div>
+        <div class="s-text">Señalización dinámica y paneles informativos para entornos industriales.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="rule-red"></div>
+
+<!-- UBICACIÓN -->
+<section class="ubi">
+  <div class="tag r">Encuéntranos</div>
+  <h2 class="h2 r d1" style="margin-top:12px">Estamos en <span>Alquerías, Murcia</span></h2>
+  <div class="ubi-grid">
+    <div class="ubi-rows">
+      <div class="ubi-row r d1">
+        <div class="ubi-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <div>
+          <div class="ubi-lbl">Dirección</div>
+          <div class="ubi-val">C/ Francisco José Vicente Ortega, 5<br>Alquerías, Murcia</div>
+        </div>
+      </div>
+      <div class="ubi-row r d2">
+        <div class="ubi-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <div>
+          <div class="ubi-lbl">Horario</div>
+          <div class="ubi-val">Lunes a Viernes · 9:00 – 18:00<br>Sábados con cita previa</div>
+        </div>
+      </div>
+      <div class="ubi-row r d3">
+        <div class="ubi-icon"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+        <div>
+          <div class="ubi-lbl">Valoraciones</div>
+          <div class="ubi-val">⭐⭐⭐⭐⭐ · Los mejor valorados<br>de la zona en pantallas LED</div>
+        </div>
+      </div>
+    </div>
+    <div class="ubi-map r d2">
+      <div class="map-pin">
+        <div class="pin-dot"></div>
+        <div class="pin-label">DimacoLed · Alquerías</div>
+        <div class="pin-sub">Murcia, España</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="cta-inner r">
+    <div class="cta-lbl">Hablemos</div>
+    <h2 class="cta-h2">¿Tienes un proyecto en mente?</h2>
+    <p class="cta-sub">Cuéntanos qué necesitas — venta, alquiler o instalación. Presupuesto sin compromiso y asesoramiento honesto.</p>
+    <div class="cta-btns">
+      <a href="https://wa.me/34660068182?text=Hola%20buenas%2C%20estaba%20viendo%20vuestra%20web%20y%20me%20ha%20interesado%20lo%20que%20ofrecéis.%20Estoy%20interesado%20en%20una%20pantalla%20LED%20para%20un%20proyecto%20%5Bdescribe%20aquí%20tu%20proyecto%5D%20y%20me%20gustaría%20que%20me%20comentaseis%20opciones%20y%20precios.%20Muchas%20gracias%21" target="_blank" rel="noopener" class="btn-p">Solicitar presupuesto</a>
+      <a href="#" class="btn-o">Ver productos</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="f-logo">Dimaco<span>Led</span></div>
+  <div class="f-copy">© 2024 DimacoLed · C/ Francisco José Vicente Ortega, 5 · Alquerías, Murcia</div>
+</footer>
+
+<script>
+(function(){
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}});
+  },{threshold:0.10,rootMargin:'0px 0px -32px 0px'});
+  document.querySelectorAll('.r').forEach(el=>io.observe(el));
+})();
+
+(function(){
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(!e.isIntersecting)return;
+      const el=e.target;
+      const raw=el.textContent.replace(/[^0-9]/g,'');
+      if(!raw)return;
+      const target=parseInt(raw,10);
+      const pre=el.innerHTML.match(/^<span>[^<]*<\/span>/)?.[0]??'';
+      const suf=el.innerHTML.replace(/^(<span>[^<]*<\/span>)?[0-9]*/,'').replace(/[0-9]/g,'');
+      let t0=null;
+      function tick(now){
+        if(!t0)t0=now;
+        const p=Math.min((now-t0)/1300,1),e2=1-Math.pow(1-p,3);
+        el.innerHTML=pre+Math.round(e2*target)+suf;
+        if(p<1)requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+      io.unobserve(el);
+    });
+  },{threshold:0.5});
+  document.querySelectorAll('.cf-n').forEach(n=>io.observe(n));
+})();
+</script>
+</body>
+</html>
