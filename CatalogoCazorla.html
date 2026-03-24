@@ -382,14 +382,16 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
 }
 .cze-footer-wordmark{
   font-family:'Orbitron',sans-serif;font-weight:900;
-  font-size:clamp(3.5rem,13vw,9rem);
+  font-size:clamp(2.2rem,10vw,9rem);
   letter-spacing:0.12em;
   color:transparent;
   -webkit-text-stroke:1px rgba(0,242,255,0.18);
   position:relative;
   text-transform:uppercase;
   line-height:1;
-  text-indent:0.12em;
+  white-space:nowrap;
+  display:flex;
+  flex-wrap:nowrap;
 }
 .cze-footer-wordmark .glow-letter{
   display:inline-block;
