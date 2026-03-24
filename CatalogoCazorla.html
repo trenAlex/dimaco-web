@@ -339,6 +339,175 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
 .calc-cta-arrow{font-size:1rem;transition:transform 0.25s}
 .calc-cta:hover .calc-cta-arrow{transform:translateX(4px)}
 
+/* ═══════════════════════════════════
+   FOOTER CIERRE
+═══════════════════════════════════ */
+.cze-footer{
+  position:relative;
+  overflow:hidden;
+  background:var(--bg);
+  padding:60px 36px 48px;
+}
+
+/* Grid de fondo */
+.cze-footer::before{
+  content:'';
+  position:absolute;inset:0;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(0,242,255,0.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,242,255,0.04) 1px,transparent 1px);
+  background-size:40px 40px;
+  mask-image:radial-gradient(ellipse 100% 100% at 50% 0%,black 0%,transparent 80%);
+  -webkit-mask-image:radial-gradient(ellipse 100% 100% at 50% 0%,black 0%,transparent 80%);
+}
+
+/* Gradiente de vignette para el fade inferior */
+.cze-footer::after{
+  content:'';
+  position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 80% 60% at 50% 100%,rgba(0,242,255,0.04) 0%,transparent 70%);
+}
+
+.cze-footer-inner{
+  position:relative;z-index:2;
+  max-width:1140px;margin:0 auto;
+  display:flex;flex-direction:column;align-items:center;gap:36px;
+}
+
+/* Logo central grande */
+.cze-footer-logo{
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+}
+.cze-footer-wordmark{
+  font-family:'Orbitron',sans-serif;font-weight:900;
+  font-size:clamp(2rem,7vw,4.2rem);
+  letter-spacing:0.1em;
+  color:transparent;
+  background:linear-gradient(90deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.14) 40%, rgba(255,255,255,0.06) 100%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-stroke:1px rgba(255,255,255,0.1);
+  position:relative;
+  text-transform:uppercase;
+  line-height:1;
+}
+.cze-footer-wordmark .glow-letter{
+  display:inline-block;
+  color:transparent;
+  -webkit-text-stroke:1px rgba(0,242,255,0.25);
+  transition:color 0.3s, text-shadow 0.3s, -webkit-text-stroke 0.3s;
+}
+.cze-footer-wordmark .glow-letter:hover{
+  color:var(--cyan);
+  -webkit-text-stroke:1px transparent;
+  text-shadow:0 0 12px var(--cyan), 0 0 30px var(--cyan-glow);
+}
+.cze-footer-sub-word{
+  font-family:'Orbitron',sans-serif;font-weight:400;
+  font-size:clamp(0.55rem,1.5vw,0.75rem);
+  letter-spacing:0.7em;text-indent:0.7em;
+  color:rgba(255,255,255,0.08);
+  text-transform:uppercase;
+}
+
+/* Línea neon divisora */
+.cze-footer-line{
+  width:min(420px,80%);height:1px;
+  background:linear-gradient(90deg,transparent,var(--cyan),var(--pink),var(--cyan),transparent);
+  box-shadow:0 0 10px rgba(0,242,255,0.3),0 0 24px rgba(0,242,255,0.12);
+  animation:lineBreath 4s ease-in-out infinite;
+}
+
+/* Data row — info técnica de pie */
+.cze-footer-data{
+  display:flex;align-items:center;justify-content:center;
+  gap:0;flex-wrap:wrap;
+}
+.cze-fd-item{
+  display:flex;align-items:center;gap:10px;
+  padding:0 24px;
+  border-right:1px solid rgba(255,255,255,0.06);
+}
+.cze-fd-item:last-child{border-right:none}
+.cze-fd-dot{
+  width:4px;height:4px;border-radius:50%;
+  background:var(--cyan);
+  box-shadow:0 0 6px var(--cyan-glow);
+  flex-shrink:0;
+  animation:lp 2.4s ease-in-out infinite;
+}
+.cze-fd-dot.p{background:var(--pink);box-shadow:0 0 6px var(--pink-glow);animation-delay:0.8s}
+.cze-fd-lbl{
+  font-family:'DM Sans',sans-serif;font-size:0.48rem;
+  letter-spacing:4px;text-transform:uppercase;
+  color:rgba(255,255,255,0.18);
+  display:block;margin-bottom:2px;
+}
+.cze-fd-val{
+  font-family:'Orbitron',sans-serif;font-size:0.62rem;font-weight:500;
+  color:rgba(255,255,255,0.35);
+  letter-spacing:0.05em;
+  display:block;
+}
+
+/* Ticker / scan text */
+.cze-footer-ticker{
+  width:100%;overflow:hidden;
+  border-top:1px solid rgba(255,255,255,0.04);
+  border-bottom:1px solid rgba(255,255,255,0.04);
+  padding:10px 0;
+  position:relative;
+}
+.cze-footer-ticker::before,
+.cze-footer-ticker::after{
+  content:'';
+  position:absolute;top:0;bottom:0;width:80px;z-index:2;pointer-events:none;
+}
+.cze-footer-ticker::before{left:0;background:linear-gradient(90deg,var(--bg),transparent)}
+.cze-footer-ticker::after{right:0;background:linear-gradient(270deg,var(--bg),transparent)}
+.cze-ticker-track{
+  display:flex;gap:0;
+  animation:tickerScroll 28s linear infinite;
+  width:max-content;
+}
+.cze-ticker-track:hover{animation-play-state:paused}
+@keyframes tickerScroll{
+  0%{transform:translateX(0)}
+  100%{transform:translateX(-50%)}
+}
+.cze-ticker-item{
+  display:flex;align-items:center;gap:14px;
+  padding:0 28px;
+  font-family:'DM Sans',sans-serif;font-size:0.52rem;
+  letter-spacing:3px;text-transform:uppercase;
+  color:rgba(255,255,255,0.12);
+  white-space:nowrap;
+  border-right:1px solid rgba(255,255,255,0.04);
+}
+.cze-ticker-item .t-dot{
+  width:3px;height:3px;border-radius:50%;
+  background:var(--cyan);
+  box-shadow:0 0 5px var(--cyan-glow);
+  flex-shrink:0;
+}
+.cze-ticker-item .t-dot.p{background:var(--pink);box-shadow:0 0 5px var(--pink-glow)}
+.cze-ticker-item span.hi{color:rgba(0,242,255,0.3)}
+
+/* Copyright final */
+.cze-footer-copy{
+  display:flex;align-items:center;gap:16px;
+  font-family:'DM Sans',sans-serif;font-size:0.48rem;
+  letter-spacing:3px;text-transform:uppercase;
+  color:rgba(255,255,255,0.1);
+  flex-wrap:wrap;justify-content:center;
+  padding-bottom:4px;
+}
+.cze-footer-copy-sep{width:1px;height:10px;background:rgba(255,255,255,0.1)}
+
+/* Decoración: esquinas */
+.cze-footer .cze-corner.tl{top:16px;left:16px}
+.cze-footer .cze-corner.tr{top:16px;right:16px}
+
 /* RESPONSIVE */
 @media(max-width:900px){
   .g2{grid-template-columns:1fr}
@@ -362,6 +531,8 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
   .toggle-btn{width:100%;text-align:center}
   .calc-line-name{white-space:normal}
   .cze-cta-btn{padding:14px 24px}
+  .cze-fd-item{padding:8px 14px}
+  .cze-footer{padding:48px 18px 36px}
 }
 </style>
 </head>
@@ -399,7 +570,6 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
   <div class="cze-redline"></div>
   <p class="cze-tagline">Iluminamos cada momento</p>
 
-  <!-- CTA BUTTON -->
   <div class="cze-cta-wrap">
     <a class="cze-cta-btn" href="#calc-section" id="hero-cta">
       <div class="cze-cta-glow"></div>
@@ -759,11 +929,81 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
 
 <div class="divider"></div>
 
+<!-- ═══════ CONTACT STRIP ═══════ -->
 <div class="contact-strip">
   <div class="ci"><div class="ci-dot"></div><div><span class="ci-lbl">Teléfono</span><span class="ci-val">635 68 10 45</span></div></div>
   <div class="ci"><div class="ci-dot"></div><div><span class="ci-lbl">Email</span><span class="ci-val">info@cazorlaevents.com</span></div></div>
   <div class="ci"><div class="ci-dot"></div><div><span class="ci-lbl">Redes</span><span class="ci-val">@cazorla_event</span></div></div>
 </div>
+
+<!-- ═══════ FOOTER CIERRE ═══════ -->
+<footer class="cze-footer">
+  <div class="cze-corner tl"></div>
+  <div class="cze-corner tr"></div>
+
+  <div class="cze-footer-inner">
+
+    <!-- Wordmark grande fantasma -->
+    <div class="cze-footer-logo">
+      <div class="cze-footer-wordmark" id="footerWordmark">
+        <span class="glow-letter">C</span><span class="glow-letter">A</span><span class="glow-letter">Z</span><span class="glow-letter">O</span><span class="glow-letter">R</span><span class="glow-letter">L</span><span class="glow-letter">A</span>
+      </div>
+      <div class="cze-footer-sub-word">Events</div>
+    </div>
+
+    <!-- Línea neon -->
+    <div class="cze-footer-line"></div>
+
+    <!-- Data técnica -->
+    <div class="cze-footer-data">
+      <div class="cze-fd-item">
+        <div class="cze-fd-dot"></div>
+        <div>
+          <span class="cze-fd-lbl">Teléfono</span>
+          <span class="cze-fd-val">635 68 10 45</span>
+        </div>
+      </div>
+      <div class="cze-fd-item">
+        <div class="cze-fd-dot p"></div>
+        <div>
+          <span class="cze-fd-lbl">Email</span>
+          <span class="cze-fd-val">info@cazorlaevents.com</span>
+        </div>
+      </div>
+      <div class="cze-fd-item">
+        <div class="cze-fd-dot"></div>
+        <div>
+          <span class="cze-fd-lbl">Instagram</span>
+          <span class="cze-fd-val">@cazorla_event</span>
+        </div>
+      </div>
+      <div class="cze-fd-item">
+        <div class="cze-fd-dot p"></div>
+        <div>
+          <span class="cze-fd-lbl">Disponibilidad</span>
+          <span class="cze-fd-val">Todo el año</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ticker scrolling -->
+    <div class="cze-footer-ticker">
+      <div class="cze-ticker-track" id="tickerTrack">
+        <!-- Items generados x2 por JS para loop infinito -->
+      </div>
+    </div>
+
+    <!-- Copyright -->
+    <div class="cze-footer-copy">
+      <span>© 2025 Cazorla Events</span>
+      <div class="cze-footer-copy-sep"></div>
+      <span>LED · Sonido · Producción</span>
+      <div class="cze-footer-copy-sep"></div>
+      <span>Murcia · España</span>
+    </div>
+
+  </div>
+</footer>
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
@@ -786,7 +1026,6 @@ document.addEventListener("DOMContentLoaded", function() {
   }
   setTimeout(randomFlicker, 4000);
 
-  /* Partículas */
   var cv=document.getElementById('czeCanvas');
   var ctx=cv.getContext('2d');
   var W,H;
@@ -814,14 +1053,12 @@ document.addEventListener("DOMContentLoaded", function() {
   }
   requestAnimationFrame(loop);
 
-  /* Scan line */
   var scanStyle=document.createElement('style');
   scanStyle.textContent='.cze-scan{position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,242,255,0.15),transparent);pointer-events:none;z-index:2;animation:czeScan 6s linear infinite;}@keyframes czeScan{0%{top:-2px;opacity:0}3%{opacity:1}97%{opacity:0.4}100%{top:100%;opacity:0}}';
   document.head.appendChild(scanStyle);
   var scan=document.createElement('div');scan.className='cze-scan';
   document.querySelector('.cze-wrap').appendChild(scan);
 
-  /* Smooth scroll CTA */
   document.getElementById('hero-cta').addEventListener('click',function(e){
     e.preventDefault();
     var target=document.getElementById('calc-section');
@@ -952,6 +1189,40 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   bindControls();
+})();
+
+/* ═══ FOOTER TICKER ═══ */
+(function(){
+  var items = [
+    {text:"LED · Pantallas profesionales", dot:"c"},
+    {text:"Efectos de CO2 · Confeti · Humo", dot:"p"},
+    {text:"Fotomatón · Fotoestudio · 360º", dot:"c"},
+    {text:"Sonido 2000–3000w", dot:"p"},
+    {text:"Teléfono de Firmas vintage", dot:"c"},
+    {text:"Bodas · Ferias · Eventos privados", dot:"p"},
+    {text:"Murcia · Sur de España", dot:"c"},
+    {text:"Iluminamos cada momento", dot:"p"},
+    {text:"Señal 20% · Reserva tu fecha", dot:"c"},
+    {text:"DJ + Técnico especializado", dot:"p"},
+  ];
+
+  var track = document.getElementById('tickerTrack');
+  if(!track) return;
+
+  // Duplicamos para el loop infinito
+  [items,items].forEach(function(set){
+    set.forEach(function(it){
+      var div = document.createElement('div');
+      div.className = 'cze-ticker-item';
+      var dot = document.createElement('span');
+      dot.className = 't-dot' + (it.dot==='p'?' p':'');
+      var txt = document.createElement('span');
+      txt.textContent = it.text;
+      div.appendChild(dot);
+      div.appendChild(txt);
+      track.appendChild(div);
+    });
+  });
 })();
 
 }); // DOMContentLoaded
