@@ -1,1 +1,670 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DimacoLed — Sobre Nosotros</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --red:#e8000a;
+  --red2:#ff2820;
+  --bg:#080808;
+  --bg2:#0d0d0d;
+  --border:rgba(255,255,255,0.055);
+  --text:rgba(255,255,255,0.85);
+  --text-muted:rgba(255,255,255,0.38);
+  --text-dim:rgba(255,255,255,0.2);
+}
+html,body{
+  background:var(--bg);
+  color:var(--text);
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  font-family:'DM Sans',sans-serif;
+}
 
+/* ── CANVAS fondo ── */
+#bg{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+
+/* ── PÁGINA ── */
+.page{
+  position:relative;
+  z-index:1;
+  min-height:100vh;
+}
+
+/* ── NAV mínima ── */
+.nav{
+  position:fixed;
+  top:0;left:0;right:0;
+  z-index:100;
+  height:56px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 clamp(20px,5vw,60px);
+  background:rgba(8,8,8,0.75);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.04);
+}
+.nav-logo{
+  font-family:'Orbitron',sans-serif;
+  font-size:clamp(0.7rem,1.8vw,0.9rem);
+  font-weight:700;
+  letter-spacing:0.06em;
+  color:#fff;
+}
+.nav-logo span{color:var(--red2);text-shadow:0 0 12px rgba(255,40,20,0.5)}
+.nav-back{
+  font-family:'DM Sans',sans-serif;
+  font-size:0.62rem;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:var(--text-dim);
+  text-decoration:none;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  transition:color .3s;
+}
+.nav-back:hover{color:rgba(255,255,255,0.6)}
+.nav-back::before{
+  content:'';
+  display:block;
+  width:16px;height:1px;
+  background:currentColor;
+  transition:width .3s;
+}
+.nav-back:hover::before{width:24px}
+
+/* ── HERO DE SECCIÓN ── */
+.hero-section{
+  padding-top:56px; /* nav height */
+  padding-bottom:0;
+  min-height:44vh;
+  display:flex;
+  align-items:flex-end;
+  position:relative;
+  overflow:hidden;
+}
+
+/* Vignette */
+.hero-section::before{
+  content:'';
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 100% at 50% 0%,transparent 30%,rgba(8,8,8,0.85) 100%);
+  z-index:1;pointer-events:none;
+}
+
+.hero-inner{
+  position:relative;z-index:2;
+  width:100%;
+  max-width:1100px;
+  margin:0 auto;
+  padding:clamp(48px,7vw,80px) clamp(20px,5vw,64px) clamp(40px,5vw,60px);
+}
+
+.section-tag{
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+  font-size:clamp(0.44rem,1vw,0.54rem);
+  font-weight:500;
+  letter-spacing:5px;
+  text-transform:uppercase;
+  color:var(--text-dim);
+  margin-bottom:clamp(18px,3vw,26px);
+}
+.tag-bar{
+  width:28px;height:1px;
+  background:var(--red);
+  box-shadow:0 0 7px rgba(232,0,10,0.7);
+}
+
+.hero-title{
+  font-family:'Orbitron',sans-serif;
+  font-weight:700;
+  font-size:clamp(2rem,6vw,5rem);
+  line-height:1.05;
+  letter-spacing:0.02em;
+  color:#fff;
+}
+.hero-title em{
+  font-style:normal;
+  color:var(--red2);
+  text-shadow:0 0 36px rgba(255,40,20,0.28);
+}
+
+/* Línea separadora */
+.section-rule{
+  width:100%;height:1px;
+  background:linear-gradient(90deg,rgba(232,0,10,0.35),rgba(255,255,255,0.06) 50%,transparent);
+}
+
+/* ── CUERPO ── */
+.body-wrap{
+  max-width:1100px;
+  margin:0 auto;
+  padding:0 clamp(20px,5vw,64px);
+}
+
+/* ── BLOQUE INTRO ── */
+.intro-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:clamp(32px,5vw,80px);
+  padding:clamp(52px,7vw,80px) 0 clamp(48px,6vw,72px);
+  align-items:start;
+}
+@media(max-width:680px){.intro-grid{grid-template-columns:1fr;gap:28px}}
+
+.intro-lead{
+  font-size:clamp(1rem,2vw,1.2rem);
+  font-weight:300;
+  line-height:1.85;
+  color:rgba(255,255,255,0.5);
+}
+.intro-lead strong{
+  font-weight:500;
+  color:rgba(255,255,255,0.82);
+}
+
+.intro-right{
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+  padding-top:4px;
+}
+.intro-para{
+  font-size:clamp(0.82rem,1.4vw,0.94rem);
+  font-weight:300;
+  line-height:1.82;
+  color:var(--text-muted);
+}
+
+/* ── MÉTRICAS ── */
+.metrics-row{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:1px;
+  background:rgba(255,255,255,0.04);
+  border-top:1px solid rgba(255,255,255,0.04);
+  border-bottom:1px solid rgba(255,255,255,0.04);
+  margin-bottom:clamp(56px,8vw,88px);
+}
+
+.metric{
+  background:var(--bg);
+  padding:clamp(24px,3.5vw,38px) clamp(18px,2.5vw,28px);
+  position:relative;overflow:hidden;
+  cursor:default;
+  transition:background .4s;
+}
+.metric::after{
+  content:'';
+  position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--red),transparent);
+  opacity:0;transition:opacity .4s;
+}
+.metric:hover{background:#0e0303}
+.metric:hover::after{opacity:1}
+.metric-val{
+  font-family:'Orbitron',sans-serif;
+  font-size:clamp(1.6rem,3.8vw,2.6rem);
+  font-weight:700;
+  color:#fff;
+  line-height:1;
+  letter-spacing:0.03em;
+  margin-bottom:7px;
+}
+.metric-val sup{font-size:0.52em;color:var(--red);vertical-align:super}
+.metric-name{
+  font-size:clamp(0.54rem,1.1vw,0.62rem);
+  font-weight:400;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:var(--text-dim);
+  margin-bottom:10px;
+}
+.metric-note{
+  font-size:clamp(0.74rem,1.2vw,0.82rem);
+  font-weight:300;
+  line-height:1.6;
+  color:rgba(255,255,255,0.22);
+}
+
+/* ── VALORES ── */
+.values-header{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-size:clamp(0.44rem,1vw,0.52rem);
+  font-weight:500;
+  letter-spacing:5px;
+  text-transform:uppercase;
+  color:var(--text-dim);
+  margin-bottom:clamp(22px,3vw,30px);
+}
+
+.values-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:1px;
+  background:rgba(255,255,255,0.04);
+  margin-bottom:clamp(56px,8vw,88px);
+}
+
+.val{
+  background:var(--bg);
+  padding:clamp(28px,3.5vw,40px) clamp(22px,2.8vw,32px);
+  position:relative;overflow:hidden;
+  transition:background .4s;
+}
+.val:hover{background:#0c0202}
+.val-bar{
+  position:absolute;
+  left:0;top:0;bottom:0;width:2px;
+  background:linear-gradient(180deg,var(--red) 0%,transparent 100%);
+  opacity:0;
+  transition:opacity .45s;
+}
+.val:hover .val-bar{opacity:1}
+
+.val-icon{
+  width:30px;height:30px;
+  margin-bottom:18px;
+  flex-shrink:0;
+}
+.val-title{
+  font-family:'Orbitron',sans-serif;
+  font-size:clamp(0.62rem,1.1vw,0.72rem);
+  font-weight:500;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,0.8);
+  margin-bottom:12px;
+}
+.val-text{
+  font-size:clamp(0.78rem,1.3vw,0.88rem);
+  font-weight:300;
+  line-height:1.75;
+  color:var(--text-muted);
+}
+
+/* ── TESTIMONIO ── */
+.testimony-block{
+  border-left:2px solid rgba(232,0,10,0.35);
+  padding:clamp(22px,3vw,32px) clamp(22px,3vw,32px);
+  margin-bottom:clamp(56px,8vw,88px);
+  background:rgba(232,0,10,0.025);
+  position:relative;
+}
+.testimony-quote{
+  font-size:clamp(0.88rem,1.7vw,1.06rem);
+  font-weight:300;
+  line-height:1.82;
+  color:rgba(255,255,255,0.5);
+  font-style:italic;
+  margin-bottom:18px;
+}
+.testimony-source{
+  font-family:'Orbitron',sans-serif;
+  font-size:clamp(0.52rem,1vw,0.6rem);
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:rgba(232,0,10,0.55);
+}
+
+/* ── FOOTER DE SECCIÓN ── */
+.about-footer{
+  border-top:1px solid rgba(255,255,255,0.05);
+  padding:clamp(28px,4vw,40px) 0 clamp(56px,7vw,80px);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  flex-wrap:wrap;
+}
+.footer-origin{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+.footer-dot{
+  width:7px;height:7px;border-radius:50%;
+  background:var(--red);
+  box-shadow:0 0 10px rgba(232,0,10,0.65);
+  flex-shrink:0;
+  animation:pulse 2.8s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:1}47%,53%{opacity:0.2}}
+.footer-text{
+  font-size:clamp(0.7rem,1.3vw,0.82rem);
+  font-weight:300;
+  color:rgba(255,255,255,0.28);
+  line-height:1.55;
+}
+.footer-text strong{font-weight:500;color:rgba(255,255,255,0.55)}
+.footer-badge{
+  font-family:'Orbitron',sans-serif;
+  font-size:clamp(0.44rem,0.9vw,0.52rem);
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:rgba(232,0,10,0.45);
+  border:1px solid rgba(232,0,10,0.14);
+  padding:8px 18px;
+  white-space:nowrap;
+  flex-shrink:0;
+}
+
+/* ── REVEAL ── */
+.reveal{
+  opacity:0;
+  transform:translateY(26px);
+  transition:opacity .85s cubic-bezier(0.16,1,0.3,1),transform .85s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal.in{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.08s}.d2{transition-delay:.18s}.d3{transition-delay:.28s}.d4{transition-delay:.38s}
+</style>
+</head>
+<body>
+
+<canvas id="bg"></canvas>
+
+<div class="page">
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-logo">Dimaco<span>Led</span></div>
+    <a href="dimacoled.html" class="nav-back">Inicio</a>
+  </nav>
+
+  <!-- HERO DE SECCIÓN -->
+  <header class="hero-section">
+    <div class="hero-inner">
+      <div class="section-tag reveal">
+        <span class="tag-bar"></span>
+        DimacoLed · Región de Murcia
+      </div>
+      <h1 class="hero-title reveal d1">
+        Más de una<br>década haciendo<br>que la <em>luz trabaje</em>
+      </h1>
+    </div>
+  </header>
+
+  <div class="section-rule"></div>
+
+  <div class="body-wrap">
+
+    <!-- INTRO -->
+    <div class="intro-grid">
+      <p class="intro-lead reveal">
+        Somos una empresa murciana especializada en el <strong>diseño, fabricación e instalación de pantallas LED</strong>. Llevamos más de quince años construyendo soluciones visuales a medida para negocios, instituciones y espacios públicos.
+      </p>
+      <div class="intro-right reveal d1">
+        <p class="intro-para">
+          Desde el primer día hemos apostado por un modelo sin intermediarios: un único equipo que presupuesta, fabrica, instala y da soporte. Eso se traduce en tiempos más cortos, precios más ajustados y una interlocución directa en cada fase del proyecto.
+        </p>
+        <p class="intro-para">
+          Nuestra base está en Murcia y conocemos bien el tejido empresarial de la región, aunque instalamos en toda la península. Cada cliente —grande o pequeño— recibe el mismo nivel de atención y el mismo compromiso con el resultado.
+        </p>
+      </div>
+    </div>
+
+    <!-- MÉTRICAS -->
+    <div class="metrics-row">
+      <div class="metric reveal">
+        <div class="metric-val">2.000<sup>+</sup></div>
+        <div class="metric-name">Instalaciones</div>
+        <div class="metric-note">Desde pequeños comercios hasta grandes superficies y espacios urbanos.</div>
+      </div>
+      <div class="metric reveal d1">
+        <div class="metric-val">98<sup>%</sup></div>
+        <div class="metric-name">Satisfacción</div>
+        <div class="metric-note">Un indicador que construimos proyecto a proyecto, con seguimiento real.</div>
+      </div>
+    </div>
+
+    <!-- VALORES -->
+    <div class="values-header reveal">
+      <span class="tag-bar"></span>
+      Por qué elegirnos
+    </div>
+
+    <div class="values-grid">
+
+      <div class="val reveal">
+        <div class="val-bar"></div>
+        <svg class="val-icon" viewBox="0 0 30 30" fill="none">
+          <rect x="1" y="1" width="28" height="28" rx="2" stroke="rgba(232,0,10,0.45)" stroke-width="0.8"/>
+          <path d="M7 15l5 5 11-10" stroke="rgba(232,0,10,0.85)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div class="val-title">Calidad de producto</div>
+        <div class="val-text">Trabajamos exclusivamente con fabricantes de primer nivel y sometemos cada unidad a un proceso de verificación antes de la instalación. El rendimiento a largo plazo no es opcional.</div>
+      </div>
+
+      <div class="val reveal d1">
+        <div class="val-bar"></div>
+        <svg class="val-icon" viewBox="0 0 30 30" fill="none">
+          <circle cx="15" cy="15" r="13" stroke="rgba(232,0,10,0.45)" stroke-width="0.8"/>
+          <path d="M15 8v7l4.5 4.5" stroke="rgba(232,0,10,0.85)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div class="val-title">Trato directo</div>
+        <div class="val-text">Sin delegaciones, sin subcontratas. La persona que atiende tu presupuesto es la misma que supervisa la obra. Eso genera confianza y elimina malentendidos desde el inicio.</div>
+      </div>
+
+      <div class="val reveal d2">
+        <div class="val-bar"></div>
+        <svg class="val-icon" viewBox="0 0 30 30" fill="none">
+          <path d="M15 3l2.6 5.4 5.9.86-4.25 4.14.99 5.86L15 16.7l-5.26 2.56.99-5.86L6.48 9.26l5.9-.86z" stroke="rgba(232,0,10,0.45)" stroke-width="0.8" stroke-linejoin="round" fill="rgba(232,0,10,0.06)"/>
+        </svg>
+        <div class="val-title">Valoraciones reales</div>
+        <div class="val-text">Nuestra reputación se mide en reseñas verificadas, no en promesas. Más de 4,9 estrellas de media reflejan el cuidado que ponemos en cada instalación y en la atención postventa.</div>
+      </div>
+
+      <div class="val reveal d3">
+        <div class="val-bar"></div>
+        <svg class="val-icon" viewBox="0 0 30 30" fill="none">
+          <path d="M3 26V11.5L15 3l12 8.5V26H19v-7h-8v7z" stroke="rgba(232,0,10,0.45)" stroke-width="0.8" stroke-linejoin="round" fill="rgba(232,0,10,0.04)"/>
+        </svg>
+        <div class="val-title">Empresa local</div>
+        <div class="val-text">Nacidos en la Región de Murcia, con compromiso real con el territorio. Respondemos rápido, conocemos el entorno y apoyamos el crecimiento de los negocios de nuestra tierra.</div>
+      </div>
+
+    </div>
+
+    <!-- TESTIMONIO -->
+    <div class="testimony-block reveal">
+      <p class="testimony-quote">
+        "Lo que más nos sorprendió fue la atención durante todo el proceso. Nos explicaron cada detalle, la instalación fue limpia y rápida, y el resultado supera lo que esperábamos. Sin duda los recomendamos."
+      </p>
+      <div class="testimony-source">Cliente · Comercio en Murcia</div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="about-footer reveal">
+      <div class="footer-origin">
+        <div class="footer-dot"></div>
+        <div class="footer-text">
+          <strong>DimacoLed</strong> — Región de Murcia, España.<br>
+          Instalaciones en toda la península · Servicio técnico propio.
+        </div>
+      </div>
+      <div class="footer-badge">Est. 2008 · Murcia</div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+/* ══ FONDO ATMOSFÉRICO (mismo sistema que hero) ══ */
+(function(){
+  const cv=document.getElementById('bg');
+  const cx=cv.getContext('2d');
+  function resize(){cv.width=window.innerWidth;cv.height=window.innerHeight;}
+  resize();
+  window.addEventListener('resize',resize);
+
+  class Nebula{
+    constructor(){
+      this.reset(true);
+    }
+    reset(ini){
+      const W=cv.width,H=cv.height;
+      const z=Math.floor(Math.random()*4);
+      if(z===0){this.x=W*Math.random()*0.3;this.y=H*Math.random();}
+      else if(z===1){this.x=W*(0.7+Math.random()*0.3);this.y=H*Math.random();}
+      else if(z===2){this.x=W*(0.15+Math.random()*0.7);this.y=H*(0.7+Math.random()*0.3);}
+      else{this.x=W*(0.15+Math.random()*0.7);this.y=H*Math.random()*0.25;}
+      this.rx=100+Math.random()*240;this.ry=70+Math.random()*170;
+      this.bA=0.014+Math.random()*0.026;
+      this.ph=ini?Math.random()*Math.PI*2:0;
+      this.spd=0.00007+Math.random()*0.00013;
+      this.vx=(Math.random()-0.5)*0.002;this.vy=(Math.random()-0.5)*0.0012;
+    }
+    upd(dt){this.ph+=this.spd*dt;this.x+=this.vx*dt;this.y+=this.vy*dt;}
+    drw(){
+      const a=this.bA*(0.5+0.5*Math.sin(this.ph));
+      if(a<0.002)return;
+      cx.save();cx.scale(1,this.ry/this.rx);
+      const yS=this.y*(this.rx/this.ry);
+      const g=cx.createRadialGradient(this.x,yS,0,this.x,yS,this.rx);
+      g.addColorStop(0,`rgba(195,0,5,${a})`);
+      g.addColorStop(0.45,`rgba(120,0,3,${a*0.38})`);
+      g.addColorStop(1,'rgba(0,0,0,0)');
+      cx.fillStyle=g;cx.beginPath();cx.arc(this.x,yS,this.rx,0,Math.PI*2);cx.fill();
+      cx.restore();
+    }
+  }
+
+  class Particle{
+    constructor(ini){this.rst(ini);}
+    rst(ini){
+      const W=cv.width,H=cv.height;
+      this.x=Math.random()*W;this.y=ini?Math.random()*H:H+4;
+      this.vx=(Math.random()-0.5)*0.01;this.vy=-(0.006+Math.random()*0.016);
+      this.r=0.3+Math.random()*0.9;this.mA=0.1+Math.random()*0.25;
+      this.ph=Math.random()*Math.PI*2;this.spd=0.0005+Math.random()*0.0009;
+      this.life=ini?Math.random()*16000:0;this.mL=10000+Math.random()*14000;
+      this.t=Math.random()<0.72?0:Math.random()<0.6?1:2;
+    }
+    get a(){
+      const p=this.life/this.mL;
+      const e=p<0.12?(p/0.12):p>0.82?((1-p)/0.18):1;
+      return e*this.mA*(0.5+0.5*Math.sin(this.ph));
+    }
+    upd(dt){
+      this.life+=dt;this.ph+=this.spd*dt;
+      this.x+=this.vx*dt;this.y+=this.vy*dt;
+      this.vx+=(Math.random()-0.5)*0.00015;
+      this.vx=Math.max(-0.02,Math.min(0.02,this.vx));
+      if(this.life>this.mL||this.y<-6)this.rst(false);
+    }
+    drw(){
+      const a=this.a;if(a<0.004)return;
+      cx.save();
+      cx.fillStyle=this.t===0?`rgba(215,5,5,${a})`:this.t===1?`rgba(255,75,18,${a*0.7})`:`rgba(235,195,175,${a*0.45})`;
+      cx.beginPath();cx.arc(this.x,this.y,this.r,0,Math.PI*2);cx.fill();
+      if(a>0.15){
+        const g=cx.createRadialGradient(this.x,this.y,0,this.x,this.y,this.r*5);
+        g.addColorStop(0,`rgba(195,0,5,${a*0.2})`);g.addColorStop(1,'rgba(0,0,0,0)');
+        cx.fillStyle=g;cx.beginPath();cx.arc(this.x,this.y,this.r*5,0,Math.PI*2);cx.fill();
+      }
+      cx.restore();
+    }
+  }
+
+  class Filament{
+    constructor(ini){this.rst(ini);}
+    rst(ini){
+      const W=cv.width,H=cv.height;
+      const side=Math.random()<0.5;
+      this.x0=side?Math.random()*W*0.2:W*(0.8+Math.random()*0.2);
+      this.y0=Math.random()*H;
+      const ang=(side?0:-Math.PI)+(Math.random()-0.5)*1.0;
+      const len=50+Math.random()*130;
+      this.x1=this.x0+Math.cos(ang)*len;this.y1=this.y0+Math.sin(ang)*len;
+      this.mA=0.05+Math.random()*0.08;
+      this.life=ini?Math.random()*5000:0;this.mL=3000+Math.random()*5000;
+      this.w=0.25+Math.random()*0.45;
+    }
+    upd(dt){this.life+=dt;if(this.life>this.mL)this.rst(false);}
+    drw(){
+      const p=this.life/this.mL;
+      const e=p<0.15?(p/0.15):p>0.7?((1-p)/0.3):1;
+      const a=this.mA*e;if(a<0.003)return;
+      const g=cx.createLinearGradient(this.x0,this.y0,this.x1,this.y1);
+      g.addColorStop(0,'rgba(195,0,7,0)');
+      g.addColorStop(0.35,`rgba(215,0,7,${a})`);
+      g.addColorStop(0.65,`rgba(195,0,7,${a*0.65})`);
+      g.addColorStop(1,'rgba(195,0,7,0)');
+      cx.save();cx.beginPath();cx.moveTo(this.x0,this.y0);cx.lineTo(this.x1,this.y1);
+      cx.strokeStyle=g;cx.lineWidth=this.w;cx.stroke();cx.restore();
+    }
+  }
+
+  /* Grid de perspectiva — plano técnico */
+  let gridCv=null;
+  function buildGrid(W,H){
+    gridCv=document.createElement('canvas');
+    gridCv.width=W;gridCv.height=H;
+    const g=gridCv.getContext('2d');
+    const hor=H*0.55,HLINES=16;
+    for(let i=0;i<=HLINES;i++){
+      const t=i/HLINES,y=hor+(H*0.52)*Math.pow(t,1.55);
+      if(y>H+2)continue;
+      g.beginPath();g.moveTo(0,y);g.lineTo(W,y);
+      g.strokeStyle=`rgba(175,0,5,${0.024*(1-t*0.65)})`;g.lineWidth=0.5;g.stroke();
+    }
+    const VLINES=20,vx=W*0.5;
+    for(let i=0;i<=VLINES;i++){
+      const t=i/VLINES,sp=(t-0.5)*2;
+      g.beginPath();g.moveTo(vx+sp*W*0.36,hor);g.lineTo(vx+sp*W*1.05,H+8);
+      g.strokeStyle=`rgba(155,0,4,${0.018*(1-Math.abs(sp)*0.5)})`;g.lineWidth=0.4;g.stroke();
+    }
+    g.beginPath();g.moveTo(0,hor);g.lineTo(W,hor);
+    g.strokeStyle='rgba(195,0,7,0.035)';g.lineWidth=0.5;g.stroke();
+  }
+
+  let nebulas=[],particles=[],filaments=[];
+
+  function build(){
+    const W=cv.width,H=cv.height;
+    buildGrid(W,H);
+    nebulas=Array.from({length:8},(_,i)=>new Nebula(i<8));
+    const pc=Math.min(100,Math.floor(W*H/8000));
+    particles=Array.from({length:pc},()=>new Particle(true));
+    const fc=Math.min(18,Math.floor(W/60));
+    filaments=Array.from({length:fc},()=>new Filament(true));
+  }
+
+  build();
+  window.addEventListener('resize',()=>{resize();build();});
+
+  let last=0;
+  function loop(ts){
+    const dt=Math.min(ts-last,48);last=ts;
+    const W=cv.width,H=cv.height;
+    cx.fillStyle='rgba(8,8,8,0.15)';cx.fillRect(0,0,W,H);
+    if(gridCv)cx.drawImage(gridCv,0,0);
+    nebulas.forEach(n=>{n.upd(dt);n.drw()});
+    filaments.forEach(f=>{f.upd(dt);f.drw()});
+    particles.forEach(p=>{p.upd(dt);p.drw()});
+    requestAnimationFrame(loop);
+  }
+  requestAnimationFrame(loop);
+})();
+
+/* ══ SCROLL REVEAL ══ */
+(function(){
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in');});
+  },{threshold:0.1});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+})();
+</script>
+</body>
+</html>
