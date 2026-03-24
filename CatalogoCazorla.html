@@ -280,7 +280,7 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
 @keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
 
 /* ── CALCULADORA ── */
-#calc-section, #calc-left { scroll-margin-top: 0; overflow-anchor: none; }
+[data-calc-section], [data-calc-left] { overflow-anchor: none; }
 .calc-wrap{display:grid;grid-template-columns:1fr 380px;gap:24px;align-items:start;min-width:0;width:100%}
 .calc-group{margin-bottom:10px}
 .calc-group-title{display:flex;align-items:center;gap:10px;font-family:'DM Sans',sans-serif;font-size:0.55rem;font-weight:500;letter-spacing:5px;text-transform:uppercase;color:rgba(255,255,255,0.28);padding:14px 0 10px;border-top:1px solid var(--border)}
@@ -736,7 +736,7 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
   <p class="cze-tagline">Iluminamos cada momento</p>
 
   <div class="cze-cta-wrap">
-    <a class="cze-cta-btn" href="#calc-section" id="hero-cta">
+    <a class="cze-cta-btn" href="javascript:void(0)" id="hero-cta">
       <div class="cze-cta-glow"></div>
       <span class="cze-cta-text">Calcular mi presupuesto</span>
       <span class="cze-cta-arrow">↓</span>
@@ -951,7 +951,7 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
 <div class="divider"></div>
 
 <!-- ═══════ CALCULADORA ═══════ -->
-<div class="section" id="calc-section">
+<div class="section" data-calc-section>
   <div class="section-header">
     <div class="section-tag">Cazorla Events · Presupuesto</div>
     <h2 class="section-title">TU <span>PRESUPUESTO</span></h2>
@@ -959,7 +959,7 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
   </div>
 
   <div class="calc-wrap">
-    <div class="calc-left" id="calc-left">
+    <div class="calc-left" data-calc-left>
       <div class="calc-group">
         <div class="calc-group-title"><span class="calc-group-dot"></span>Efectos Especiales</div>
         <div class="calc-item" id="ci-co2">
@@ -1276,11 +1276,13 @@ document.addEventListener("DOMContentLoaded", function() {
     e.preventDefault();
     var isMobile = window.innerWidth <= 720;
     var target = isMobile
-      ? document.getElementById('calc-left')
-      : document.getElementById('calc-section');
+      ? document.querySelector('[data-calc-left]')
+      : document.querySelector('[data-calc-section]');
     if(!target) return;
     var top = target.getBoundingClientRect().top + window.pageYOffset - 16;
     window.scrollTo({top: top, behavior: 'smooth'});
+    // Limpia el hash para que el navegador no restaure esta posición
+    if(history.replaceState) history.replaceState(null, '', window.location.pathname + window.location.search);
   });
 })();
 
