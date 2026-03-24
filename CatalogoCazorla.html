@@ -950,15 +950,15 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
 <div class="divider"></div>
 
 <!-- ═══════ CALCULADORA ═══════ -->
-<div class="section" id="calc-section">
-  <div class="section-header">
+<div class="section">
+  <div class="section-header" id="calc-section">
     <div class="section-tag">Cazorla Events · Presupuesto</div>
     <h2 class="section-title">TU <span>PRESUPUESTO</span></h2>
     <p class="section-sub">Selecciona los servicios que quieres y calcula el total al momento.</p>
   </div>
 
   <div class="calc-wrap">
-    <div class="calc-left">
+    <div class="calc-left" id="calc-left">
       <div class="calc-group">
         <div class="calc-group-title"><span class="calc-group-dot"></span>Efectos Especiales</div>
         <div class="calc-item" id="ci-co2">
@@ -1273,8 +1273,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
   document.getElementById('hero-cta').addEventListener('click',function(e){
     e.preventDefault();
-    var target=document.getElementById('calc-section');
-    if(target) target.scrollIntoView({behavior:'smooth',block:'start'});
+    var isMobile = window.innerWidth <= 720;
+    var target = isMobile
+      ? document.getElementById('calc-left')
+      : document.getElementById('calc-section');
+    if(target) target.scrollIntoView({behavior:'smooth', block:'start'});
   });
 })();
 
