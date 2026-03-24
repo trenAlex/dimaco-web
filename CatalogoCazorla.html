@@ -285,12 +285,12 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
 .calc-group-title{display:flex;align-items:center;gap:10px;font-family:'DM Sans',sans-serif;font-size:0.55rem;font-weight:500;letter-spacing:5px;text-transform:uppercase;color:rgba(255,255,255,0.28);padding:14px 0 10px;border-top:1px solid var(--border)}
 .calc-group:first-child .calc-group-title{border-top:none;padding-top:0}
 .calc-group-dot{width:4px;height:4px;border-radius:50%;background:var(--red);box-shadow:0 0 6px var(--glow-c);flex-shrink:0}
-.calc-item{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 18px;background:var(--bg2);border:1px solid var(--border);border-radius:2px;margin-bottom:8px;transition:border-color 0.3s,background 0.3s}
+.calc-item{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 14px;background:var(--bg2);border:1px solid var(--border);border-radius:2px;margin-bottom:6px;transition:border-color 0.3s,background 0.3s}
 .calc-item.active{border-color:rgba(0,242,255,0.3);background:rgba(0,242,255,0.03)}
-.calc-item-select{flex-wrap:wrap;gap:10px}
+.calc-item-select{flex-wrap:wrap;gap:8px}
 .calc-item-info{flex:1;min-width:0}
-.calc-item-name{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:0.06em;color:#fff;margin-bottom:2px}
-.calc-item-sub{font-family:'DM Sans',sans-serif;font-size:0.7rem;font-weight:300;color:var(--txt2);line-height:1.5}
+.calc-item-name{font-family:'Bebas Neue',sans-serif;font-size:0.88rem;letter-spacing:0.06em;color:#fff;margin-bottom:1px}
+.calc-item-sub{font-family:'DM Sans',sans-serif;font-size:0.65rem;font-weight:300;color:var(--txt2);line-height:1.4}
 .calc-item-price-inline{color:rgba(0,242,255,0.9);font-weight:500}
 .calc-qty{display:flex;align-items:center;gap:8px;flex-shrink:0}
 .qty-btn{width:28px;height:28px;border-radius:2px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.04);color:#fff;font-size:1rem;cursor:pointer;transition:background 0.2s,border-color 0.2s;display:flex;align-items:center;justify-content:center;font-family:'DM Sans',sans-serif}
@@ -345,7 +345,7 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
 .stats-wrap{
   position:relative;
   overflow:hidden;
-  padding:90px 36px;
+  padding:60px 36px;
   background:var(--bg);
 }
 .stats-bg-grid{
@@ -367,7 +367,7 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
 }
 .stat-item{
   display:flex;flex-direction:column;align-items:center;
-  padding:0 40px;
+  padding:0 32px;
   text-align:center;
   opacity:0;
   animation:fadeUp 0.8s cubic-bezier(0.16,1,0.3,1) forwards;
@@ -376,23 +376,23 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
 .stat-item:nth-child(3){animation-delay:0.25s}
 .stat-item:nth-child(5){animation-delay:0.4s}
 .stat-item--center .stat-num-wrap{
-  transform:scale(1.1);
+  transform:scale(1.08);
 }
 .stat-num-wrap{
-  display:flex;align-items:baseline;gap:4px;
-  margin-bottom:16px;
+  display:flex;align-items:baseline;gap:3px;
+  margin-bottom:12px;
   line-height:1;
 }
 .stat-prefix{
   font-family:'Orbitron',sans-serif;font-weight:900;
-  font-size:clamp(2rem,4vw,3.8rem);
+  font-size:clamp(1.4rem,2.8vw,2.6rem);
   color:var(--cyan);
   text-shadow:0 0 20px var(--cyan-glow),0 0 50px rgba(0,242,255,0.15);
   line-height:1;
 }
 .stat-num{
   font-family:'Orbitron',sans-serif;font-weight:900;
-  font-size:clamp(2.8rem,6vw,5.5rem);
+  font-size:clamp(2rem,4.2vw,3.8rem);
   color:#fff;
   text-shadow:0 0 30px rgba(0,242,255,0.2),0 0 80px rgba(0,242,255,0.08);
   letter-spacing:-0.02em;
@@ -405,17 +405,17 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
 }
 .stat-unit{
   font-family:'Orbitron',sans-serif;font-weight:700;
-  font-size:clamp(1.4rem,3vw,2.8rem);
+  font-size:clamp(1rem,2vw,1.9rem);
   color:var(--cyan);
   text-shadow:0 0 20px var(--cyan-glow);
   line-height:1;
 }
 .stat-bar{
-  width:48px;height:2px;
+  width:36px;height:1px;
   background:rgba(255,255,255,0.06);
   border-radius:2px;
   overflow:hidden;
-  margin-bottom:14px;
+  margin-bottom:10px;
 }
 .stat-bar-fill{
   height:100%;width:0;
@@ -427,22 +427,22 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
 @keyframes statBarGrow{from{width:0}to{width:100%}}
 .stat-label{
   font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(1rem,2vw,1.5rem);
+  font-size:clamp(0.85rem,1.4vw,1.15rem);
   letter-spacing:0.1em;
   color:#fff;
-  margin-bottom:8px;
+  margin-bottom:6px;
   line-height:1;
 }
 .stat-sub{
   font-family:'DM Sans',sans-serif;font-weight:300;
-  font-size:clamp(0.68rem,1.1vw,0.78rem);
+  font-size:clamp(0.62rem,0.9vw,0.7rem);
   color:rgba(255,255,255,0.28);
   line-height:1.6;
-  max-width:200px;
+  max-width:180px;
 }
 .stat-divider{
   width:1px;
-  height:120px;
+  height:90px;
   background:linear-gradient(180deg,transparent,rgba(0,242,255,0.2) 30%,rgba(255,0,222,0.15) 70%,transparent);
   box-shadow:0 0 12px rgba(0,242,255,0.08);
   flex-shrink:0;
@@ -451,7 +451,7 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
 
 /* AÑOS especial — texto con glow sutil */
 .stat-num[data-target="VARIOS"]{
-  font-size:clamp(1.6rem,3.5vw,3.2rem);
+  font-size:clamp(1.2rem,2.6vw,2.4rem);
   letter-spacing:0.06em;
   color:rgba(255,255,255,0.55);
   text-shadow:none;
@@ -1038,7 +1038,7 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
         </div>
       </div>
 
-      <div class="calc-group">
+      <div class="calc-group" style="padding-bottom:110px">
         <div class="calc-group-title"><span class="calc-group-dot"></span>Entretenimiento</div>
         <div class="calc-item calc-item-select" id="ci-telefono">
           <div class="calc-item-info">
