@@ -1279,9 +1279,23 @@ document.addEventListener("DOMContentLoaded", function() {
       ? document.querySelector('[data-calc-left]')
       : document.querySelector('[data-calc-section]');
     if(!target) return;
-    var top = target.getBoundingClientRect().top + window.pageYOffset - 16;
-    window.scrollTo({top: top, behavior: 'smooth'});
-    // Limpia el hash para que el navegador no restaure esta posición
+
+    // Odoo usa #wrapwrap como scroll container, no window
+    var scrollContainer = document.getElementById('wrapwrap') || document.scrollingElement || document.documentElement || window;
+
+    var containerTop = (scrollContainer === window || scrollContainer === document.documentElement || scrollContainer === document.scrollingElement)
+      ? 0
+      : scrollContainer.getBoundingClientRect().top;
+
+    var targetTop = target.getBoundingClientRect().top;
+    var offset = targetTop - containerTop - 16;
+
+    if(scrollContainer === window || scrollContainer === document.documentElement || scrollContainer === document.scrollingElement){
+      window.scrollTo({top: window.pageYOffset + offset, behavior:'smooth'});
+    } else {
+      scrollContainer.scrollTo({top: scrollContainer.scrollTop + offset, behavior:'smooth'});
+    }
+
     if(history.replaceState) history.replaceState(null, '', window.location.pathname + window.location.search);
   });
 })();
