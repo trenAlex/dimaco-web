@@ -1280,23 +1280,34 @@ document.addEventListener("DOMContentLoaded", function() {
       : document.querySelector('[data-calc-section]');
     if(!target) return;
 
-    // Odoo usa #wrapwrap como scroll container, no window
-    var scrollContainer = document.getElementById('wrapwrap') || document.scrollingElement || document.documentElement || window;
+    // Intenta todos los posibles scroll containers de Odoo y navegador
+    var containers = [
+      document.getElementById('wrapwrap'),
+      document.querySelector('.o_main_navbar') && document.querySelector('#wrapwrap'),
+      document.scrollingElement,
+      document.documentElement,
+      document.body
+    ];
 
-    var containerTop = (scrollContainer === window || scrollContainer === document.documentElement || scrollContainer === document.scrollingElement)
-      ? 0
-      : scrollContainer.getBoundingClientRect().top;
-
-    var targetTop = target.getBoundingClientRect().top;
-    var offset = targetTop - containerTop - 16;
-
-    if(scrollContainer === window || scrollContainer === document.documentElement || scrollContainer === document.scrollingElement){
-      window.scrollTo({top: window.pageYOffset + offset, behavior:'smooth'});
-    } else {
-      scrollContainer.scrollTo({top: scrollContainer.scrollTop + offset, behavior:'smooth'});
+    var scrolled = false;
+    for(var i = 0; i < containers.length; i++){
+      var c = containers[i];
+      if(!c || scrolled) continue;
+      // Comprueba si este elemento es el que hace scroll
+      var before = c.scrollTop;
+      if(c.scrollHeight > c.clientHeight && before >= 0){
+        var targetY = target.getBoundingClientRect().top - c.getBoundingClientRect().top + c.scrollTop - 16;
+        c.scrollTo({top: targetY, behavior:'smooth'});
+        scrolled = true;
+        break;
+      }
     }
 
-    if(history.replaceState) history.replaceState(null, '', window.location.pathname + window.location.search);
+    // Fallback absoluto
+    if(!scrolled){
+      var y = target.getBoundingClientRect().top + window.pageYOffset - 16;
+      window.scrollTo({top: y, behavior:'smooth'});
+    }
   });
 })();
 
