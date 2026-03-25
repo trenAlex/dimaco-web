@@ -1274,9 +1274,8 @@ document.addEventListener("DOMContentLoaded", function() {
   document.querySelector('.cze-wrap').appendChild(scan);
 
   document.getElementById('hero-cta').addEventListener('click',function(e){
-    e.preventDefault();
-    var target = document.getElementById('calc-section');
-    if(target) target.scrollIntoView({behavior:'smooth', block:'start'});
+    // Dejar que el navegador maneje el anchor #calc-section de forma nativa
+    // El scroll-margin-top del CSS de Odoo compensará la navbar
   });
 })();
 
