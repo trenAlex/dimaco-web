@@ -737,7 +737,7 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
   <p class="cze-tagline">Iluminamos cada momento</p>
 
   <div class="cze-cta-wrap">
-    <a class="cze-cta-btn" href="#calc-section" id="hero-cta">
+    <a class="cze-cta-btn" href="javascript:void(0)" onclick="document.getElementById('calc-section').scrollIntoView({behavior:'smooth'});history.replaceState(null,'',window.location.pathname);" id="hero-cta">
       <div class="cze-cta-glow"></div>
       <span class="cze-cta-text">Calcular mi presupuesto</span>
       <span class="cze-cta-arrow">↓</span>
@@ -1273,10 +1273,7 @@ document.addEventListener("DOMContentLoaded", function() {
   var scan=document.createElement('div');scan.className='cze-scan';
   document.querySelector('.cze-wrap').appendChild(scan);
 
-  document.getElementById('hero-cta').addEventListener('click',function(e){
-    // Dejar que el navegador maneje el anchor #calc-section de forma nativa
-    // El scroll-margin-top del CSS de Odoo compensará la navbar
-  });
+  // Scroll manejado por onclick en el propio enlace
 })();
 
 /* ═══ CALCULADORA ═══ */
