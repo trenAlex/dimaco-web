@@ -281,6 +281,7 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
 
 /* ── CALCULADORA ── */
 [data-calc-section], [data-calc-left] { overflow-anchor: none; }
+#calc-section { scroll-margin-top: 60px; }
 .calc-wrap{display:grid;grid-template-columns:1fr 380px;gap:24px;align-items:start;min-width:0;width:100%}
 .calc-group{margin-bottom:10px}
 .calc-group-title{display:flex;align-items:center;gap:10px;font-family:'DM Sans',sans-serif;font-size:0.55rem;font-weight:500;letter-spacing:5px;text-transform:uppercase;color:rgba(255,255,255,0.28);padding:14px 0 10px;border-top:1px solid var(--border)}
@@ -736,7 +737,7 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
   <p class="cze-tagline">Iluminamos cada momento</p>
 
   <div class="cze-cta-wrap">
-    <a class="cze-cta-btn" href="javascript:void(0)" id="hero-cta">
+    <a class="cze-cta-btn" href="#calc-section" id="hero-cta">
       <div class="cze-cta-glow"></div>
       <span class="cze-cta-text">Calcular mi presupuesto</span>
       <span class="cze-cta-arrow">↓</span>
@@ -951,7 +952,7 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
 <div class="divider"></div>
 
 <!-- ═══════ CALCULADORA ═══════ -->
-<div class="section" data-calc-section>
+<div class="section" id="calc-section">
   <div class="section-header">
     <div class="section-tag">Cazorla Events · Presupuesto</div>
     <h2 class="section-title">TU <span>PRESUPUESTO</span></h2>
@@ -1274,40 +1275,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
   document.getElementById('hero-cta').addEventListener('click',function(e){
     e.preventDefault();
-    var isMobile = window.innerWidth <= 720;
-    var target = isMobile
-      ? document.querySelector('[data-calc-left]')
-      : document.querySelector('[data-calc-section]');
-    if(!target) return;
-
-    // Intenta todos los posibles scroll containers de Odoo y navegador
-    var containers = [
-      document.getElementById('wrapwrap'),
-      document.querySelector('.o_main_navbar') && document.querySelector('#wrapwrap'),
-      document.scrollingElement,
-      document.documentElement,
-      document.body
-    ];
-
-    var scrolled = false;
-    for(var i = 0; i < containers.length; i++){
-      var c = containers[i];
-      if(!c || scrolled) continue;
-      // Comprueba si este elemento es el que hace scroll
-      var before = c.scrollTop;
-      if(c.scrollHeight > c.clientHeight && before >= 0){
-        var targetY = target.getBoundingClientRect().top - c.getBoundingClientRect().top + c.scrollTop - 16;
-        c.scrollTo({top: targetY, behavior:'smooth'});
-        scrolled = true;
-        break;
-      }
-    }
-
-    // Fallback absoluto
-    if(!scrolled){
-      var y = target.getBoundingClientRect().top + window.pageYOffset - 16;
-      window.scrollTo({top: y, behavior:'smooth'});
-    }
+    var target = document.getElementById('calc-section');
+    if(target) target.scrollIntoView({behavior:'smooth', block:'start'});
   });
 })();
 
