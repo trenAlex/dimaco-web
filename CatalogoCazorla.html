@@ -705,7 +705,6 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
 <body>
 
 <!-- ═══════ HERO TÍTULO ═══════ -->
-<div id="calc-anchor" style="position:absolute;top:0;height:1px;visibility:hidden;pointer-events:none;"></div>
 <div class="cze-wrap">
   <div class="cze-corner tl"></div>
   <div class="cze-corner tr"></div>
@@ -738,7 +737,7 @@ html,body{background:var(--bg);color:#fff;overflow-x:hidden;-webkit-font-smoothi
   <p class="cze-tagline">Iluminamos cada momento</p>
 
   <div class="cze-cta-wrap">
-    <a class="cze-cta-btn" href="#calc-section" id="hero-cta">
+    <a class="cze-cta-btn" href="#calc-section" onclick="var t=document.getElementById('calc-section');if(t){t.scrollIntoView({behavior:'smooth'});}" id="hero-cta">
       <div class="cze-cta-glow"></div>
       <span class="cze-cta-text">Calcular mi presupuesto</span>
       <span class="cze-cta-arrow">↓</span>
