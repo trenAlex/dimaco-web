@@ -21,7 +21,7 @@ const productos = [
         categoriaLabel: "Eventos & Escaparates",
         descripcion: "Ideal para conciertos, conferencias, presentaciones y escaparates. Alta definición y fácil montaje.",
         specs: ["Resolución: 192x384", "500x10000mm", "4500/5000 nits", "110-120v","600-700w"],
-        imagen: "img/p26-grande.png",
+        imagen: "img/p26-grande.jpg",
         destacado: true
     },
     {
