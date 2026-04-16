@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda - Pantallas LED Dimaco</title>
+    <link rel="stylesheet" href="css/tienda.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header con carrito -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>DIMACO</h1>
+                    <span class="logo-subtitle">Pantallas LED Profesionales</span>
+                </div>
+
+                <div class="cart-icon" onclick="toggleCart()">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-tienda">
+        <div class="container">
+            <h1 class="hero-title">Catálogo de Pantallas LED</h1>
+            <p class="hero-subtitle">Soluciones profesionales para cada proyecto</p>
+        </div>
+    </section>
+
+    <!-- Filtros y Búsqueda -->
+    <section class="filters-section">
+        <div class="container">
+            <div class="filters-wrapper">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Buscar productos..." onkeyup="filterProducts()">
+                </div>
+                
+                <div class="category-filters">
+                    <button class="filter-btn active" onclick="filterByCategory('todas')">
+                        <i class="fas fa-th"></i> Todas
+                    </button>
+                    <button class="filter-btn" onclick="filterByCategory('eventos-escaparates')">
+                        <i class="fas fa-calendar-star"></i> Eventos & Escaparates
+                    </button>
+                    <button class="filter-btn" onclick="filterByCategory('fija')">
+                        <i class="fas fa-building"></i> Instalación Fija
+                    </button>
+                    <button class="filter-btn" onclick="filterByCategory('accesorios')">
+                        <i class="fas fa-plug"></i> Accesorios
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Productos Grid -->
+    <section class="products-section">
+        <div class="container">
+            <div id="productsGrid" class="products-grid">
+                <!-- Los productos se cargarán dinámicamente desde productos.js -->
+            </div>
+            
+            <div id="noResults" class="no-results" style="display: none;">
+                <i class="fas fa-search"></i>
+                <p>No se encontraron productos</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal del Carrito -->
+    <div id="cartModal" class="cart-modal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h2><i class="fas fa-shopping-cart"></i> Tu Carrito</h2>
+                <button class="close-btn" onclick="toggleCart()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div id="cartItems" class="cart-items">
+                <!-- Items del carrito se cargarán aquí -->
+            </div>
+            
+            <div class="cart-empty" id="cartEmpty">
+                <i class="fas fa-shopping-basket"></i>
+                <p>Tu carrito está vacío</p>
+            </div>
+            
+            <div class="cart-footer" id="cartFooter" style="display: none;">
+                <div class="cart-total">
+                    <span>Total de productos:</span>
+                    <strong id="cartTotalItems">0</strong>
+                </div>
+                
+                <button class="btn-whatsapp" onclick="sendToWhatsApp()">
+                    <i class="fab fa-whatsapp"></i> Solicitar Presupuesto
+                </button>
+                
+                <button class="btn-clear" onclick="clearCart()">
+                    <i class="fas fa-trash"></i> Vaciar Carrito
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Producto Individual -->
+    <div id="productModal" class="product-modal">
+        <div class="product-modal-content">
+            <button class="close-btn" onclick="closeProductModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            <div id="productModalBody">
+                <!-- Contenido del producto se carga dinámicamente -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>DIMACO</h3>
+                    <p>Especialistas en pantallas LED profesionales para todo tipo de proyectos.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <p><i class="fas fa-phone"></i> +34 XXX XXX XXX</p>
+                    <p><i class="fas fa-envelope"></i> info@dimaco.es</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 Dimaco. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/productos.js"></script>
+    <script src="js/carrito.js"></script>
+    <script src="js/whatsapp.js"></script>
+</body>
+</html>
