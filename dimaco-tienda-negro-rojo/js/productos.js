@@ -6,12 +6,12 @@ const productos = [
     // ===== EVENTOS & ESCAPARATES (Pantallas Temporales) =====
     {
         id: 1,
-        nombre: "Pantalla LED P3.9 Interior",
+        nombre: "Pantalla LED P2.6 500X500MM",
         categoria: "eventos-escaparates",
         categoriaLabel: "Eventos & Escaparates",
         descripcion: "Ideal para conciertos, conferencias, presentaciones y escaparates. Alta definición y fácil montaje.",
-        specs: ["P3.9mm", "500x500mm", "1000 nits", "Indoor"],
-        imagen: "img/pantalla-p3.9.jpg",
+        specs: ["P2.6", "500x500mm", "4500/5000 nits", "110-120v","600-700w"],
+        imagen: "img/p26/mini.png",
         destacado: true
     },
     {
