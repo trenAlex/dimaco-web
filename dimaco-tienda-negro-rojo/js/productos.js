@@ -43,6 +43,26 @@ const productos = [
         specs: ["Resolución: 168x336", "500x10000mm", "4500/5000 nits", "110-120v","600-700w"],
         imagen: "img/p97-grande.png",
         destacado: true
+    },
+        {
+        id: 5,
+        nombre: "Pantalla LED P3.91 500X500MM",
+        categoria: "eventos-escaparates",
+        categoriaLabel: "Eventos & Escaparates",
+        descripcion: "Ideal para conciertos, conferencias, presentaciones y escaparates. Alta definición y fácil montaje.",
+        specs: ["Resolución: 128x256", "500x10000mm", "4500/5000 nits", "110-120v","600-700w"],
+        imagen: "img/p391-grande.png",
+        destacado: true
+    },
+        {
+        id: 6,
+        nombre: "Pantalla LED P3.91 500X1000MM",
+        categoria: "eventos-escaparates",
+        categoriaLabel: "Eventos & Escaparates",
+        descripcion: "Ideal para conciertos, conferencias, presentaciones y escaparates. Alta definición y fácil montaje.",
+        specs: ["Resolución: 128x256", "500x10000mm", "4500/5000 nits", "110-120v","600-700w"],
+        imagen: "img/p391-grande.png",
+        destacado: true
     }
 ];
 
