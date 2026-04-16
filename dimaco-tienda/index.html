@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Tienda Dimaco - Índice de Archivos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            color: #2d3748;
+            margin-bottom: 1rem;
+            font-size: 2.5rem;
+            text-align: center;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #718096;
+            margin-bottom: 3rem;
+            font-size: 1.2rem;
+        }
+        
+        .card {
+            background: #f7fafc;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-left: 5px solid #667eea;
+        }
+        
+        .card h2 {
+            color: #2d3748;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .file-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .file-list li {
+            padding: 0.8rem;
+            margin: 0.5rem 0;
+            background: white;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .file-list li:hover {
+            transform: translateX(10px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .file-name {
+            font-family: 'Courier New', monospace;
+            color: #4a5568;
+            font-weight: 600;
+        }
+        
+        .file-desc {
+            color: #718096;
+            font-size: 0.9rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-align: center;
+            margin: 0.5rem;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+        
+        .icon {
+            font-size: 1.5rem;
+        }
+        
+        .status {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        .status-ready {
+            background: #48bb78;
+            color: white;
+        }
+        
+        .status-config {
+            background: #ed8936;
+            color: white;
+        }
+        
+        .alert {
+            background: #fed7d7;
+            border-left: 5px solid #fc8181;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+        
+        .alert h3 {
+            color: #c53030;
+            margin-bottom: 0.5rem;
+        }
+        
+        .alert p {
+            color: #742a2a;
+            line-height: 1.6;
+        }
+        
+        .success {
+            background: #c6f6d5;
+            border-left: 5px solid #48bb78;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+        
+        .success h3 {
+            color: #22543d;
+            margin-bottom: 0.5rem;
+        }
+        
+        .success p {
+            color: #276749;
+            line-height: 1.6;
+        }
+        
+        code {
+            background: #2d3748;
+            color: #68d391;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .agent-badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-left: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🛒 Sistema de Tienda Dimaco</h1>
+        <p class="subtitle">Sistema completo desarrollado por <span class="agent-badge">10 AGENT TEAM</span></p>
+        
+        <div class="btn-group">
+            <a href="tienda.html" class="btn">🚀 Ver Tienda en Acción</a>
+            <a href="README.md" class="btn" download>📖 Descargar README</a>
+            <a href="GUIA_RAPIDA.md" class="btn" download>⚡ Guía Rápida</a>
+        </div>
+        
+        <div class="alert">
+            <h3>⚠️ ACCIÓN REQUERIDA</h3>
+            <p>Antes de usar en producción, debes configurar tu número de WhatsApp en el archivo <code>js/whatsapp.js</code>.</p>
+            <p style="margin-top: 0.5rem;">Busca la línea 7 y cambia: <code>const WHATSAPP_NUMBER = '34XXXXXXXXX';</code></p>
+        </div>
+        
+        <div class="success">
+            <h3>✅ Sistema Completamente Funcional</h3>
+            <p>Tu tienda incluye carrito persistente, filtros avanzados, búsqueda, integración con WhatsApp y diseño responsive. ¡Solo configura tu número y añade tus imágenes!</p>
+        </div>
+        
+        <!-- Archivos Principales -->
+        <div class="card">
+            <h2><span class="icon">📄</span> Archivos Principales</h2>
+            <ul class="file-list">
+                <li>
+                    <div>
+                        <div class="file-name">tienda.html</div>
+                        <div class="file-desc">Página principal de la tienda</div>
+                    </div>
+                    <span class="status status-ready">LISTO</span>
+                </li>
+                <li>
+                    <div>
+                        <div class="file-name">README.md</div>
+                        <div class="file-desc">Documentación completa del sistema</div>
+                    </div>
+                    <span class="status status-ready">LISTO</span>
+                </li>
+                <li>
+                    <div>
+                        <div class="file-name">GUIA_RAPIDA.md</div>
+                        <div class="file-desc">Guía de configuración en 5 minutos</div>
+                    </div>
+                    <span class="status status-ready">LISTO</span>
+                </li>
+            </ul>
+        </div>
+        
+        <!-- Estilos CSS -->
+        <div class="card">
+            <h2><span class="icon">🎨</span> Estilos CSS</h2>
+            <ul class="file-list">
+                <li>
+                    <div>
+                        <div class="file-name">css/tienda.css</div>
+                        <div class="file-desc">Sistema completo de diseño con 10 agentes especializados</div>
+                    </div>
+                    <span class="status status-ready">LISTO</span>
+                </li>
+            </ul>
+        </div>
+        
+        <!-- JavaScript -->
+        <div class="card">
+            <h2><span class="icon">⚙️</span> JavaScript</h2>
+            <ul class="file-list">
+                <li>
+                    <div>
+                        <div class="file-name">js/productos.js</div>
+                        <div class="file-desc">Base de datos de 20 productos | Filtros | Búsqueda</div>
+                    </div>
+                    <span class="status status-ready">LISTO</span>
+                </li>
+                <li>
+                    <div>
+                        <div class="file-name">js/carrito.js</div>
+                        <div class="file-desc">Sistema de carrito con localStorage persistente</div>
+                    </div>
+                    <span class="status status-ready">LISTO</span>
+                </li>
+                <li>
+                    <div>
+                        <div class="file-name">js/whatsapp.js</div>
+                        <div class="file-desc">Integración con WhatsApp Business</div>
+                    </div>
+                    <span class="status status-config">CONFIGURAR</span>
+                </li>
+            </ul>
+        </div>
+        
+        <!-- Carpetas -->
+        <div class="card">
+            <h2><span class="icon">📁</span> Estructura de Carpetas</h2>
+            <ul class="file-list">
+                <li>
+                    <div>
+                        <div class="file-name">img/</div>
+                        <div class="file-desc">Carpeta para imágenes de productos (añade tus fotos aquí)</div>
+                    </div>
+                    <span class="status status-config">PERSONALIZAR</span>
+                </li>
+                <li>
+                    <div>
+                        <div class="file-name">css/</div>
+                        <div class="file-desc">Contiene tienda.css</div>
+                    </div>
+                    <span class="status status-ready">LISTO</span>
+                </li>
+                <li>
+                    <div>
+                        <div class="file-name">js/</div>
+                        <div class="file-desc">Contiene productos.js, carrito.js, whatsapp.js</div>
+                    </div>
+                    <span class="status status-ready">LISTO</span>
+                </li>
+            </ul>
+        </div>
+        
+        <!-- Características -->
+        <div class="card">
+            <h2><span class="icon">✨</span> Características Incluidas</h2>
+            <ul class="file-list">
+                <li>✅ 4 Categorías de productos (Eventos, Escaparates, Fija, Accesorios)</li>
+                <li>✅ 20 Productos de ejemplo completamente configurados</li>
+                <li>✅ Sistema de carrito persistente con localStorage</li>
+                <li>✅ Filtros por categoría y búsqueda en tiempo real</li>
+                <li>✅ Modal de detalles de producto</li>
+                <li>✅ Contador de productos en tiempo real</li>
+                <li>✅ Integración completa con WhatsApp</li>
+                <li>✅ Diseño responsive (móvil, tablet, desktop)</li>
+                <li>✅ Notificaciones de acciones</li>
+                <li>✅ Sistema de especificaciones técnicas</li>
+            </ul>
+        </div>
+        
+        <!-- Próximos Pasos -->
+        <div class="card">
+            <h2><span class="icon">🚀</span> Próximos Pasos</h2>
+            <ol style="list-style-position: inside; color: #4a5568; line-height: 2;">
+                <li>Configura tu número de WhatsApp en <code>js/whatsapp.js</code></li>
+                <li>Añade las imágenes de tus productos en la carpeta <code>img/</code></li>
+                <li>Personaliza los productos en <code>js/productos.js</code></li>
+                <li>Ajusta los colores en <code>css/tienda.css</code> (opcional)</li>
+                <li>Sube todos los archivos a tu servidor</li>
+                <li>¡Prueba la tienda y empieza a vender! 🎉</li>
+            </ol>
+        </div>
+        
+        <!-- Team Credits -->
+        <div style="text-align: center; margin-top: 3rem; padding-top: 2rem; border-top: 2px solid #e2e8f0;">
+            <h3 style="color: #2d3748; margin-bottom: 1rem;">🤖 Desarrollado por Agent Team</h3>
+            <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem; margin-top: 1rem;">
+                <span class="agent-badge">Design System Agent</span>
+                <span class="agent-badge">Product Catalog Agent</span>
+                <span class="agent-badge">Shopping Cart Agent</span>
+                <span class="agent-badge">WhatsApp Agent</span>
+                <span class="agent-badge">Filter & Search Agent</span>
+                <span class="agent-badge">UI/UX Agent</span>
+                <span class="agent-badge">Storage Agent</span>
+                <span class="agent-badge">Notification Agent</span>
+                <span class="agent-badge">Responsive Agent</span>
+                <span class="agent-badge">Integration Agent</span>
+            </div>
+            <p style="color: #718096; margin-top: 2rem; font-size: 0.9rem;">
+                Sistema profesional de e-commerce para Dimaco Pantallas LED
+            </p>
+        </div>
+    </div>
+</body>
+</html>
