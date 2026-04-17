@@ -4,7 +4,7 @@
 
 const productos = [
     // ===== EVENTOS & ESCAPARATES (Pantallas Temporales) =====
-{
+   {
         id: 1,
         nombre: "Pantalla LED P2.6 500X500MM",
         categoria: "eventos-escaparates",
@@ -21,7 +21,7 @@ const productos = [
         categoriaLabel: "Eventos & Escaparates",
         descripcion: "Ideal para conciertos, conferencias, presentaciones y escaparates. Alta definición y fácil montaje.",
         specs: ["Resolución: 192x384", "500x10000mm", "4500/5000 nits", "110-120v","600-700w"],
-        imagen: "img/p26-grande.jpg",
+        imagen: "img/p26-grande.png",
         destacado: true
     },
     {
@@ -36,7 +36,7 @@ const productos = [
     },
        {
         id: 4,
-        nombre: "Pantalla LED P2.6 500X1000MM",
+        nombre: "Pantalla LED P2.97 500X1000MM",
         categoria: "eventos-escaparates",
         categoriaLabel: "Eventos & Escaparates",
         descripcion: "Ideal para conciertos, conferencias, presentaciones y escaparates. Alta definición y fácil montaje.",
@@ -64,6 +64,7 @@ const productos = [
         imagen: "img/p391-grande.png",
         destacado: true
     }
+
 ];
 
 // ==========================================
