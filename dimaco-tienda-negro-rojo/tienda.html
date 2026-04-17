@@ -3,33 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PRUEBA - Tienda Dimaco</title>
-    <link rel="stylesheet" href="tienda.css">
+    <title>Tienda - Pantallas LED Dimaco</title>
+    <link rel="stylesheet" href="css/tienda.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        /* Test banner */
-        .test-banner {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: #ff9800;
-            color: white;
-            padding: 10px;
-            text-align: center;
-            font-weight: bold;
-            z-index: 10000;
-        }
-        body {
-            padding-top: 40px !important;
-        }
-    </style>
 </head>
 <body>
-    <div class="test-banner">
-        🧪 MODO PRUEBA - Si funciona, elimina este banner del HTML
-    </div>
-
     <!-- Header con carrito -->
     <header class="header">
         <div class="container">
@@ -86,7 +64,7 @@
     <section class="products-section">
         <div class="container">
             <div id="productsGrid" class="products-grid">
-                <!-- Los productos se cargarán dinámicamente -->
+                <!-- Los productos se cargarán dinámicamente desde productos.js -->
             </div>
             
             <div id="noResults" class="no-results" style="display: none;">
@@ -121,8 +99,8 @@
                     <strong id="cartTotalItems">0</strong>
                 </div>
                 
-                <button class="btn-whatsapp" onclick="testEmailFunction()">
-                    <i class="fas fa-envelope"></i> Solicitar Presupuesto (PRUEBA)
+                <button class="btn-whatsapp" onclick="sendToEmail()">
+                    <i class="fas fa-envelope"></i> Solicitar Presupuesto
                 </button>
                 
                 <button class="btn-clear" onclick="clearCart()">
@@ -166,314 +144,9 @@
         </div>
     </footer>
 
-    <!-- SCRIPTS INTEGRADOS PARA PRUEBA -->
-    <script>
-        // ==========================================
-        // PRODUCTOS
-        // ==========================================
-        const productos = [
-            {
-                id: 1,
-                nombre: "Pantalla LED P2.6 500X500MM",
-                categoria: "eventos-escaparates",
-                categoriaLabel: "Eventos & Escaparates",
-                descripcion: "Ideal para conciertos, conferencias, presentaciones y escaparates.",
-                specs: ["Resolución: 192x192", "500x500mm", "4500/5000 nits"],
-                imagen: "img/p26-mini.png",
-                destacado: true
-            },
-            {
-                id: 2,
-                nombre: "Pantalla LED P2.6 500X1000MM",
-                categoria: "eventos-escaparates",
-                categoriaLabel: "Eventos & Escaparates",
-                descripcion: "Ideal para conciertos, conferencias, presentaciones y escaparates.",
-                specs: ["Resolución: 192x384", "500x1000mm", "4500/5000 nits"],
-                imagen: "img/p26-grande.jpg",
-                destacado: true
-            },
-            {
-                id: 3,
-                nombre: "Controladora Novastar TB20",
-                categoria: "accesorios",
-                categoriaLabel: "Accesorios",
-                descripcion: "Controladora profesional para pantallas LED.",
-                specs: ["650 mil píxeles", "4K desde USB", "Wifi integrado"],
-                imagen: "img/Ctb20.png",
-                destacado: true
-            }
-        ];
-
-        let currentCategory = 'todas';
-
-        function renderProducts(productsToRender = productos) {
-            const grid = document.getElementById('productsGrid');
-            const noResults = document.getElementById('noResults');
-            
-            if (productsToRender.length === 0) {
-                grid.style.display = 'none';
-                noResults.style.display = 'block';
-                return;
-            }
-            
-            grid.style.display = 'grid';
-            noResults.style.display = 'none';
-            
-            grid.innerHTML = productsToRender.map(producto => `
-                <div class="product-card">
-                    <div class="product-image" onclick="openProductModal(${producto.id})">
-                        <img src="${producto.imagen}" alt="${producto.nombre}" onerror="this.src='img/placeholder.jpg'">
-                        <span class="product-category-badge">${producto.categoriaLabel}</span>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">${producto.nombre}</h3>
-                        <p class="product-description">${producto.descripcion}</p>
-                        <div class="product-specs">
-                            ${producto.specs.map(spec => `<span class="spec-tag">${spec}</span>`).join('')}
-                        </div>
-                        <div class="product-footer">
-                            <button class="btn-add-cart" onclick="addToCart(${producto.id})">
-                                <i class="fas fa-cart-plus"></i> Añadir
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function filterByCategory(categoria) {
-            currentCategory = categoria;
-            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.closest('.filter-btn').classList.add('active');
-            
-            if (categoria === 'todas') {
-                renderProducts(productos);
-            } else {
-                renderProducts(productos.filter(p => p.categoria === categoria));
-            }
-            
-            document.getElementById('searchInput').value = '';
-        }
-
-        function filterProducts() {
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-            let filtered = productos;
-            
-            if (currentCategory !== 'todas') {
-                filtered = filtered.filter(p => p.categoria === currentCategory);
-            }
-            
-            if (searchTerm) {
-                filtered = filtered.filter(p => 
-                    p.nombre.toLowerCase().includes(searchTerm) ||
-                    p.descripcion.toLowerCase().includes(searchTerm)
-                );
-            }
-            
-            renderProducts(filtered);
-        }
-
-        function openProductModal(productId) {
-            alert('Modal de producto: ' + productId);
-        }
-
-        function closeProductModal() {
-            document.getElementById('productModal').classList.remove('active');
-        }
-
-        // ==========================================
-        // CARRITO
-        // ==========================================
-        function getCart() {
-            const cart = localStorage.getItem('dimacoCart');
-            return cart ? JSON.parse(cart) : [];
-        }
-
-        function saveCart(cart) {
-            localStorage.setItem('dimacoCart', JSON.stringify(cart));
-            updateCartUI();
-        }
-
-        function addToCart(productId) {
-            console.log('🛒 Añadiendo producto:', productId);
-            const producto = productos.find(p => p.id === productId);
-            if (!producto) return;
-            
-            let cart = getCart();
-            const existingItem = cart.find(item => item.id === productId);
-            
-            if (existingItem) {
-                existingItem.cantidad++;
-            } else {
-                cart.push({
-                    id: producto.id,
-                    nombre: producto.nombre,
-                    categoria: producto.categoriaLabel,
-                    imagen: producto.imagen,
-                    specs: producto.specs,
-                    cantidad: 1
-                });
-            }
-            
-            saveCart(cart);
-            alert('✓ Producto añadido al carrito');
-        }
-
-        function updateQuantity(productId, change) {
-            let cart = getCart();
-            const item = cart.find(item => item.id === productId);
-            
-            if (item) {
-                item.cantidad += change;
-                if (item.cantidad <= 0) {
-                    removeFromCart(productId);
-                    return;
-                }
-                saveCart(cart);
-            }
-        }
-
-        function removeFromCart(productId) {
-            let cart = getCart();
-            cart = cart.filter(item => item.id !== productId);
-            saveCart(cart);
-        }
-
-        function clearCart() {
-            if (confirm('¿Vaciar el carrito?')) {
-                localStorage.removeItem('dimacoCart');
-                updateCartUI();
-            }
-        }
-
-        function updateCartUI() {
-            const cart = getCart();
-            const cartCount = document.getElementById('cartCount');
-            const cartItems = document.getElementById('cartItems');
-            const cartEmpty = document.getElementById('cartEmpty');
-            const cartFooter = document.getElementById('cartFooter');
-            const cartTotalItems = document.getElementById('cartTotalItems');
-            
-            const totalItems = cart.reduce((sum, item) => sum + item.cantidad, 0);
-            cartCount.textContent = totalItems;
-            
-            if (cart.length === 0) {
-                cartItems.style.display = 'none';
-                cartEmpty.style.display = 'block';
-                cartFooter.style.display = 'none';
-            } else {
-                cartItems.style.display = 'block';
-                cartEmpty.style.display = 'none';
-                cartFooter.style.display = 'block';
-                
-                cartTotalItems.textContent = `${totalItems} ${totalItems === 1 ? 'producto' : 'productos'}`;
-                
-                cartItems.innerHTML = cart.map(item => `
-                    <div class="cart-item">
-                        <div class="cart-item-image">
-                            <img src="${item.imagen}" alt="${item.nombre}" onerror="this.src='img/placeholder.jpg'">
-                        </div>
-                        <div class="cart-item-info">
-                            <div class="cart-item-title">${item.nombre}</div>
-                            <div class="cart-item-category">${item.categoria}</div>
-                            <div class="cart-item-quantity">
-                                <button class="qty-btn" onclick="updateQuantity(${item.id}, -1)">
-                                    <i class="fas fa-minus"></i>
-                                </button>
-                                <span class="qty-value">${item.cantidad}</span>
-                                <button class="qty-btn" onclick="updateQuantity(${item.id}, 1)">
-                                    <i class="fas fa-plus"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <button class="cart-item-remove" onclick="removeFromCart(${item.id})">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </div>
-                `).join('');
-            }
-        }
-
-        function toggleCart() {
-            const modal = document.getElementById('cartModal');
-            modal.classList.toggle('active');
-            document.body.style.overflow = modal.classList.contains('active') ? 'hidden' : 'auto';
-        }
-
-        // ==========================================
-        // EMAIL - FUNCIÓN DE PRUEBA
-        // ==========================================
-        function testEmailFunction() {
-            console.log('📧 Función de email llamada');
-            
-            const cart = getCart();
-            
-            if (cart.length === 0) {
-                alert('⚠️ El carrito está vacío. Añade productos primero.');
-                return;
-            }
-            
-            console.log('📦 Carrito:', cart);
-            
-            // Email de la empresa (CAMBIAR ESTO)
-            const COMPANY_EMAIL = 'info@dimaco.es';
-            
-            // Construir mensaje
-            const subject = 'Consulta de presupuesto - Pantallas LED';
-            
-            let body = 'Hola,\\n\\n';
-            body += 'He visto en vuestra web y estoy interesado en saber cuánto sería el presupuesto de los siguientes productos:\\n\\n';
-            body += '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\\n';
-            body += 'PRODUCTOS DE INTERÉS:\\n';
-            body += '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\\n\\n';
-            
-            cart.forEach((item, index) => {
-                body += `${index + 1}. ${item.nombre}\\n`;
-                body += `   • Cantidad: ${item.cantidad} ${item.cantidad === 1 ? 'unidad' : 'unidades'}\\n`;
-                if (item.specs && item.specs.length > 0) {
-                    body += `   • Especificaciones: ${item.specs.join(', ')}\\n`;
-                }
-                body += '\\n';
-            });
-            
-            const totalItems = cart.reduce((sum, item) => sum + item.cantidad, 0);
-            body += '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\\n';
-            body += `TOTAL: ${totalItems} ${totalItems === 1 ? 'producto' : 'productos'}\\n`;
-            body += '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\\n\\n';
-            body += 'Agradecería que me pudieran facilitar:\\n';
-            body += '• Precio de cada producto\\n';
-            body += '• Disponibilidad\\n';
-            body += '• Plazo de entrega\\n';
-            body += '• Condiciones de pago\\n\\n';
-            body += 'Quedo a la espera de su respuesta.\\n\\n';
-            body += 'Saludos cordiales.';
-            
-            // Crear URL mailto
-            const mailtoURL = `mailto:${COMPANY_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-            
-            console.log('📧 URL generada:', mailtoURL.substring(0, 100) + '...');
-            
-            // Intentar abrir el cliente de email
-            try {
-                window.location.href = mailtoURL;
-                
-                // Mostrar confirmación
-                alert('✅ Se debería haber abierto tu programa de correo.\\n\\nSi no se abrió, verifica que tengas configurado Gmail, Outlook u otro cliente de email.');
-                
-            } catch (error) {
-                console.error('❌ Error al abrir email:', error);
-                alert('❌ Error al abrir el cliente de email. Revisa la consola (F12).');
-            }
-        }
-
-        // ==========================================
-        // INICIALIZACIÓN
-        // ==========================================
-        document.addEventListener('DOMContentLoaded', () => {
-            console.log('✅ Página cargada correctamente');
-            renderProducts();
-            updateCartUI();
-        });
-    </script>
+    <!-- Scripts -->
+    <script src="js/productos.js"></script>
+    <script src="js/carrito.js"></script>
+    <script src="js/email.js"></script>
 </body>
 </html>
