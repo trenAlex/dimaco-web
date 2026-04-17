@@ -94,6 +94,36 @@ const productos = [
         specs: ["Resolución: 120X120", "6000 nits", "110-120v","650-700w"],
         imagen: "img/p8.png",
         destacado: true
+    },
+        {
+        id: 10,
+        nombre: "Controladora Novastar TB20",
+        categoria: "accesorios",
+        categoriaLabel: "Accesorios",
+        descripcion: "Controladora de pantalla LED para eventos y señalización digital. Compatible con múltiples entradas y resoluciones, ideal para pantallas de alquiler y eventos temporales.",
+        specs: ["650 mil píxeles", "4K desde USB", " 1 Salida Gigabit Ethernet","Wifi integrado", "Compatible con NovaLCT ,ViPlex Express y ViPlex Handy"],
+        imagen: "img/Ctb20.png",
+        destacado: true
+    },
+        {
+        id: 11,
+        nombre: "Controladora Novastar TB40",
+        categoria: "accesorios",
+        categoriaLabel: "Accesorios",
+        descripcion: "Controladora de pantalla LED para eventos y señalización digital. Compatible con múltiples entradas y resoluciones, ideal para pantallas de alquiler y eventos temporales.",
+        specs: ["1,3 millones de píxeles", "4K desde USB", "2 Salidas Gigabit Ethernet","Wifi integrado", "Compatible con NovaLCT ,ViPlex Express y ViPlex Handy"],
+        imagen: "img/Ctb40.png",
+        destacado: true
+    },
+        {
+        id: 12,
+        nombre: "Video Procesador VX400",
+        categoria: "accesorios",
+        categoriaLabel: "Accesorios",
+        descripcion: "Procesador de video para pantallas LED, compatible con múltiples entradas y resoluciones. Ideal para eventos y señalización digital.",
+        specs: ["2,6 millones de píxeles", "Entradas HDMI/DVI/3G-SDI", "4 salidas Ethernet","2 salidas de fibra 10G ", "Compatible con NovaLCT y V-Can"],
+        imagen: "img/vx400.png",
+        destacado: true
     }
 ];
 
