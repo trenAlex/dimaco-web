@@ -4,7 +4,7 @@
 // ==========================================
 
 // CONFIGURACIÓN - CAMBIAR ESTE EMAIL POR EL TUYO
-const COMPANY_EMAIL = 'info@dimaco.es'; // Cambiar por tu email
+const COMPANY_EMAIL = 'dimacoled@gmail.com'; // Cambiar por tu email
 
 // ==========================================
 // ENVIAR PRESUPUESTO POR EMAIL
