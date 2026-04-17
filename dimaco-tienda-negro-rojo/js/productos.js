@@ -235,35 +235,37 @@ function openProductModal(productId) {
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
                 <div>
                     <img src="${producto.imagen}" alt="${producto.nombre}" 
-                         style="width: 100%; border-radius: 10px; border: 2px solid var(--neon-red);"
+                         style="width: 100%; border-radius: 10px; border: 2px solid var(--primary, #e30613);"
                          onerror="this.src='img/placeholder.jpg'">
                 </div>
                 <div>
-                    <span style="background: var(--neon-red); color: white; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase;">
+                    <span style="background: var(--primary, #e30613); color: white; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase;">
                         ${producto.categoriaLabel}
                     </span>
-                    <h2 style="margin: 1rem 0; font-size: 2rem; color: var(--white);">${producto.nombre}</h2>
-                    <p style="color: var(--gray); line-height: 1.8; margin-bottom: 1.5rem;">${producto.descripcion}</p>
+                    <h2 style="margin: 1rem 0; font-size: 2rem; color: var(--neutral-0, white);">${producto.nombre}</h2>
+                    <p style="color: var(--neutral-400, #a3a3a3); line-height: 1.8; margin-bottom: 1.5rem;">${producto.descripcion}</p>
                     
-                    <h3 style="margin-bottom: 1rem; color: var(--white);">Especificaciones:</h3>
+                    <h3 style="margin-bottom: 1rem; color: var(--neutral-0, white);">Especificaciones:</h3>
                     <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem;">
                         ${producto.specs.map(spec => `
-                            <span style="background: var(--dark-3); color: var(--gray); padding: 0.5rem 1rem; border-radius: 8px; font-weight: 600; border: 1px solid var(--light-gray);">
+                            <span style="background: var(--bg-elevated, #0f0f0f); color: var(--neutral-300, #d4d4d4); padding: 0.5rem 1rem; border-radius: 8px; font-weight: 600; border: 1px solid var(--border-subtle, rgba(255,255,255,0.06));">
                                 ${spec}
                             </span>
                         `).join('')}
                     </div>
                     
                     <button onclick="addToCart(${producto.id}); closeProductModal();" 
-                            style="width: 100%; background: var(--neon-red); color: white; padding: 1rem; border-radius: 10px; font-size: 1.1rem; font-weight: 700; border: none; cursor: pointer; transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 1px;">
+                            style="width: 100%; background: var(--primary, #e30613); color: white; padding: 1rem; border-radius: 10px; font-size: 1.1rem; font-weight: 700; border: none; cursor: pointer; transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 1px;"
+                            onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 16px rgba(227,6,19,0.3)';"
+                            onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none';">
                         <i class="fas fa-cart-plus"></i> Añadir al Carrito
                     </button>
                 </div>
             </div>
             
-            <div style="background: var(--dark-3); padding: 1.5rem; border-radius: 10px; border: 2px solid var(--light-gray);">
-                <h3 style="margin-bottom: 1rem; color: var(--white);"><i class="fas fa-info-circle"></i> Información Adicional</h3>
-                <p style="color: var(--gray); line-height: 1.8;">
+            <div style="background: var(--bg-elevated, #0f0f0f); padding: 1.5rem; border-radius: 10px; border: 2px solid var(--border-subtle, rgba(255,255,255,0.06));">
+                <h3 style="margin-bottom: 1rem; color: var(--neutral-0, white);"><i class="fas fa-info-circle"></i> Información Adicional</h3>
+                <p style="color: var(--neutral-400, #a3a3a3); line-height: 1.8;">
                     Este producto incluye garantía del fabricante y soporte técnico. Para más información sobre disponibilidad, 
                     instalación y precios especiales para proyectos, añádelo al carrito y solicita un presupuesto personalizado.
                 </p>
@@ -272,10 +274,12 @@ function openProductModal(productId) {
     `;
     
     modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
 }
 
 function closeProductModal() {
     document.getElementById('productModal').classList.remove('active');
+    document.body.style.overflow = 'auto';
 }
 
 // Cerrar modal al hacer clic fuera
