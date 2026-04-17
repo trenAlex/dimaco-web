@@ -4,7 +4,7 @@
 
 const productos = [
     // ===== EVENTOS & ESCAPARATES (Pantallas Temporales) =====
-   {
+ {
         id: 1,
         nombre: "Pantalla LED P2.6 500X500MM",
         categoria: "eventos-escaparates",
@@ -21,7 +21,7 @@ const productos = [
         categoriaLabel: "Eventos & Escaparates",
         descripcion: "Ideal para conciertos, conferencias, presentaciones y escaparates. Alta definición y fácil montaje.",
         specs: ["Resolución: 192x384", "500x10000mm", "4500/5000 nits", "110-120v","600-700w"],
-        imagen: "img/p26-grande.png",
+        imagen: "img/p26-grande.jpg",
         destacado: true
     },
     {
@@ -64,7 +64,37 @@ const productos = [
         imagen: "img/p391-grande.png",
         destacado: true
     }
-
+    ,
+        {
+        id: 7,
+        nombre: "Pantalla LED Aluminio P4.4 960X960MM",
+        categoria: "fija",
+        categoriaLabel: "Instalación Fija",
+        descripcion: "Diseñada para instalaciones exteriores , para eventos . Con gran resistencia y alto brillo.",
+        specs: ["Resolución: 218x218", "6000 nits", "110-120v","650-700w"],
+        imagen: "img/p44.png",
+        destacado: true
+    } ,
+        {
+        id: 8,
+        nombre: "Pantalla LED Aluminio P5.7 960X960MM",
+        categoria: "fija",
+        categoriaLabel: "Instalación Fija",
+        descripcion: "Diseñada para instalaciones exteriores , para eventos . Con gran resistencia y alto brillo.",
+        specs: ["Resolución: 168X168", "6000 nits", "110-120v","650-700w"],
+        imagen: "img/p57.png",
+        destacado: true
+    } ,
+        {
+        id: 9,
+        nombre: "Pantalla LED Aluminio P8 960X960MM",
+        categoria: "fija",
+        categoriaLabel: "Instalación Fija",
+        descripcion: "Diseñada para instalaciones exteriores , para eventos . Con gran resistencia y alto brillo.",
+        specs: ["Resolución: 120X120", "6000 nits", "110-120v","650-700w"],
+        imagen: "img/p8.png",
+        destacado: true
+    }
 ];
 
 // ==========================================
