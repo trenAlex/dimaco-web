@@ -4,7 +4,7 @@
 // ==========================================
 
 // CONFIGURACIÓN - CAMBIAR ESTE EMAIL POR EL TUYO
-const COMPANY_EMAIL = 'dimacoled@gmail.com'; // Cambiar por tu email
+const COMPANY_EMAIL = 'info@dimaco.es'; // Cambiar por tu email
 
 // ==========================================
 // ENVIAR PRESUPUESTO POR EMAIL
@@ -19,26 +19,22 @@ function sendToEmail() {
     }
     
     // Construir asunto del email
-    const subject = 'Solicitud de Presupuesto - Pantallas LED DIMACO';
+    const subject = 'Consulta de presupuesto - Pantallas LED';
     
     // Construir cuerpo del email
-    let body = '═══════════════════════════════════\n';
-    body += '🛒 SOLICITUD DE PRESUPUESTO - DIMACO\n';
-    body += '═══════════════════════════════════\n\n';
+    let body = 'Hola,\n\n';
+    body += 'He visto en vuestra web y estoy interesado en saber cuánto sería el presupuesto de los siguientes productos:\n\n';
     
-    body += '📋 LISTA DE PRODUCTOS:\n';
-    body += '─────────────────────────────────\n\n';
+    body += '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n';
+    body += 'PRODUCTOS DE INTERÉS:\n';
+    body += '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n';
     
     cart.forEach((item, index) => {
         body += `${index + 1}. ${item.nombre}\n`;
-        body += `   📁 Categoría: ${item.categoria}\n`;
-        body += `   📦 Cantidad: ${item.cantidad} ${item.cantidad === 1 ? 'unidad' : 'unidades'}\n`;
+        body += `   • Cantidad: ${item.cantidad} ${item.cantidad === 1 ? 'unidad' : 'unidades'}\n`;
         
         if (item.specs && item.specs.length > 0) {
-            body += `   🔧 Especificaciones:\n`;
-            item.specs.forEach(spec => {
-                body += `      • ${spec}\n`;
-            });
+            body += `   • Especificaciones: ${item.specs.join(', ')}\n`;
         }
         
         body += '\n';
@@ -46,16 +42,17 @@ function sendToEmail() {
     
     // Resumen
     const totalItems = cart.reduce((sum, item) => sum + item.cantidad, 0);
-    body += '─────────────────────────────────\n';
-    body += `📊 RESUMEN:\n`;
-    body += `   Total de productos: ${totalItems} ${totalItems === 1 ? 'producto' : 'productos'}\n\n`;
+    body += '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n';
+    body += `TOTAL: ${totalItems} ${totalItems === 1 ? 'producto' : 'productos'}\n`;
+    body += '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n';
     
-    body += '─────────────────────────────────\n\n';
-    body += '💬 MENSAJE:\n';
-    body += 'Me gustaría recibir un presupuesto detallado para estos productos.\n';
-    body += 'Por favor, indíquenme precios, disponibilidad y tiempos de entrega.\n\n';
+    body += 'Agradecería que me pudieran facilitar:\n';
+    body += '• Precio de cada producto\n';
+    body += '• Disponibilidad\n';
+    body += '• Plazo de entrega\n';
+    body += '• Condiciones de pago\n\n';
     
-    body += '✅ Quedo a la espera de su respuesta.\n\n';
+    body += 'Quedo a la espera de su respuesta.\n\n';
     body += 'Saludos cordiales.';
     
     // Codificar para URL
@@ -99,12 +96,17 @@ function showEmailConfirmation() {
             <i class="fas fa-envelope-open-text"></i>
         </div>
         <h3 style="margin-bottom: 1rem; color: var(--neutral-0); font-size: 1.5rem; font-weight: 700;">
-            ¡Abriendo tu cliente de email!
+            ¡Abriendo tu correo!
         </h3>
-        <p style="color: var(--neutral-400); margin-bottom: 2rem; line-height: 1.6;">
-            Tu solicitud de presupuesto está lista para enviar. 
-            Si no se abre automáticamente, verifica que tienes configurado un cliente de correo.
+        <p style="color: var(--neutral-400); margin-bottom: 1.5rem; line-height: 1.6;">
+            Se abrirá tu programa de correo (Gmail, Outlook, etc.) con el mensaje ya preparado.
         </p>
+        <div style="background: var(--bg-elevated); padding: 1rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 3px solid var(--primary);">
+            <p style="color: var(--neutral-300); font-size: 0.9rem; line-height: 1.6; margin: 0;">
+                <strong>Importante:</strong> El correo se enviará desde TU cuenta de email personal. 
+                Solo tienes que hacer clic en "Enviar" en tu programa de correo.
+            </p>
+        </div>
         <button onclick="this.parentElement.remove()" 
                 style="background: var(--primary); color: white; padding: 0.875rem 2rem; border: none; border-radius: var(--radius-lg); font-weight: 600; cursor: pointer; font-size: 0.9375rem; transition: all 0.2s ease;">
             Entendido
@@ -156,27 +158,29 @@ function shareProductEmail(productId) {
     
     const subject = `Consulta sobre: ${producto.nombre}`;
     
-    let body = '═══════════════════════════════════\n';
-    body += '📋 CONSULTA DE PRODUCTO - DIMACO\n';
-    body += '═══════════════════════════════════\n\n';
+    let body = 'Hola,\n\n';
+    body += 'He visto en vuestra web y estoy interesado en obtener más información sobre el siguiente producto:\n\n';
     
-    body += `🔥 PRODUCTO: ${producto.nombre}\n\n`;
-    body += `📁 Categoría: ${producto.categoriaLabel}\n\n`;
-    body += `📝 Descripción:\n${producto.descripcion}\n\n`;
+    body += '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n';
+    body += `PRODUCTO: ${producto.nombre}\n`;
+    body += '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n';
     
-    body += `🔧 Especificaciones:\n`;
+    body += `Categoría: ${producto.categoriaLabel}\n\n`;
+    
+    body += `Especificaciones:\n`;
     producto.specs.forEach(spec => {
-        body += `   • ${spec}\n`;
+        body += `• ${spec}\n`;
     });
     
-    body += '\n─────────────────────────────────\n\n';
-    body += '💬 MENSAJE:\n';
-    body += 'Me interesa este producto. ¿Podrían proporcionarme más información sobre:\n\n';
+    body += '\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n';
+    
+    body += 'Me gustaría conocer:\n';
     body += '• Precio\n';
     body += '• Disponibilidad\n';
-    body += '• Tiempo de entrega\n';
+    body += '• Plazo de entrega\n';
     body += '• Garantía y soporte técnico\n\n';
-    body += '✅ Quedo a la espera de su respuesta.\n\n';
+    
+    body += 'Quedo a la espera de su respuesta.\n\n';
     body += 'Saludos cordiales.';
     
     const subjectEncoded = encodeURIComponent(subject);
