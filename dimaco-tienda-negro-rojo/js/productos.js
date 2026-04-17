@@ -112,7 +112,7 @@ const productos = [
         categoriaLabel: "Accesorios",
         descripcion: "Controladora de pantalla LED para eventos y señalización digital. Compatible con múltiples entradas y resoluciones, ideal para pantallas de alquiler y eventos temporales.",
         specs: ["1,3 millones de píxeles", "4K desde USB", "2 Salidas Gigabit Ethernet","Wifi integrado", "Compatible con NovaLCT ,ViPlex Express y ViPlex Handy"],
-        imagen: "img/Ctb40.png",
+        imagen: "img/Ctb40.jpg",
         destacado: true
     },
         {
