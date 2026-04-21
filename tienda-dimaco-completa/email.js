@@ -4,7 +4,7 @@
 // ==========================================
 
 // CONFIGURACIÓN - CAMBIAR ESTE EMAIL POR EL TUYO
-const COMPANY_EMAIL = 'info@dimaco.es'; // Email de tu empresa
+const COMPANY_EMAIL = 'dimacoled@gmail.es'; // Email de tu empresa
 
 // ==========================================
 // MOSTRAR POPUP PARA PEDIR EMAIL DEL CLIENTE
