@@ -3,22 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Catálogo profesional de pantallas LED para eventos, instalaciones fijas y accesorios. Solicita presupuesto personalizado. DIMACO - Especialistas en tecnología LED.">
+    <meta name="description" content="Catálogo profesional de pantallas LED para eventos, instalaciones fijas y accesorios. Solicita presupuesto por WhatsApp. DIMACO - Especialistas en tecnología LED.">
     <meta name="keywords" content="pantallas LED, displays LED, pantallas eventos, instalación fija LED, controladora LED, procesador video">
     <meta name="author" content="DIMACO">
     
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Catálogo Pantallas LED - DIMACO">
-    <meta property="og:description" content="Soluciones profesionales en pantallas LED. Eventos, instalaciones fijas y accesorios.">
-    <meta property="og:site_name" content="DIMACO">
-    
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Catálogo Pantallas LED - DIMACO">
-    <meta name="twitter:description" content="Soluciones profesionales en pantallas LED. Eventos, instalaciones fijas y accesorios.">
-    
-    <title>Catálogo Pantallas LED - DIMACO | Soluciones Profesionales</title>
+    <title>Catálogo Pantallas LED - DIMACO | WhatsApp</title>
     <link rel="stylesheet" href="tienda.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -114,8 +103,9 @@
                     <strong id="cartTotalItems">0</strong>
                 </div>
                 
-                <button class="btn-whatsapp" onclick="sendToEmail()">
-                    <i class="fas fa-envelope"></i> Solicitar Presupuesto
+                <!-- BOTÓN DE WHATSAPP -->
+                <button class="btn-whatsapp" onclick="sendToWhatsApp()">
+                    <i class="fab fa-whatsapp"></i> Pedir Presupuesto por WhatsApp
                 </button>
                 
                 <button class="btn-clear" onclick="clearCart()">
@@ -149,12 +139,13 @@
                 <div class="footer-section">
                     <h3>Contacto</h3>
                     <p><i class="fas fa-phone"></i> +34 XXX XXX XXX</p>
+                    <p><i class="fab fa-whatsapp"></i> WhatsApp: +34 XXX XXX XXX</p>
                     <p><i class="fas fa-envelope"></i> info@dimaco.es</p>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2026 Dimaco. Todos los derechos reservados.</p>
+                <p>&copy; 2026 Dimaco. Todos los derechos reservados. Sistema con WhatsApp</p>
             </div>
         </div>
     </footer>
@@ -162,6 +153,6 @@
     <!-- Scripts -->
     <script src="productos.js"></script>
     <script src="carrito.js"></script>
-    <script src="email.js"></script>
+    <script src="whatsapp.js"></script> <!-- SCRIPT DE WHATSAPP -->
 </body>
 </html>
